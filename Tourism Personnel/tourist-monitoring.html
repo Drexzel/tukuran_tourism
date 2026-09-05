@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <title>Tourist Monitoring · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Tourism Office</h2>
+        <p>Municipality of Tukuran</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link">
+        <i class="fas fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="beach-management.html" class="sidebar-link">
+        <i class="fas fa-umbrella-beach"></i>
+        <span>Beach Management</span>
+      </a>
+      <a href="tourist-monitoring.html" class="sidebar-link active">
+        <i class="fas fa-users"></i>
+        <span>Tourist Monitoring</span>
+      </a>
+      <a href="digital-map.html" class="sidebar-link">
+        <i class="fas fa-map-location-dot"></i>
+        <span>Digital Map</span>
+      </a>
+      <a href="automated-reports.html" class="sidebar-link">
+        <i class="fas fa-file-lines"></i>
+        <span>Automated Reports</span>
+      </a>
+      <a href="incident-report.html" class="sidebar-link">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>Incident Report</span>
+</a>
+      <a href="manage-beach-owners.html" class="sidebar-link">
+        <i class="fas fa-user-gear"></i>
+        <span>Manage Beach Owners</span>
+      </a>
+      <a href="update-requests.html" class="sidebar-link">
+        <i class="fas fa-pen-to-square"></i>
+        <span>Update Requests</span>
+      </a>
+      <a href="../Log-in page/login.html" class="sidebar-link logout-link" id="logoutBtn3">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Tourist Monitoring</h1>
+        <p>Complete visitor records collected throughout the system</p>
+      </div>
+
+      <!-- Filters -->
+      <!-- Only the Visitor Type filter is kept - the free-text search, the
+           Gender filter and the Origin filter were removed to keep the
+           monitoring view simple and focused on visitor records. -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <select class="form-control" id="filterType">
+            <option value="">All Visitor Types</option>
+            <option value="Local">Local</option>
+            <option value="Foreign">Foreign</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tourist Records Table -->
+      <div class="bookings-table-wrapper">
+        <table class="bookings-table tourist-monitoring-table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Place of Origin</th>
+              <th>Visitor Type</th>
+              <th>Packs</th>
+              <th>Beach Visited</th>
+              <th>Visit Date</th>
+            </tr>
+          </thead>
+          <tbody id="touristRecordsBody">
+            <tr id="touristRecordsLoadingRow">
+              <td colspan="8" style="text-align:center; padding:30px;">Loading visitor records...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty state -->
+      <div id="touristRecordsEmptyState" class="empty-state" style="display: none; text-align:center; padding:30px; color:#5a7a8a;">
+        <p>No visitor records found. Approved reservations and walk-in registrations will appear here automatically.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass">
+      <h3><i class="fas fa-palm-tree" style="color: #1a6b7a; margin-right: 10px;"></i>Confirm Logout</h3>
+      <p>Are you sure you want to log out from the Tourism Office Portal?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelLogout"><i class="fas fa-times"></i> No, Stay</button>
+        <button class="btn-primary btn-logout" id="confirmLogout"><i class="fas fa-sign-out-alt"></i> Yes, Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/style.js"></script>
+  <script src="../assets/js/sidebar-notification-badges.js"></script>
+  <script src="tourist-monitoring.js?v=2"></script>
+</body>
+</html>

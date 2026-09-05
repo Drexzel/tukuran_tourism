@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <title>Incident Report · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="incident-report.css">
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Tourism Office</h2>
+        <p>Municipality of Tukuran</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link">
+        <i class="fas fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="beach-management.html" class="sidebar-link">
+        <i class="fas fa-umbrella-beach"></i>
+        <span>Beach Management</span>
+      </a>
+      <a href="digital-map.html" class="sidebar-link">
+        <i class="fas fa-map-location-dot"></i>
+        <span>Digital Map</span>
+      </a>
+      <a href="automated-reports.html" class="sidebar-link">
+        <i class="fas fa-file-lines"></i>
+        <span>Automated Reports</span>
+      </a>
+      <a href="incident-report.html" class="sidebar-link active">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>Incident Report</span>
+      </a>
+      <a href="manage-beach-owners.html" class="sidebar-link">
+        <i class="fas fa-user-gear"></i>
+        <span>Manage Beach Owners</span>
+      </a>
+      <a href="update-requests.html" class="sidebar-link">
+        <i class="fas fa-pen-to-square"></i>
+        <span>Update Requests</span>
+      </a>
+      <a href="../Log-in page/login.html" class="sidebar-link logout-link" id="logoutBtn7">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Incident Report</h1>
+        <p>Monitor and review incident reports from all participating beaches</p>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="incident-stats">
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Total Reports</h3>
+            <p class="stat-number" id="totalReports">0</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Pending Review</h3>
+            <p class="stat-number" id="pendingReports">0</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Under Review</h3>
+            <p class="stat-number" id="investigatingReports">0</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Resolved</h3>
+            <p class="stat-number" id="resolvedReports">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="incident-controls">
+        <div class="incident-search">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" class="form-control" id="searchIncident" placeholder="Search by beach, type, or description...">
+          </div>
+        </div>
+        <div class="incident-filters">
+          <select class="form-control" id="filterIncidentType">
+            <option value="all">All Types</option>
+            <option value="Drowning">Drowning</option>
+            <option value="Missing Person">Missing Person</option>
+            <option value="Medical Emergency">Medical Emergency</option>
+            <option value="Injury">Injury</option>
+            <option value="Lost Property">Lost Property</option>
+            <option value="Other">Other</option>
+          </select>
+          <select class="form-control" id="filterIncidentStatus">
+            <option value="all">All Status</option>
+            <option value="Pending">Pending</option>
+            <option value="Investigating">Under Review</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Incident Reports Table -->
+      <div class="incident-table-wrapper">
+        <table class="incident-table">
+          <thead>
+            <tr>
+              <th>Beach Name</th>
+              <th>Location</th>
+              <th>Incident Type</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Reported By</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="incidentTableBody">
+            <!-- Dynamic content will be rendered here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No Results Message -->
+      <div class="no-results" id="noResults" style="display: none;">
+        <i class="fas fa-search"></i>
+        <p>No incident reports found matching your criteria.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== INCIDENT DETAILS MODAL ========== -->
+  <div id="incidentModal" class="modal">
+    <div class="modal-content glass">
+      <button class="modal-close" id="incidentModalClose"><i class="fas fa-times"></i></button>
+      <h3 id="incidentModalTitle">Incident Details</h3>
+      <div id="incidentModalBody">
+        <!-- Dynamic content will be rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass">
+      <h3><i class="fas fa-palm-tree" style="color: #1a6b7a; margin-right: 10px;"></i>Confirm Logout</h3>
+      <p>Are you sure you want to log out from the Tourism Office Portal?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelLogout"><i class="fas fa-times"></i> No, Stay</button>
+        <button class="btn-primary btn-logout" id="confirmLogout"><i class="fas fa-sign-out-alt"></i> Yes, Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/style.js"></script>
+  <script src="../assets/js/sidebar-notification-badges.js"></script>
+  <script src="incident-report.js"></script>
+</body>
+</html>

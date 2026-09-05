@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <title>Beach Management · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=2">
+  <link rel="stylesheet" href="../assets/css/beach-management.css?v=2">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="../assets/images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="../assets/images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="../assets/images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Tourism Office</h2>
+        <p>Municipality of Tukuran</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link">
+        <i class="fas fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="beach-management.html" class="sidebar-link active">
+        <i class="fas fa-umbrella-beach"></i>
+        <span>Beach Resorts</span>
+      </a>
+      <a href="digital-map.html" class="sidebar-link">
+        <i class="fas fa-map-location-dot"></i>
+        <span>Tourism Map</span>
+      </a>
+      <a href="automated-reports.html" class="sidebar-link">
+        <i class="fas fa-file-lines"></i>
+        <span> Reports</span>
+      </a>
+      <a href="incident-report.html" class="sidebar-link">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>Incident Management</span>
+      </a>
+      <a href="manage-beach-owners.html" class="sidebar-link">
+        <i class="fas fa-user-gear"></i>
+        <span> Beach Owners</span>
+      </a>
+      <a href="update-requests.html" class="sidebar-link">
+        <i class="fas fa-pen-to-square"></i>
+        <span>Update Requests</span>
+      </a>
+      <a href="../Log-in page/login.html" class="sidebar-link logout-link" id="logoutBtn2">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        
+      </div>
+
+      <!-- Search and Filter Bar -->
+      <div class="beach-management-toolbar">
+        <div class="toolbar-left">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" class="form-control" id="searchBeachList" placeholder="Search beaches...">
+          </div>
+          <div class="filter-dropdown">
+            <select class="form-control" id="beachFilterDropdown">
+              <!-- Beach options are filled in from the beaches actually loaded
+                   from the database (see the page script at the bottom), so
+                   this list always matches the cards shown above. -->
+              <option value="">All Beaches</option>
+            </select>
+          </div>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-primary" id="addBeachBtn">
+            <i class="fas fa-plus"></i> Add Beach
+          </button>
+        </div>
+      </div>
+
+      <!-- Beach Cards Grid -->
+      <div class="beach-management-grid" id="beachManagementGrid">
+        <!-- Populated dynamically by assets/js/beach-management.js from the
+             MySQL database (via api/get-beaches.php), reflecting exactly the
+             beaches Tourism Personnel have added. This placeholder is replaced
+             as soon as the beaches finish loading. -->
+        <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color:#6b7280;">
+          <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 10px; display:block;"></i>
+          Loading beaches...
+        </div>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- ===== ADD BEACH MODAL ===== -->
+      <!-- ======================================== -->
+
+      <div id="addBeachModal" class="add-beach-modal">
+        <div class="add-beach-modal-content">
+          <div class="add-beach-modal-header">
+            <h2><i class="fas fa-plus-circle"></i> Add New Beach</h2>
+            <button class="modal-close-btn" onclick="closeAddBeachModal()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          
+          <form id="addBeachForm" class="add-beach-form">
+            <!-- Step 1: Beach Information -->
+            <div class="form-step active" id="step1">
+              <h3>Beach Information</h3>
+              
+              <div class="form-group">
+                <label>Beach Name <span class="required">*</span></label>
+                <input type="text" class="form-control" id="beachName" required>
+              </div>
+              <!-- Status is no longer editable from this form. A beach's
+                   Active/Inactive status is now managed exclusively through
+                   the Deactivate/Activate button in the Beach Details view,
+                   which also runs the active-reservation safety check. -->
+              <p class="form-hint" style="margin-top:-10px; display:none;" id="editStatusHint">
+                <i class="fas fa-info-circle"></i> To deactivate or reactivate this beach, use the Deactivate/Activate button on its Beach Details view.
+              </p>
+              
+              <div class="form-group">
+                <label>Location <span class="required">*</span></label>
+                <input type="text" class="form-control" id="beachLocation" placeholder="Example: Barangay Santo Niño, Tukuran" required>
+              </div>
+              
+              <p class="form-hint" style="margin-top:-4px;">
+                <i class="fas fa-info-circle"></i> The Beach Owner is no longer entered here - it comes automatically from the linked Beach Owner account (Manage Beach Owners).
+              </p>
+
+              <div class="form-group">
+                <label>Maximum Capacity <span class="required">*</span></label>
+                <input type="number" class="form-control" id="maxCapacity" min="1" required>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Adult Fee (₱)</label>
+                  <input type="number" class="form-control" id="adultFee" min="0" step="0.01" value="0">
+                </div>
+                <div class="form-group">
+                  <label>Child Fee (₱)</label>
+                  <input type="number" class="form-control" id="childFee" min="0" step="0.01" value="0">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" id="beachDescription" rows="4" placeholder="Describe the beach..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Beach Images <span class="form-hint-inline">(3-4 recommended)</span></label>
+                <input type="file" class="form-control" id="beachImages" accept="image/png, image/jpeg, image/webp, image/gif" multiple>
+                <p class="form-hint">Upload 3 to 4 photos of the beach (JPG, PNG, WEBP or GIF, max 5MB each, max 4 total).</p>
+                <div id="beachImagePreviewWrap" style="display:none; margin-top:10px;">
+                  <div id="beachImagePreviewGrid" class="image-thumb-grid"></div>
+                </div>
+
+                <!-- Only shown when editing an existing beach: its current
+                     saved images, each removable with the × button. Removed
+                     images are sent as delete_image_ids to update-beach.php. -->
+                <div id="existingImagesWrap" style="display:none; margin-top:12px;">
+                  <p class="form-hint" style="margin-bottom:6px;">
+                    <i class="fas fa-images"></i> Current images &mdash; click &times; to remove:
+                  </p>
+                  <div id="existingImagesGrid" class="image-thumb-grid"></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Step 2: Amenities & Accommodations -->
+            <div class="form-step" id="step2">
+              <h3>Amenities & Accommodations</h3>
+              
+              <div class="form-group">
+                <label>Amenities</label>
+                <div class="amenities-checkbox-grid" id="amenitiesCheckboxGrid">
+                  <!-- Dynamically loaded from database -->
+                </div>
+                <!-- Others: lets Tourism Personnel add a custom amenity that
+                     isn't in the list above. The text box stays visible while
+                     "Others" is ticked and its value is saved together with
+                     the selected amenities. -->
+                <div class="amenity-others-row">
+                  <div class="amenity-checkbox-item">
+                    <input type="checkbox" id="amenityOthersCheck">
+                    <label for="amenityOthersCheck">Others</label>
+                  </div>
+                  <input type="text" class="form-control amenity-others-input" id="amenityOthersInput" placeholder="Specify other amenity" style="display:none;">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label>Accommodation Types</label>
+                <div class="accommodation-header">
+                  <span>Type</span>
+                  <span>Units</span>
+                  <span>Price per Unit (₱)</span>
+                  <span class="accommodation-header-spacer"></span>
+                </div>
+                <div id="accommodationContainer">
+                  <div class="accommodation-row">
+                    <select class="form-control accommodation-type" id="accommodationType1">
+                      <option value="">Select Type</option>
+                    </select>
+                    <input type="number" class="form-control accommodation-units" id="accommodationUnits1" placeholder="Units" min="0">
+                    <input type="number" class="form-control accommodation-price" id="accommodationPrice1" placeholder="Price" min="0" step="0.01">
+                    <button type="button" class="btn-remove-accommodation" onclick="removeAccommodation(this)" style="display:none;">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <button type="button" class="btn-secondary btn-sm" onclick="addAccommodationRow()">
+                  <i class="fas fa-plus"></i> Add Accommodation
+                </button>
+              </div>
+            </div>
+            
+            <!-- Step 3: Contact & Location -->
+            <div class="form-step" id="step3">
+              <h3>Contact & Location</h3>
+
+              <p class="form-hint" style="margin-top:-4px;">
+                <i class="fas fa-info-circle"></i> The contact phone number now comes automatically from the linked Beach Owner account (Manage Beach Owners), so it's no longer entered here.
+              </p>
+              
+              <div class="form-group">
+                <label>Facebook Page</label>
+                <input type="text" class="form-control" id="contactFacebook" placeholder="facebook.com/yourbeach">
+              </div>
+              
+              <div class="form-group">
+                <label>Website (Optional)</label>
+                <input type="url" class="form-control" id="contactWebsite" placeholder="https://www.yourbeach.com">
+              </div>
+
+              <!-- ===== Online Payment Details (shown to tourists on the Reservation Form) ===== -->
+              <h3 style="margin-top:10px;">Payment Details</h3>
+              <p class="form-hint" style="margin-top:-4px;">
+                <i class="fas fa-info-circle"></i> These payment details are shown to tourists on the Reservation Form for this beach, so they know where to send their down payment.
+              </p>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>GCash Number</label>
+                  <input type="text" class="form-control" id="gcashNumber" placeholder="Example: 0917 123 4567">
+                </div>
+                <div class="form-group">
+                  <label>GCash Account Name</label>
+                  <input type="text" class="form-control" id="gcashName" placeholder="Registered GCash account name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>GCash QR Code <span class="form-hint-inline">(optional)</span></label>
+                <input type="file" class="form-control" id="gcashQrFile" accept="image/png, image/jpeg, image/webp">
+                <p class="form-hint">Upload the resort's GCash QR code image (JPG, PNG or WEBP, max 5MB).</p>
+                <div id="gcashQrPreviewWrap" style="display:none; margin-top:10px;">
+                  <img id="gcashQrPreview" src="" alt="GCash QR preview" style="width:150px; height:150px; object-fit:contain; border:1px solid #d5e2e8; border-radius:8px; background:#fff; padding:4px;">
+                  <button type="button" class="btn-remove-accommodation" id="removeGcashQrBtn" title="Remove QR code" style="vertical-align:top;">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Beach Location on Map <span class="required">*</span></label>
+                <p class="form-hint" style="margin-top:-2px;">
+                  <i class="fas fa-info-circle"></i> Click anywhere on the map to drop a pin at the beach's exact location. Drag the pin to fine-tune it. Latitude/Longitude below fill in automatically.
+                </p>
+                <div id="addBeachMap" class="add-beach-map"></div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Latitude</label>
+                  <input type="number" class="form-control" id="beachLatitude" step="0.00000001" placeholder="Click the map above" readonly>
+                </div>
+                <div class="form-group">
+                  <label>Longitude</label>
+                  <input type="number" class="form-control" id="beachLongitude" step="0.00000001" placeholder="Click the map above" readonly>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Form Navigation -->
+            <div class="form-navigation">
+              <button type="button" class="btn-secondary" id="prevStepBtn" style="display:none;" onclick="prevStep()">
+                <i class="fas fa-arrow-left"></i> Previous
+              </button>
+              <button type="button" class="btn-primary" id="nextStepBtn" onclick="nextStep()">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+              <button type="submit" class="btn-primary" id="submitBeachBtn" style="display:none;">
+                <i class="fas fa-save"></i> Save Beach
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== BEACH DETAILS MODAL/OVERLAY ===== -->
+      <div id="beachDetailsOverlay" class="beach-details-overlay" style="display: none;">
+        <div class="beach-details-container">
+          <button class="close-details-btn" onclick="closeBeachDetails()"><i class="fas fa-times"></i></button>
+          
+          <div class="beach-details-wrapper">
+            <!-- Left Column - Gallery -->
+            <div class="details-gallery">
+              <div class="gallery-main">
+                <!-- src is set from the beach's main image when opened -->
+                <img alt="Beach" id="detailMainImage">
+              </div>
+              <!-- Thumbnails are rendered from the beach's uploaded images -->
+              <div class="gallery-thumbs" id="detailGalleryThumbs"></div>
+            </div>
+
+            <!-- Right Column - Details -->
+            <div class="details-info">
+              <div class="details-header">
+                <h2 id="detailBeachName"></h2>
+                <span class="detail-status"></span>
+              </div>
+
+              <!-- Tourism Personnel: edit this beach, or deactivate/activate
+                   it. Edit opens the same Beach form pre-filled. Deactivate
+                   no longer deletes the beach - it only marks it Inactive so
+                   it stops accepting new reservations and drops off the
+                   public listings, while its records stay intact (see
+                   beach-management.js / api/beach-status.php). -->
+              <div class="beach-admin-actions">
+                <button type="button" class="btn-edit-beach" onclick="editCurrentBeach()">
+                  <i class="fas fa-pen"></i> Edit Beach
+                </button>
+                <button type="button" class="btn-delete-beach" id="beachStatusActionBtn" onclick="handleBeachStatusAction()">
+                  <i class="fas fa-ban"></i> Deactivate Beach
+                </button>
+              </div>
+
+              <p class="detail-location" id="detailLocation"></p>
+
+              <!-- Info Grid -->
+              <div class="details-grid">
+                <div class="detail-item">
+                  <label>Beach Owner</label>
+                  <span id="detailOwner"></span>
+                </div>
+                <div class="detail-item">
+                  <label>Entrance Fee</label>
+                  <span id="detailFee"></span>
+                </div>
+                <div class="detail-item">
+                  <label>Maximum Capacity</label>
+                  <span id="detailMaxCapacity"></span>
+                </div>
+                <div class="detail-item">
+                  <label>Current Capacity</label>
+                  <span id="detailCurrentCapacity"></span>
+                </div>
+                <div class="detail-item">
+                  <label>Remaining Capacity</label>
+                  <span id="detailRemainingCapacity"></span>
+                </div>
+                <div class="detail-item">
+                  <label>Rating</label>
+                  <span id="detailRating"></span>
+                </div>
+                <div class="detail-item">
+                  <label>Coordinates</label>
+                  <span id="detailCoordinates"></span>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="detail-section">
+                <h4>Description</h4>
+                <p id="detailDescription"></p>
+              </div>
+
+              <!-- Amenities -->
+              <div class="detail-section">
+                <h4>Amenities</h4>
+                <!-- Amenity tags are rendered from the beach's saved amenities -->
+                <div class="amenities-grid" id="detailAmenities"></div>
+                
+                <div class="amenities-checkbox-grid" id="amenitiesEditContainer" style="display: none;">
+                  <!-- Checkboxes dynamically generated -->
+                </div>
+                
+                <div class="amenities-actions">
+                  <button class="btn-secondary btn-sm" id="editAmenitiesBtn" onclick="toggleEditMode()" style="display: inline-flex;">
+                    <i class="fas fa-edit"></i> Edit Amenities
+                  </button>
+                  <button class="btn-primary btn-sm" id="saveAmenitiesBtn" onclick="saveDetails()" style="display: none;">
+                    <i class="fas fa-save"></i> Save Amenities
+                  </button>
+                  <button class="btn-secondary btn-sm" id="cancelAmenitiesBtn" onclick="cancelEdit()" style="display: none;">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+
+              <!-- Accommodation Slots -->
+              <div class="detail-section">
+                <h4>Accommodation Slots</h4>
+                <!-- Slot rows are rendered from the beach's saved accommodations -->
+                <div class="slots-grid" id="detailSlots"></div>
+              </div>
+
+              <!-- Contact -->
+              <div class="detail-section">
+                <h4>Contact Information</h4>
+                <!-- Contact rows are rendered from the beach's saved contact
+                     details (phone comes from the linked Beach Owner account) -->
+                <div class="contact-info-grid" id="detailContact"></div>
+              </div>
+
+              <!-- Map -->
+              <div class="detail-section">
+                <h4>Location Map</h4>
+                <div class="map-placeholder" id="detailMapContainer">
+                  <i class="fas fa-map"></i>
+                  <p>No location set for this beach yet.</p>
+                </div>
+              </div>
+
+              <!-- Edit/Save Buttons -->
+              <div class="details-actions">
+                <button class="btn-primary" id="editDetailsBtn" onclick="toggleEditMode()"><i class="fas fa-edit"></i> Edit Details</button>
+                <button class="btn-secondary" id="saveDetailsBtn" style="display: none;" onclick="saveDetails()"><i class="fas fa-save"></i> Save Changes</button>
+                <button class="btn-secondary" id="cancelEditBtn" style="display: none;" onclick="cancelEdit()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ======================================== -->
+  <!-- ===== SCRIPTS WITH IMPROVED LOADING ===== -->
+  <!-- ======================================== -->
+  
+  <!-- Load style.js first -->
+  <!-- ?v= cache-busting query param added so browsers/servers that cache
+       these files aggressively always pick up the latest fixed version
+       instead of re-running a stale, previously-buggy copy. Bump the
+       number whenever these files are updated again. -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass">
+      <h3><i class="fas fa-palm-tree" style="color: #1a6b7a; margin-right: 10px;"></i>Confirm Logout</h3>
+      <p>Are you sure you want to log out from the Tourism Office Portal?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelLogout"><i class="fas fa-times"></i> No, Stay</button>
+        <button class="btn-primary btn-logout" id="confirmLogout"><i class="fas fa-sign-out-alt"></i> Yes, Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DEACTIVATE BEACH CONFIRMATION MODAL ========== -->
+  <!-- Shown when a beach being deactivated has active (Pending/Confirmed)
+       reservations, so Tourism Personnel can review them before proceeding.
+       Populated by handleBeachStatusAction() in beach-management.js. -->
+  <div id="deactivateBeachModal" class="modal">
+    <div class="modal-content glass deactivate-beach-modal-content">
+      <h3><i class="fas fa-triangle-exclamation" style="color: #e7495e; margin-right: 10px;"></i>Active Reservations Found</h3>
+      <p id="deactivateBeachWarningText">This beach has active reservations.</p>
+      <div class="active-reservations-list" id="activeReservationsList"></div>
+      <p class="form-hint" style="text-align:center; margin-top:10px;">
+        <i class="fas fa-info-circle"></i> Deactivating will stop new reservations for this beach. These existing reservations are not cancelled - they stay as-is for you to manage as usual.
+      </p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelDeactivateBeach"><i class="fas fa-times"></i> Cancel</button>
+        <button class="btn-primary btn-logout" id="confirmDeactivateBeach"><i class="fas fa-ban"></i> Deactivate Anyway</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/style.js?v=2"></script>
+  <script src="../assets/js/sidebar-notification-badges.js"></script>
+   <script src="../assets/js/beach-management.js?v=7"></script>
+  
+  <!-- ======================================== -->
+  <!-- ===== PAGE WIRING (search/filter/escape) ===== -->
+  <!-- ======================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // NOTE: beach-management.js is loaded exactly once, via the
+      // <script src="../assets/js/beach-management.js"> tag above, which
+      // already calls initializeBeachManagement() itself once the DOM is
+      // ready. It used to ALSO be re-injected as a second <script> here,
+      // which made the whole file execute twice - re-declaring its
+      // top-level `let`/`const` variables threw a SyntaxError, and the
+      // resulting duplicate initializeBeachManagement() call re-cloned
+      // the Add Beach form/button out from under whatever the user was
+      // doing, which is what caused the "Cannot read properties of null
+      // (reading 'value')" error on Save and the image previews
+      // sometimes not showing. Removed - do not re-add that duplicate
+      // script loading.
+
+      // Initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        // Handle search and filter after DOM is ready
+        const searchInput = document.getElementById('searchBeachList');
+        if (searchInput) {
+          searchInput.addEventListener('keyup', function() {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('.beach-management-card').forEach(card => {
+              card.style.display = card.textContent.toLowerCase().includes(term) ? '' : 'none';
+            });
+          });
+        }
+        
+        // ===== BEACH FILTER (built from the beaches loaded from the database) =====
+        // The option list used to be a hardcoded set of beach names. It is now
+        // rebuilt from the cards that beach-management.js renders from the
+        // database, so it always matches the real beaches - no names are
+        // duplicated here, and beaches added/renamed/removed by Tourism
+        // Personnel show up automatically.
+        const filterDropdown = document.getElementById('beachFilterDropdown');
+        const beachGrid = document.getElementById('beachManagementGrid');
+
+        function currentBeachCards() {
+          return Array.from(document.querySelectorAll('.beach-management-card[data-beach-id]'));
+        }
+
+        function refreshBeachFilterOptions() {
+          if (!filterDropdown) return;
+          const previous = filterDropdown.value;
+
+          // Keep the existing "All Beaches" option, rebuild the rest.
+          filterDropdown.innerHTML = '<option value="">All Beaches</option>';
+
+          currentBeachCards().forEach(card => {
+            const id = card.getAttribute('data-beach-id');
+            const nameEl = card.querySelector('.beach-card-content h3');
+            const name = nameEl ? nameEl.textContent.trim() : '';
+            if (!id || !name) return;
+            const option = document.createElement('option');
+            option.value = id;              // filter by beach id, not a hardcoded slug
+            option.textContent = name;      // real name straight from the database
+            filterDropdown.appendChild(option);
+          });
+
+          // Preserve the current selection when the grid re-renders.
+          if (previous && filterDropdown.querySelector('option[value="' + previous + '"]')) {
+            filterDropdown.value = previous;
+          }
+        }
+
+        function applyBeachFilter() {
+          if (!filterDropdown) return;
+          const value = filterDropdown.value;
+          currentBeachCards().forEach(card => {
+            card.style.display = (!value || card.getAttribute('data-beach-id') === value) ? '' : 'none';
+          });
+        }
+
+        if (filterDropdown) {
+          filterDropdown.addEventListener('change', applyBeachFilter);
+        }
+
+        // The cards are rendered asynchronously (and re-rendered after adding,
+        // editing or deleting a beach), so rebuild the options whenever the
+        // grid's contents change. This avoids having to modify
+        // beach-management.js itself.
+        if (beachGrid && 'MutationObserver' in window) {
+          const gridObserver = new MutationObserver(function() {
+            refreshBeachFilterOptions();
+            applyBeachFilter();
+          });
+          gridObserver.observe(beachGrid, { childList: true });
+        }
+
+        refreshBeachFilterOptions();
+        
+        // NOTE: Pressing Escape used to close the Add/Edit Beach form, which
+        // could discard everything already typed in by accident. The form now
+        // only closes when the Tourism Personnel explicitly clicks the Close
+        // (×) button, so the Escape-to-close shortcut for this form was
+        // intentionally removed. (The read-only Beach Details overlay below
+        // still closes on Escape - that view has nothing to lose.)
+
+        // Close overlay on Escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            const overlay = document.getElementById('beachDetailsOverlay');
+            if (overlay && overlay.style.display !== 'none') {
+              if (typeof closeBeachDetails === 'function') {
+                closeBeachDetails();
+              }
+            }
+          }
+        });
+      });
+      
+    })();
+  </script>
+</body>
+</html>

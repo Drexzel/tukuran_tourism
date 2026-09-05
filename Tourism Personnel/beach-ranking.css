@@ -1,0 +1,337 @@
+/* ======================================== */
+/* ===== BEACH RANKING - LGU TOURISM DESIGN ===== */
+/* ======================================== */
+
+/* Ranking Controls */
+.ranking-controls {
+  margin-bottom: 24px;
+}
+
+.ranking-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ranking-dropdown label {
+  font-weight: 600;
+  color: #0a2e3f;
+  font-size: 0.95rem;
+}
+
+.ranking-dropdown .form-control {
+  padding: 10px 16px;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  font-family: 'Inter', sans-serif;
+  color: #1a3a4a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a3a4a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.ranking-dropdown .form-control:focus {
+  border-color: #1a6b7a;
+  box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.08);
+  outline: none;
+}
+
+.ranking-dropdown .form-control option {
+  padding: 8px;
+}
+
+/* Search Box for Rankings */
+.ranking-search {
+  margin-bottom: 24px;
+}
+
+.ranking-search .search-box {
+  position: relative;
+}
+
+.ranking-search .search-box i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5a7a8a;
+  font-size: 0.95rem;
+}
+
+.ranking-search .search-box .form-control {
+  padding: 10px 16px 10px 40px;
+  border: 2px solid rgba(27, 107, 125, 0.08);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.ranking-search .search-box .form-control:focus {
+  border-color: #1a6b7a;
+  box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.08);
+  outline: none;
+}
+
+/* Ranking Header */
+.ranking-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(27, 107, 125, 0.08);
+}
+
+.ranking-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #0a2e3f;
+  margin-bottom: 6px;
+}
+
+.ranking-header h2 i {
+  color: #1a6b7a;
+  margin-right: 10px;
+  font-size: 1.6rem;
+}
+
+.ranking-header p {
+  color: #4a6a7a;
+  font-size: 1rem;
+}
+
+/* Ranking List */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  border: 1px solid rgba(27, 107, 125, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.ranking-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-color: rgba(27, 107, 125, 0.12);
+}
+
+/* Medal colors */
+.ranking-item.gold {
+  background: linear-gradient(135deg, #fff8e1, #fff3cd);
+  border-left: 4px solid #ffc107;
+  box-shadow: 0 2px 16px rgba(255, 193, 7, 0.12);
+}
+
+.ranking-item.silver {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-left: 4px solid #adb5bd;
+  box-shadow: 0 2px 16px rgba(173, 181, 189, 0.10);
+}
+
+.ranking-item.bronze {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  border-left: 4px solid #cd7f32;
+  box-shadow: 0 2px 16px rgba(205, 127, 50, 0.10);
+}
+
+.rank-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0a2e3f;
+  min-width: 40px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.ranking-item.gold .rank-number {
+  color: #ffc107;
+}
+
+.ranking-item.silver .rank-number {
+  color: #adb5bd;
+}
+
+.ranking-item.bronze .rank-number {
+  color: #cd7f32;
+}
+
+/* Rank Info */
+.rank-info {
+  flex: 1;
+}
+
+.rank-info h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0a2e3f;
+  margin-bottom: 2px;
+}
+
+.rank-info p {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+  margin-bottom: 2px;
+}
+
+.rank-rating {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* Rank Stat */
+.rank-stat {
+  text-align: right;
+  min-width: 140px;
+}
+
+.rank-count {
+  font-weight: 600;
+  color: #1a6b7a;
+  font-size: 0.95rem;
+  display: block;
+}
+
+.rank-label {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  font-weight: 400;
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 768px) {
+  .ranking-dropdown {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .ranking-dropdown .form-control {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .ranking-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .ranking-item {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 12px 16px;
+  }
+
+  .rank-number {
+    font-size: 1.3rem;
+    min-width: 30px;
+  }
+
+  .rank-info h4 {
+    font-size: 0.95rem;
+  }
+
+  .rank-stat {
+    min-width: 100px;
+  }
+
+  .rank-count {
+    font-size: 0.85rem;
+  }
+
+  .ranking-search .search-box .form-control {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ranking-dropdown label {
+    font-size: 0.85rem;
+  }
+
+  .ranking-dropdown .form-control {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    padding-right: 36px;
+  }
+
+  .ranking-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .rank-number {
+    font-size: 1.1rem;
+    min-width: auto;
+  }
+
+  .rank-stat {
+    text-align: left;
+    min-width: auto;
+    width: 100%;
+  }
+
+  .rank-rating {
+    font-size: 0.8rem;
+  }
+
+  .ranking-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .ranking-header h2 i {
+    font-size: 1.2rem;
+  }
+
+  .ranking-header p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation */
+.ranking-item {
+  animation: fadeUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+.ranking-item:nth-child(1) { animation-delay: 0.05s; }
+.ranking-item:nth-child(2) { animation-delay: 0.10s; }
+.ranking-item:nth-child(3) { animation-delay: 0.15s; }
+.ranking-item:nth-child(4) { animation-delay: 0.20s; }
+.ranking-item:nth-child(5) { animation-delay: 0.25s; }
+.ranking-item:nth-child(6) { animation-delay: 0.30s; }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,315 @@
+/* ======================================== */
+/* ===== DIGITAL MAP - LGU TOURISM DESIGN ===== */
+/* ======================================== */
+
+/* Map Controls */
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 16px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.map-search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.map-search .search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.map-search .search-box i {
+  position: absolute;
+  left: 14px;
+  color: #5a7a8a;
+  font-size: 0.95rem;
+}
+
+.map-search .search-box .form-control {
+  padding: 10px 16px 10px 40px;
+  border: 2px solid rgba(27, 107, 125, 0.08);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.map-search .search-box .form-control:focus {
+  border-color: #1a6b7a;
+  box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.08);
+  outline: none;
+}
+
+/* Map Container */
+.map-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+#beachMap {
+  height: 600px;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ======================================== */
+/* ===== BEACH LOCATION MARKER ===== */
+/* ======================================== */
+
+.beach-pin-marker {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #1a6b7a, #2b8a9e);
+  border: 3px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 14px rgba(10, 46, 63, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.beach-pin-marker i {
+  transform: rotate(45deg);
+  color: #ffffff;
+  font-size: 14px;
+}
+
+/* Leaflet Custom Styles */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10) !important;
+  padding: 0 !important;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.leaflet-popup-content {
+  padding: 16px 20px !important;
+  margin: 0 !important;
+  min-width: 220px;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.leaflet-popup-content .popup-beach-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0a2e3f;
+  margin-bottom: 4px;
+}
+
+.leaflet-popup-content .popup-location {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+  margin-bottom: 8px;
+}
+
+.leaflet-popup-content .popup-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #1a3a4a;
+}
+
+.leaflet-popup-content .popup-details span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.leaflet-popup-content .popup-details i {
+  color: #1a6b7a;
+  width: 16px;
+}
+
+.leaflet-popup-content .popup-status {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.popup-status.available {
+  background: rgba(46, 213, 115, 0.12);
+  color: #2ed573;
+}
+
+.popup-status.nearly-full {
+  background: rgba(255, 193, 7, 0.12);
+  color: #ffc107;
+}
+
+.popup-status.full {
+  background: rgba(231, 76, 94, 0.12);
+  color: #e74c5e;
+}
+
+.leaflet-popup-content .popup-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #1a6b7a;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  background: rgba(27, 107, 125, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.leaflet-popup-content .popup-btn:hover {
+  background: rgba(27, 107, 125, 0.16);
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #1a3a4a !important;
+  border: none !important;
+  font-weight: 700 !important;
+  transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #1a6b7a !important;
+  color: #fff !important;
+}
+
+/* ======================================== */
+/* ===== MAP BEACH LIST ===== */
+/* ======================================== */
+
+.map-beach-list {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.map-beach-list h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0a2e3f;
+  margin-bottom: 12px;
+}
+
+.map-beach-list .beach-list-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.map-beach-list .beach-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.map-beach-list .beach-item:hover {
+  background: rgba(27, 107, 125, 0.06);
+  border-color: rgba(27, 107, 125, 0.10);
+}
+
+.map-beach-list .beach-item.active {
+  background: rgba(27, 107, 125, 0.10);
+  border-color: #1a6b7a;
+}
+
+.map-beach-list .beach-item .beach-marker-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.map-beach-list .beach-item .beach-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0a2e3f;
+}
+
+.map-beach-list .beach-item .beach-occupancy {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  margin-left: auto;
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 1024px) {
+  .map-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .map-search {
+    min-width: auto;
+  }
+  .map-beach-list .beach-list-items {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  #beachMap {
+    height: 400px;
+  }
+  .leaflet-popup-content {
+    padding: 12px 16px !important;
+    min-width: 180px;
+  }
+  .map-beach-list .beach-list-items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  #beachMap {
+    height: 350px;
+  }
+  .map-beach-list .beach-list-items {
+    grid-template-columns: 1fr;
+  }
+  .map-beach-list {
+    padding: 16px;
+  }
+}

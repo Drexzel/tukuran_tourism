@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <title>Digital Map · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="digital-map.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ====== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Tourism Office</h2>
+        <p>Municipality of Tukuran</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link">
+        <i class="fas fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="beach-management.html" class="sidebar-link">
+        <i class="fas fa-umbrella-beach"></i>
+        <span>Beach Management</span>
+      </a>
+      <a href="digital-map.html" class="sidebar-link active">
+        <i class="fas fa-map-location-dot"></i>
+        <span>Digital Map</span>
+      </a>
+      <a href="automated-reports.html" class="sidebar-link">
+        <i class="fas fa-file-lines"></i>
+        <span>Automated Reports</span>
+      </a>
+      <a href="incident-report.html" class="sidebar-link">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>Incident Report</span>
+</a>
+      <a href="manage-beach-owners.html" class="sidebar-link">
+        <i class="fas fa-user-gear"></i>
+        <span>Manage Beach Owners</span>
+      </a>
+      <a href="update-requests.html" class="sidebar-link">
+        <i class="fas fa-pen-to-square"></i>
+        <span>Update Requests</span>
+      </a>
+      <a href="../Log-in page/login.html" class="sidebar-link logout-link" id="logoutBtn4">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Digital Map</h1>
+        <p>Interactive map of all participating beaches in Tukuran</p>
+      </div>
+
+      <!-- Map Controls -->
+      <div class="map-controls">
+        <div class="map-search">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" class="form-control" id="searchBeachMap" placeholder="Search for a beach...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Container -->
+      <div class="map-container">
+        <div id="beachMap" style="height: 600px; width: 100%; border-radius: 16px;"></div>
+      </div>
+
+      <!-- Beach List Side Panel -->
+      <div class="map-beach-list">
+        <h4>Participating Beaches</h4>
+        <div class="beach-list-items" id="mapBeachList">
+          <!-- Dynamically generated -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass">
+      <h3><i class="fas fa-palm-tree" style="color: #1a6b7a; margin-right: 10px;"></i>Confirm Logout</h3>
+      <p>Are you sure you want to log out from the Tourism Office Portal?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelLogout"><i class="fas fa-times"></i> No, Stay</button>
+        <button class="btn-primary btn-logout" id="confirmLogout"><i class="fas fa-sign-out-alt"></i> Yes, Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/style.js"></script>
+  <script src="../assets/js/sidebar-notification-badges.js"></script>
+  <script src="digital-map.js"></script>
+</body>
+</html>

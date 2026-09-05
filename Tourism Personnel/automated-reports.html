@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <title>Automated Reports · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/automated-reports.css">
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ====== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Tourism Office</h2>
+        <p>Municipality of Tukuran</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link">
+        <i class="fas fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="beach-management.html" class="sidebar-link">
+        <i class="fas fa-umbrella-beach"></i>
+        <span>Beach Management</span>
+      </a>
+      <a href="digital-map.html" class="sidebar-link">
+        <i class="fas fa-map-location-dot"></i>
+        <span>Digital Map</span>
+      </a>
+      <a href="automated-reports.html" class="sidebar-link active">
+        <i class="fas fa-file-lines"></i>
+        <span>Automated Reports</span>
+      </a>
+      <a href="incident-report.html" class="sidebar-link">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>Incident Report</span>
+</a>
+      <a href="manage-beach-owners.html" class="sidebar-link">
+        <i class="fas fa-user-gear"></i>
+        <span>Manage Beach Owners</span>
+      </a>
+      <a href="update-requests.html" class="sidebar-link">
+        <i class="fas fa-pen-to-square"></i>
+        <span>Update Requests</span>
+      </a>
+      <a href="../Log-in page/login.html" class="sidebar-link logout-link" id="logoutBtn5">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Automated Reports</h1>
+        <p>Generate official tourism reports for the Municipality of Tukuran</p>
+      </div>
+
+      <!-- Report Generation Options -->
+      <div class="report-controls">
+        <div class="report-period">
+          <label>Select Period:</label>
+          <div class="period-buttons">
+            <button class="period-btn active" data-period="daily">Daily</button>
+            <button class="period-btn" data-period="weekly">Weekly</button>
+            <button class="period-btn" data-period="monthly">Monthly</button>
+            <button class="period-btn" data-period="quarterly">Quarterly</button>
+            <button class="period-btn" data-period="annual">Annual</button>
+          </div>
+        </div>
+        <div class="report-period">
+          <label for="beachFilter">Select Beach:</label>
+          <div class="filter-dropdown">
+            <select class="form-control" id="beachFilter">
+              <!-- Beach options are filled in from the beaches actually
+                   registered in the database (see automated-reports.js), so
+                   this list always matches Beach Management. -->
+              <option value="">All Registered Beaches</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report Preview -->
+      <div class="report-preview" id="reportPreview">
+        <div class="report-header">
+          <h2>Municipality of Tukuran</h2>
+          <h3>Tourism Report</h3>
+          <p class="report-date">July 2, 2026</p>
+        </div>
+
+        <div class="report-summary">
+          <div class="report-stat">
+            <span>Total Visitors</span>
+            <strong>1,247</strong>
+          </div>
+          <div class="report-stat">
+            <span>Total Reservations</span>
+            <strong>234</strong>
+          </div>
+          <div class="report-stat">
+            <span>Local Visitors</span>
+            <strong>892</strong>
+          </div>
+          <div class="report-stat">
+            <span>Foreign Visitors</span>
+            <strong>355</strong>
+          </div>
+        </div>
+
+        <div class="report-details">
+          <h4>Visitor Demographics</h4>
+          <div class="demographic-grid">
+            <div class="demographic-item" id="genderDistItem">
+              <span>Gender Distribution</span>
+              <p>Male: 45% | Female: 55%</p>
+            </div>
+            <div class="demographic-item" id="ageDistItem">
+              <span>Age Distribution</span>
+              <p>Kids (0-12): 0 (0%) | Teen (13-17): 0 (0%) | Adult (18-59): 0 (0%) | Senior (60+): 0 (0%)</p>
+            </div>
+            <div class="demographic-item" id="reservationStatsItem">
+              <span>Reservation Statistics</span>
+              <p>Confirmed: 0 | Pending: 0 | Cancelled: 0 | Expired: 0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="report-actions-bottom">
+          <button class="btn-primary" onclick="window.print()"><i class="fas fa-print"></i> Print Report</button>
+          <button class="btn-secondary" onclick="exportExcel()"><i class="fas fa-file-excel"></i> Export Excel</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass">
+      <h3><i class="fas fa-palm-tree" style="color: #1a6b7a; margin-right: 10px;"></i>Confirm Logout</h3>
+      <p>Are you sure you want to log out from the Tourism Office Portal?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelLogout"><i class="fas fa-times"></i> No, Stay</button>
+        <button class="btn-primary btn-logout" id="confirmLogout"><i class="fas fa-sign-out-alt"></i> Yes, Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/style.js"></script>
+  <script src="../assets/js/sidebar-notification-badges.js"></script>
+  <script src="automated-reports.js"></script>
+</body>
+</html>

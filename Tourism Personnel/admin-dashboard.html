@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <title>Admin Dashboard · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin-dashboard.css?v=2">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="../assets/images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="../assets/images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="../assets/images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Tourism Office</h2>
+        <p>Municipality of Tukuran</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html" class="sidebar-link active">
+        <i class="fas fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="beach-management.html" class="sidebar-link">
+        <i class="fas fa-umbrella-beach"></i>
+        <span>Beach Management</span>
+      </a>
+      <a href="digital-map.html" class="sidebar-link">
+        <i class="fas fa-map-location-dot"></i>
+        <span>Digital Map</span>
+      </a>
+      <a href="automated-reports.html" class="sidebar-link">
+        <i class="fas fa-file-lines"></i>
+        <span>Automated Reports</span>
+      </a>
+      <a href="incident-report.html" class="sidebar-link">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>Incident Report</span>
+</a>
+      <a href="manage-beach-owners.html" class="sidebar-link">
+        <i class="fas fa-user-gear"></i>
+        <span>Manage Beach Owners</span>
+      </a>
+      <a href="update-requests.html" class="sidebar-link">
+        <i class="fas fa-pen-to-square"></i>
+        <span>Update Requests</span>
+      </a>
+      <a href="../Log-in page/login.html" class="sidebar-link logout-link" id="logoutBtn">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+ <!-- ========== MAIN CONTENT ========== -->
+<main class="dashboard-main with-sidebar">
+  <div class="dashboard-banner">
+    <!-- Background Image - Full Size -->
+    <div class="banner-bg-image"></div>
+    
+    <!-- Overlay -->
+    <div class="banner-overlay"></div>
+    
+    <!-- Corner Decorations -->
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+      
+    <div class="banner-content">
+      <h1>Welcome, <span>Tukuran Tourism Office</span>!</h1>
+      <p>Monitor and manage all participating beaches in the municipality.</p>
+      <div class="welcome-badge">
+        <i class="fas fa-map-pin"></i> GEH! TUKURAN, GIBALIK-BALIKAN
+      </div>
+    </div>
+  </div>
+
+    <div class="container">
+      <!-- Most Visited Beaches (Horizontal Ranking Bar Chart) -->
+      <!-- Moved to the top of the dashboard. Ranks every participating
+           (Active) beach from highest to lowest total visitors, computed in
+           real time from Approved (Confirmed) reservations + walk-in guests.
+           The stat-card data/endpoints (dashboard-stats.php) are untouched -
+           only the top card layout was replaced by this ranking. -->
+      <section class="ranking-section">
+        <div class="ranking-header">
+          <h2>Most Visited Beaches</h2>
+          <div class="ranking-total">
+            <span class="ranking-total-label">Total Participating Beaches</span>
+            <span class="ranking-total-value" id="totalParticipatingBeaches">--</span>
+          </div>
+        </div>
+        <div class="chart-card glass ranking-card">
+          <div class="ranking-canvas-wrap">
+            <canvas id="rankingChart"></canvas>
+          </div>
+          <div class="ranking-empty" id="rankingEmpty" style="display:none;">
+            No visitor data yet. Approved reservations and walk-in guests will appear here.
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics Section -->
+      <section class="analytics-section">
+        <div class="analytics-header">
+          <h2>Analytics Overview</h2>
+          <div class="analytics-controls">
+            <div class="chart-dropdown">
+              <label for="dataCategorySelect">Data Category:</label>
+              <select id="dataCategorySelect" class="form-control">
+                <option value="gender-distribution" selected>Gender Distribution</option>
+                <option value="visitor-origin">Visitor Origin (Municipality)</option>
+                <option value="age-distribution">Age Distribution</option>
+              </select>
+            </div>
+            <div class="chart-dropdown">
+              <label for="trendPeriodSelect">Trend Period:</label>
+              <select id="trendPeriodSelect" class="form-control">
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Chart Grid -->
+        <div class="chart-grid">
+          <div class="chart-card glass">
+            <h4 id="chart1Title">Gender Distribution</h4>
+            <div class="chart-canvas-wrap"><canvas id="chart1"></canvas></div>
+          </div>
+          <div class="chart-card glass">
+            <h4 id="chart3Title">Monthly Visitor Trends</h4>
+            <div class="chart-canvas-wrap"><canvas id="chart3"></canvas></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass">
+      <h3><i class="fas fa-palm-tree" style="color: #1a6b7a; margin-right: 10px;"></i>Confirm Logout</h3>
+      <p>Are you sure you want to log out from the Tourism Office Portal?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelLogout"><i class="fas fa-times"></i> No, Stay</button>
+        <button class="btn-primary btn-logout" id="confirmLogout"><i class="fas fa-sign-out-alt"></i> Yes, Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/style.js"></script>
+  <script src="../assets/js/sidebar-notification-badges.js"></script>
+  <script src="../assets/js/admin-dashboard.js?v=2"></script>
+  <script src="incident-notifications.js"></script>
+</body>
+</html>
