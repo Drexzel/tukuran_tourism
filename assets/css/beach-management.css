@@ -1,0 +1,1571 @@
+/* ======================================== */
+/* ===== BEACH MANAGEMENT - COMPLETE CSS ===== */
+/* ======================================== */
+
+/* ======================================== */
+/* ===== TOOLBAR ===== */
+/* ======================================== */
+
+.beach-management-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.toolbar-left {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.toolbar-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 14px;
+    color: #5a7a8a;
+    font-size: 0.95rem;
+}
+
+.search-box .form-control {
+    padding: 10px 16px 10px 40px;
+    border: 2px solid rgba(27, 107, 125, 0.08);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    width: 280px;
+    background: #fff;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-box .form-control:focus {
+    border-color: #1a6b7a;
+    box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.08);
+    outline: none;
+}
+
+.filter-dropdown .form-control {
+    padding: 10px 16px;
+    border: 2px solid rgba(27, 107, 125, 0.08);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    min-width: 180px;
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a3a4a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.filter-dropdown .form-control:focus {
+    border-color: #1a6b7a;
+    box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.08);
+    outline: none;
+}
+
+/* ======================================== */
+/* ===== BEACH CARDS GRID ===== */
+/* ======================================== */
+
+.beach-management-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.beach-card-style {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s ease;
+    border: none;
+}
+
+.beach-card-style:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 20, 30, 0.12);
+}
+
+.beach-card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.beach-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.beach-card-style:hover .beach-card-image img {
+    transform: scale(1.05);
+}
+
+.beach-card-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(0, 20, 35, 0.70), rgba(0, 20, 35, 0.40));
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    backdrop-filter: blur(4px);
+}
+
+.beach-card-content {
+    padding: 20px 24px 24px;
+}
+
+.beach-card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #0a2e3f;
+    margin-bottom: 2px;
+}
+
+.beach-card-location {
+    font-size: 0.9rem;
+    color: #5a7a8a;
+    margin-bottom: 6px;
+}
+
+.beach-card-fee {
+    font-weight: 600;
+    color: #1a6b7a;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+}
+
+.beach-card-fee i {
+    margin-right: 6px;
+}
+
+.beach-card-content .btn-sm {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.beach-card-content .btn-sm:hover {
+    background: linear-gradient(135deg, #2f9bb0, #1e7a8a);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(27, 107, 125, 0.3);
+}
+
+/* ======================================== */
+/* ===== BEACH DETAILS OVERLAY ===== */
+/* ======================================== */
+
+.beach-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 10, 20, 0.70);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.beach-details-overlay.active {
+    display: flex;
+}
+
+.beach-details-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
+    background: linear-gradient(135deg, #0a2e3f, #1a4a5a);
+    border-radius: 24px;
+    overflow-y: auto;
+    padding: 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    animation: slideUp 0.4s ease;
+}
+
+.beach-details-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.beach-details-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.beach-details-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.20);
+    border-radius: 10px;
+}
+
+.close-details-btn {
+    position: sticky;
+    top: 0;
+    float: right;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.10);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+}
+
+.close-details-btn:hover {
+    background: rgba(231, 76, 94, 0.30);
+    transform: rotate(90deg);
+    border-color: rgba(231, 76, 94, 0.30);
+}
+
+.beach-details-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    margin-top: 8px;
+}
+
+/* Gallery Section */
+.details-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gallery-main {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 320px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-thumbs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.gallery-thumbs img {
+    width: 80px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    opacity: 0.7;
+}
+
+.gallery-thumbs img:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.gallery-thumbs img.active {
+    border-color: #7fd1e0;
+    opacity: 1;
+}
+
+/* Details Info */
+.details-info {
+    color: #fff;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.details-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    margin: 0;
+}
+
+.detail-status {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.detail-status.confirmed {
+    background: rgba(46, 213, 115, 0.15);
+    color: #2ed573;
+}
+
+.detail-status.pending {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+.detail-status.inactive {
+    background: rgba(231, 76, 94, 0.15);
+    color: #e74c5e;
+}
+
+.detail-location {
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.detail-location i {
+    margin-right: 8px;
+    color: #7fd1e0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-item label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.40);
+    font-weight: 500;
+}
+
+.detail-item span {
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.detail-item span i {
+    color: #f59e0b;
+}
+
+.detail-section {
+    margin-bottom: 16px;
+}
+
+.detail-section h4 {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.60);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.detail-section p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.detail-section .amenities-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-section .amenity-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.detail-section .amenity-tag i {
+    color: #ffffff;
+}
+
+.detail-section .slots-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.detail-section .slot-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.detail-section .slot-label {
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 0.85rem;
+}
+
+.detail-section .slot-value {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.detail-section .slot-value strong {
+    color: #7fd1e0;
+}
+
+.detail-section .contact-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.detail-section .contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+}
+
+.detail-section .contact-info-item i {
+    color: #7fd1e0;
+    font-size: 1rem;
+    width: 20px;
+}
+
+.detail-section .contact-info-item .contact-label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+}
+
+.detail-section .contact-info-item .contact-value {
+    font-size: 0.85rem;
+    color: #fff;
+}
+
+.detail-section .map-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.40);
+}
+
+.detail-section .map-placeholder i {
+    font-size: 2rem;
+    color: #7fd1e0;
+    margin-bottom: 4px;
+}
+
+.detail-section .map-placeholder p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.40);
+}
+
+/* Details Actions */
+.details-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+}
+
+.details-actions .btn-primary {
+    background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+    color: #fff;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.details-actions .btn-primary:hover {
+    background: linear-gradient(135deg, #2f9bb0, #1e7a8a);
+    transform: translateY(-2px);
+}
+
+.details-actions .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.details-actions .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Edit Mode Styles */
+.detail-item.editable span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    cursor: text;
+}
+
+.detail-item.editable span:focus {
+    outline: none;
+    border-color: #7fd1e0;
+    box-shadow: 0 0 0 4px rgba(127, 209, 224, 0.10);
+}
+
+/* Amenities Checkbox Grid (Edit Mode) */
+.amenities-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.amenity-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.amenity-checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #7fd1e0;
+}
+
+.amenity-checkbox-item label {
+    font-size: 0.9rem;
+    color: #ffffff;
+    cursor: pointer;
+    flex: 1;
+}
+
+.amenity-checkbox-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Amenities Actions */
+.amenities-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.amenities-actions .btn-sm {
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.amenities-actions .btn-secondary.btn-sm {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.amenities-actions .btn-secondary.btn-sm:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.amenities-actions .btn-primary.btn-sm {
+    background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+    color: #fff;
+}
+
+.amenities-actions .btn-primary.btn-sm:hover {
+    background: linear-gradient(135deg, #2f9bb0, #1e7a8a);
+    transform: translateY(-2px);
+}
+
+/* ======================================== */
+/* ===== ADD BEACH MODAL ===== */
+/* ======================================== */
+
+.add-beach-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.add-beach-modal.active {
+    display: flex;
+}
+
+.add-beach-modal-content {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 0;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.4s ease;
+}
+
+.add-beach-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.add-beach-modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.add-beach-modal-content::-webkit-scrollbar-thumb {
+    background: #1a6b7a;
+    border-radius: 10px;
+}
+
+/* Modal Header */
+.add-beach-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 30px;
+    border-bottom: 2px solid rgba(27, 107, 125, 0.08);
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    border-radius: 24px 24px 0 0;
+}
+
+.add-beach-modal-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #0a2e3f;
+    margin: 0;
+}
+
+.add-beach-modal-header h2 i {
+    color: #1a6b7a;
+    margin-right: 10px;
+}
+
+.modal-close-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(231, 76, 94, 0.08);
+    color: #e74c5e;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-btn:hover {
+    background: #e74c5e;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* Form Steps */
+.add-beach-form {
+    padding: 30px;
+}
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-step h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #0a2e3f;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(27, 107, 125, 0.06);
+}
+
+.form-step h3 i {
+    color: #1a6b7a;
+    margin-right: 10px;
+}
+
+/* Form Fields */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1a3a4a;
+    margin-bottom: 6px;
+}
+
+.form-group label .required {
+    color: #e74c5e;
+}
+
+.form-group .form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid rgba(27, 107, 125, 0.10);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background: #fff;
+    color: #1a3a4a;
+}
+
+.form-group .form-control:focus {
+    border-color: #1a6b7a;
+    box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.08);
+    outline: none;
+}
+
+.form-group .form-control.error {
+    border-color: #e74c5e;
+}
+
+.form-group textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-hint {
+    font-size: 0.85rem;
+    color: #5a7a8a;
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+/* Form Error Message */
+.form-error-message {
+    background: rgba(231, 76, 94, 0.08);
+    color: #e74c5e;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(231, 76, 94, 0.15);
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-error-message i {
+    font-size: 1.1rem;
+}
+
+/* Accommodation Rows */
+.accommodation-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 36px;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding: 0 2px;
+}
+
+.accommodation-header span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #5a7a8a;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.accommodation-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 36px;
+    gap: 12px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.accommodation-row .form-control {
+    margin-bottom: 0;
+}
+
+.accommodation-row .btn-remove-accommodation {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(231, 76, 94, 0.10);
+    color: #e74c5e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accommodation-row .btn-remove-accommodation:hover {
+    background: #e74c5e;
+    color: #fff;
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(27, 107, 125, 0.06);
+}
+
+.form-navigation .btn-primary,
+.form-navigation .btn-secondary {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.form-navigation .btn-primary {
+    background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+    color: #fff;
+}
+
+.form-navigation .btn-primary:hover {
+    background: linear-gradient(135deg, #2f9bb0, #1e7a8a);
+    transform: translateY(-2px);
+}
+
+.form-navigation .btn-secondary {
+    background: rgba(27, 107, 125, 0.08);
+    color: #1a3a4a;
+    border: 1px solid rgba(27, 107, 125, 0.10);
+}
+
+.form-navigation .btn-secondary:hover {
+    background: rgba(27, 107, 125, 0.12);
+}
+
+.form-navigation .btn-primary {
+    margin-left: auto;
+}
+
+/* Success Message */
+.beach-added-success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.beach-added-success.active {
+    display: block;
+}
+
+.beach-added-success i {
+    font-size: 4rem;
+    color: #2ed573;
+    margin-bottom: 16px;
+}
+
+.beach-added-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #0a2e3f;
+    margin-bottom: 8px;
+}
+
+.beach-added-success p {
+    color: #4a6a7a;
+    font-size: 1rem;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ======================================== */
+/* ===== ANIMATIONS ===== */
+/* ======================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 1024px) {
+    .beach-management-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .beach-details-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .detail-section .slots-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .detail-section .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .beach-management-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .toolbar-left {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .search-box .form-control {
+        width: 100%;
+    }
+    
+    .filter-dropdown .form-control {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .toolbar-right {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .beach-management-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    
+    .beach-details-container {
+        padding: 16px;
+        max-height: 95vh;
+        border-radius: 16px;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-section .slots-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-section .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .details-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .gallery-main {
+        height: 200px;
+    }
+    
+    .beach-details-wrapper {
+        gap: 16px;
+    }
+    
+    .close-details-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    .add-beach-modal-content {
+        max-height: 95vh;
+        border-radius: 16px;
+    }
+    
+    .add-beach-modal-header {
+        padding: 16px 20px;
+    }
+    
+    .add-beach-modal-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .add-beach-form {
+        padding: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .accommodation-header {
+        display: none;
+    }
+    
+    .accommodation-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .form-navigation {
+        flex-direction: column;
+    }
+    
+    .form-navigation .btn-primary,
+    .form-navigation .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .form-navigation .btn-primary {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .beach-card-image {
+        height: 160px;
+    }
+    
+    .beach-card-content {
+        padding: 16px 18px 18px;
+    }
+    
+    .beach-card-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .gallery-main {
+        height: 160px;
+    }
+    
+    .gallery-thumbs img {
+        width: 60px;
+        height: 50px;
+    }
+    
+    .details-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .details-actions {
+        flex-direction: column;
+    }
+    
+    .details-actions .btn-primary,
+    .details-actions .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .beach-details-container {
+        padding: 12px;
+        max-height: 98vh;
+        border-radius: 12px;
+    }
+    
+    .add-beach-modal-content {
+        max-height: 98vh;
+        border-radius: 12px;
+    }
+    
+    .add-beach-modal-header h2 {
+        font-size: 1rem;
+    }
+    
+    .add-beach-form {
+        padding: 16px;
+    }
+    
+    .form-step h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Status badges on beach cards */
+.beach-card-image {
+    position: relative;
+}
+
+.status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    z-index: 2;
+}
+
+.status-badge.active {
+    background: #10b981;
+}
+
+.status-badge.inactive {
+    background: #ef4444;
+}
+
+.status-badge.under-maintenance {
+    background: #f59e0b;
+}
+
+.capacity-status {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 6px;
+    font-weight: 500;
+}
+
+.capacity-status.available {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.capacity-status.full {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.beach-card-capacity {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 6px 0;
+}
+
+/* Loading animation */
+.loading-spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+/* ========================================
+   MULTI-IMAGE UPLOAD PREVIEW (Add Beach form)
+   ======================================== */
+.image-thumb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.image-thumb-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    aspect-ratio: 4 / 3;
+    background: #f4f8f9;
+}
+
+.image-thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-thumb-remove {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(231, 76, 94, 0.9);
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.image-thumb-remove:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+}
+
+.form-hint-inline {
+    font-weight: 400;
+    font-size: 0.82rem;
+    color: #6b7280;
+}
+
+/* ========================================
+   LOCATION PICKER MAP (Add Beach form)
+   ======================================== */
+.add-beach-map {
+    width: 100%;
+    height: 280px;
+    border-radius: 10px;
+    border: 2px solid rgba(27, 107, 125, 0.10);
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.add-beach-map .leaflet-container {
+    font-family: 'Inter', sans-serif;
+}
+
+.detail-section .leaflet-map-detail {
+    height: 200px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* ========================================
+   BEACH ADMIN ACTIONS (Edit / Delete Beach)
+   Shown inside the "View Details" overlay so Tourism Personnel can
+   edit or delete the beach they're currently viewing. Styled to match
+   the existing .details-actions buttons (same pill shape / sizing),
+   with Delete using a red danger treatment.
+   ======================================== */
+.beach-admin-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 4px 0 14px;
+}
+
+.beach-admin-actions .btn-edit-beach,
+.beach-admin-actions .btn-delete-beach {
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid transparent;
+}
+
+.beach-admin-actions .btn-edit-beach {
+    background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+    color: #fff;
+}
+
+.beach-admin-actions .btn-edit-beach:hover {
+    background: linear-gradient(135deg, #2f9bb0, #1e7a8a);
+    transform: translateY(-2px);
+}
+
+.beach-admin-actions .btn-delete-beach {
+    background: rgba(231, 76, 94, 0.12);
+    color: #e7495e;
+    border-color: rgba(231, 76, 94, 0.35);
+}
+
+.beach-admin-actions .btn-delete-beach:hover {
+    background: #e7495e;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.beach-admin-actions .btn-delete-beach:disabled,
+.beach-admin-actions .btn-edit-beach:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ======================================== */
+/* ===== AMENITIES "OTHERS" + SLOT PRICE ===== */
+/* ======================================== */
+/* "Others" custom amenity row (checkbox + persistent text input). */
+.amenity-others-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.amenity-others-row .amenity-checkbox-item {
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.amenity-others-row .amenity-others-input {
+    flex: 1 1 220px;
+    min-width: 180px;
+    margin-bottom: 0;
+}
+
+/* Price per unit shown under each accommodation slot in Beach Details. */
+.detail-section .slot-value .slot-price {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.78rem;
+    color: #9fd9e6;
+    font-weight: 600;
+}
+
+/* ========================================
+   DEACTIVATE BEACH CONFIRMATION MODAL
+   Reuses the app's shared .modal / .modal-content pattern (see
+   assets/css/style.css), just wider so the active-reservation list has
+   room to breathe.
+   ======================================== */
+.deactivate-beach-modal-content {
+    max-width: 520px;
+}
+
+.active-reservations-list {
+    max-height: 220px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-top: 4px;
+}
+
+.active-reservation-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #eef2f5;
+    font-size: 0.85rem;
+    color: #33515e;
+}
+
+.active-reservation-row:last-child {
+    border-bottom: none;
+}
+
+.active-reservation-row .res-name {
+    font-weight: 600;
+    color: #0a2e3f;
+}
+
+.active-reservation-row .res-date {
+    color: #6b7f88;
+    white-space: nowrap;
+}
+
+.active-reservation-row .res-status-tag {
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.active-reservation-row .res-status-tag.pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: #b45309;
+}
+
+.active-reservation-row .res-status-tag.confirmed {
+    background: rgba(16, 185, 129, 0.15);
+    color: #047857;
+}
+
+.active-reservations-more {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    color: #6b7f88;
+    text-align: center;
+}
+
+/* "Activate Beach" treatment for a currently-Inactive beach (green,
+   mirrors the Edit button's affirmative tone instead of Deactivate's red). */
+.beach-admin-actions .btn-activate-beach {
+    background: rgba(16, 185, 129, 0.12);
+    color: #047857;
+    border-color: rgba(16, 185, 129, 0.35);
+}
+
+.beach-admin-actions .btn-activate-beach:hover {
+    background: #10b981;
+    color: #fff;
+    transform: translateY(-2px);
+}

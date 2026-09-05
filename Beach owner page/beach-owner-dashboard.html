@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="beach-session.js"></script>
+  <title>Beach Owner Dashboard · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bo-theme.css">
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Baguio Beach</h2>
+        <p>Beach Operator</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="beach-owner-dashboard.html" class="sidebar-link active">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="reservation-management.html" class="sidebar-link">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Reservations</span>
+      </a>
+      <a href="walk-in-registration.html" class="sidebar-link">
+        <i class="fas fa-user-plus"></i>
+        <span>Walk-in Guests</span>
+      </a>
+      <a href="incident-alert.html" class="sidebar-link">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      <span>Incident Alert</span>
+    </a>
+      <a href="request-update.html" class="sidebar-link">
+        <i class="fas fa-paper-plane"></i>
+        <span>Request Update</span>
+      </a>
+      <a href="#" class="sidebar-link logout-link" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="dashboard-banner" style="background: url('images/hero.jpg') center/cover no-repeat;">
+      <div class="banner-overlay"></div>
+      <div class="banner-content">
+        <h1>Welcome, <span id="beachName">Baguio Beach</span>!</h1>
+        <p>Manage your beach operations and monitor visitor activity.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Summary Cards - NO ICONS -->
+      <div class="quick-stats no-icons">
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Today's Visitors</h3>
+            <p class="stat-number" id="todayVisitors">78</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Reservations</h3>
+            <p class="stat-number" id="totalReservations">12</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Walk-in Guests</h3>
+            <p class="stat-number" id="walkinGuests">8</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Current Capacity</h3>
+            <p class="stat-number" id="currentCapacity">78%</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Pending Bookings</h3>
+            <p class="stat-number" id="pendingBookings">5</p>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-info">
+            <h3>Remaining Slots</h3>
+            <p class="stat-number" id="remainingSlots">72</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capacity Monitoring (integrated from the former standalone page -
+           the cards above already cover Today's Visitors, Current Capacity %
+           and Remaining Slots, so this section only adds what wasn't shown
+           yet: Maximum Capacity, Current Status, a usage progress bar, and
+           Accommodation Availability.) -->
+      <section class="dashboard-bookings">
+        <h2>Capacity Monitoring</h2>
+        <div class="capacity-stats capacity-stats-compact no-icons">
+          <div class="capacity-card glass">
+            <div class="capacity-info">
+              <h3>Maximum Capacity</h3>
+              <p class="capacity-number" id="maxCapacity">150</p>
+            </div>
+          </div>
+          <div class="capacity-card glass">
+            <div class="capacity-info">
+              <h3>Current Status</h3>
+              <p class="capacity-status" id="currentStatus">Available</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="capacity-progress">
+          <div class="progress-header">
+            <span>Capacity Usage</span>
+            <span id="progressPercentage">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="accommodation-section">
+          <h2>Accommodation Availability</h2>
+          <!-- Cards are rendered from this beach's own accommodations
+               (see renderCapacityMonitoring in script.js) - whatever
+               types Tourism Personnel configured for it in Beach
+               Management, not a fixed list. -->
+          <div class="accommodation-grid no-icons" id="accommodationGrid"></div>
+        </div>
+      </section>
+
+      <!-- Recent Activity -->
+      <section class="dashboard-bookings">
+        <h2>Recent Activity</h2>
+        <div class="bookings-table-wrapper">
+          <table class="bookings-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Type</th>
+                <th>Guest</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10:30 AM</td>
+                <td>Reservation</td>
+                <td>John Doe</td>
+                <td><span class="status pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>09:15 AM</td>
+                <td>Walk-in</td>
+                <td>Maria Santos</td>
+                <td><span class="status confirmed">Checked In</span></td>
+              </tr>
+              <tr>
+                <td>08:45 AM</td>
+                <td>Reservation</td>
+                <td>Peter Cruz</td>
+                <td><span class="status confirmed">Approved</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass">
+      <h3>Confirm Logout</h3>
+      <p>Are you sure you want to end your current session?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="cancelLogout">Cancel</button>
+        <button class="btn-primary btn-danger" id="confirmLogout">Logout <i class="fas fa-sign-out-alt"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

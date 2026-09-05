@@ -1,0 +1,228 @@
+/* ======================================== */
+/* ===== WALK-IN ACCOMMODATION DETAIL (on select) ===== */
+/* ======================================== */
+/* Mirrors the Reservation Form's accommodation-detail panel (Landing
+   page/reservation-form.css) so the Walk-in Guests form's accommodation
+   type + unit picker looks and behaves the same way. Scoped to this page
+   only - no other stylesheet is touched. */
+
+.accommodation-detail {
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid #d5e2e8;
+  border-radius: 12px;
+  background: #f7fbfc;
+}
+
+.accommodation-detail-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.accommodation-detail-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0a2e3f;
+}
+
+.accommodation-detail-price {
+  font-weight: 700;
+  color: #1a6b7a;
+  white-space: nowrap;
+}
+
+.accommodation-detail-meta {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #6a8494;
+}
+
+.accommodation-detail-meta i {
+  color: #1e6b86;
+  margin-right: 4px;
+}
+
+.accommodation-sub-label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #234b5c;
+  margin: 14px 0 8px;
+}
+
+.accommodation-sub-hint {
+  display: block;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: #6a8494;
+  margin-top: 2px;
+}
+
+/* Unit-number chips */
+.accommodation-unit-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.accommodation-unit-chip {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1.5px solid rgba(27, 107, 125, 0.20);
+  border-radius: 10px;
+  background: #fff;
+  color: #234b5c;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.accommodation-unit-chip:hover {
+  border-color: #1a6b7a;
+  box-shadow: 0 2px 8px rgba(27, 107, 125, 0.12);
+}
+
+.accommodation-unit-chip.is-selected {
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  border-color: #1a6b7a;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(27, 107, 125, 0.28);
+}
+
+/* Unavailable / already-reserved-or-occupied unit chips can't be selected */
+.accommodation-unit-chip.is-unavailable {
+  background: #eef1f2;
+  border-color: #d7dee1;
+  color: #a7b2b8;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.accommodation-unit-chip.is-unavailable:hover {
+  border-color: #d7dee1;
+  box-shadow: none;
+}
+
+/* Legend explaining the unit chip colors */
+.accommodation-unit-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: #4d6572;
+}
+
+.unit-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.unit-legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(27, 107, 125, 0.20);
+  background: #fff;
+}
+
+.unit-legend-swatch.is-selected {
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  border-color: #1a6b7a;
+}
+
+.unit-legend-swatch.is-unavailable {
+  background: #eef1f2;
+  border-color: #d7dee1;
+}
+
+/* Selected unit numbers, shown so the operator can confirm before saving */
+.accommodation-selected-units {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #eef6fa;
+  border: 1px dashed #b9d9e6;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #234b5c;
+}
+
+/* Quantity (read-only, auto-calculated) */
+.accommodation-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.accommodation-qty-row .accommodation-sub-label {
+  margin: 0;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid rgba(27, 107, 125, 0.20);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.qty-stepper-readonly {
+  background: #f2f6f7;
+}
+
+.qty-input {
+  width: 56px;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0a2e3f;
+  padding: 8px 4px;
+}
+
+.qty-input:focus {
+  outline: none;
+}
+
+/* Total */
+.accommodation-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #d5e2e8;
+}
+
+.accommodation-total-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #234b5c;
+}
+
+.accommodation-total-label i {
+  color: #1e6b86;
+  margin-right: 4px;
+}
+
+.accommodation-total-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a6b7a;
+}

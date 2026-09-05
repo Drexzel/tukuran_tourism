@@ -1,0 +1,39 @@
+/* place-autocomplete.css
+ * Suggestion dropdown for the "Place of Origin" field.
+ * Matches the existing form-control palette (teal accent, soft
+ * shadow, rounded corners) already used across the Reservation and
+ * Walk-in Guest forms - no new visual language introduced. */
+
+.place-suggest-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #d8e3e7;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(20, 50, 60, 0.14);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.place-suggest-item {
+  padding: 9px 12px;
+  font-size: 0.92rem;
+  color: #274752;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.place-suggest-item:hover,
+.place-suggest-item.is-active {
+  background: #eaf4f7;
+  color: #1e6b86;
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="beach-session.js"></script>
+  <title>Update Requests · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="incident-alert.css">
+  <link rel="stylesheet" href="reservation-style.css">
+  <link rel="stylesheet" href="update-requests.css">
+  <link rel="stylesheet" href="bo-theme.css">
+</head>
+<body>
+    <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Baguio Beach</h2>
+        <p>Beach Operator</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="beach-owner-dashboard.html" class="sidebar-link">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="reservation-management.html" class="sidebar-link">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Reservations</span>
+      </a>
+      <a href="walk-in-registration.html" class="sidebar-link">
+        <i class="fas fa-user-plus"></i>
+        <span>Walk-in Guests</span>
+      </a>
+      <a href="incident-alert.html" class="sidebar-link">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>Incident Alert</span>
+      </a>
+      <a href="update-requests.html" class="sidebar-link active">
+        <i class="fas fa-paper-plane"></i>
+        <span>Update Requests</span>
+      </a>
+      <a href="#" class="sidebar-link logout-link" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Update Requests</h1>
+        <p>Send update requests to the Tourism Office and track their status</p>
+      </div>
+
+      <!-- Request Form -->
+      <div class="alert-form-container">
+        <div class="alert-form-card glass">
+          <div class="alert-form-header">
+            <h2><i class="fas fa-paper-plane" style="color: #1a6b7a; margin-right: 12px;"></i>Send a Request</h2>
+            <p>Ask the Tourism Office to update your beach's information. Fields marked with <span class="required">*</span> are required.</p>
+          </div>
+
+          <form id="updateRequestForm" class="alert-form" novalidate>
+            <div class="form-section">
+              <h3>Beach Information</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Beach Name</label>
+                  <div class="form-control-static" id="requestBeachName">Baguio Beach</div>
+                </div>
+                <div class="form-group">
+                  <label>Requested By</label>
+                  <div class="form-control-static" id="requestOwnerName">Juan Dela Cruz</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>Request Details</h3>
+              <div class="form-group">
+                <label for="requestType">Request Type <span class="required">*</span></label>
+                <select id="requestType" class="form-control" required>
+                  <option value="">Select a request type...</option>
+                  <option value="gcash_number">Update GCash Number</option>
+                  <option value="gcash_name">Update GCash Account Name</option>
+                  <option value="accommodation">Add New Accommodation (Cottage, Room, etc.)</option>
+                  <option value="amenity">Add New Amenity</option>
+                  <option value="entrance_fee">Update Entrance Fee</option>
+                  <option value="beach_info">Request Beach Information Update</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="error-message" id="requestTypeError">Please select a request type</div>
+              </div>
+
+              <div class="form-group">
+                <label for="requestValue">New Value <span class="form-hint" style="display:inline;">(optional, e.g. new number/amount/name)</span></label>
+                <input type="text" id="requestValue" class="form-control" placeholder="e.g. 0917 123 4567 or ₱150.00">
+              </div>
+
+              <div class="form-group">
+                <label for="requestDetails">Details <span class="required">*</span></label>
+                <textarea id="requestDetails" class="form-control" rows="5" placeholder="Describe what you'd like updated and why..." required></textarea>
+                <div class="error-message" id="requestDetailsError">Please provide the details of your request</div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="reset" class="btn-secondary">
+                <i class="fas fa-times"></i> Clear Form
+              </button>
+              <button type="submit" class="btn-primary btn-alert" style="background: linear-gradient(135deg, #1a6b7a, #114a56) !important; box-shadow: 0 4px 20px rgba(26,107,122,0.25);">
+                <i class="fas fa-paper-plane"></i> Send Request
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Message -->
+          <div id="requestSuccess" class="alert-success" style="display: none;">
+            <div class="success-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Request Sent!</h3>
+            <p>Your request has been submitted to the Tourism Office. You'll see its status update below once it's reviewed.</p>
+            <button class="btn-primary" id="submitAnotherRequestBtn">
+              <i class="fas fa-plus"></i> Send Another Request
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Tips -->
+        <div class="alert-tips glass">
+          <h4><i class="fas fa-lightbulb" style="color: #F9A825;"></i> Quick Tips</h4>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Be specific about what should change</li>
+            <li><i class="fas fa-check-circle"></i> Include the new value if you have one</li>
+            <li><i class="fas fa-check-circle"></i> Requests are reviewed by the Tourism Office</li>
+            <li><i class="fas fa-check-circle"></i> You'll see the status update once reviewed</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Past Requests -->
+      <div class="page-header" style="margin-top: 36px;">
+        <h1 style="font-size: 1.4rem;">My Requests</h1>
+        <p>Track the status of requests you've sent to the Tourism Office</p>
+      </div>
+      <div class="bookings-table-wrapper">
+        <table class="bookings-table">
+          <thead>
+            <tr>
+              <th>Date Sent</th>
+              <th>Type</th>
+              <th>Details</th>
+              <th>Status</th>
+              <th>Admin Notes</th>
+            </tr>
+          </thead>
+          <tbody id="myRequestsBody">
+            <tr id="myRequestsLoadingRow">
+              <td colspan="5" style="text-align:center; padding:30px;">Loading requests...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="myRequestsEmpty" class="empty-state" style="display: none;">
+        <i class="fas fa-inbox"></i>
+        <h3>No requests yet</h3>
+        <p>Requests you send will appear here.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div class="modal-overlay" id="logoutModal">
+    <div class="modal glass-panel">
+      <h3>End session</h3>
+      <p>Are you sure you want to log out of your beach owner account?</p>
+      <div class="modal-actions">
+        <button class="btn secondary" id="cancelLogout">Cancel</button>
+        <button class="btn primary" id="confirmLogout">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="style.js"></script>
+  <script src="update-requests.js"></script>
+</body>
+</html>

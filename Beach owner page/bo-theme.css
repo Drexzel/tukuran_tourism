@@ -1,0 +1,182 @@
+/* ========================================
+   BEACH OPERATOR - SHARED UI REFINEMENTS
+   ========================================
+   A single presentation layer loaded LAST on every Beach Operator page so the
+   whole module reads as one clean, consistent LGU system: one uniform card
+   style, a calm type scale, and consistent buttons, forms, tables and modals
+   across the Dashboard, Reservations, Walk-in Guests, Incident Alert and
+   Request Update pages.
+
+   It only adjusts visual properties (decorative accent strips, spacing,
+   shadows, radii, wrapping). No structure, data, workflow, IDs, page markup or
+   behaviour are changed, and every rule targets a class already defined in
+   style.css. It is not linked on Tourism Personnel or public pages, so those
+   are unaffected. */
+
+/* ----------------------------------------
+   1. DASHBOARD STAT CARDS - ONE consistent style
+   ----------------------------------------
+   Replace the six different coloured accent strips with a single, clean,
+   uniform card so the dashboard reads as one professional set rather than a
+   row of different accent colours. */
+.quick-stats .stat-card {
+  background: #ffffff;
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.05);
+  min-height: 104px;
+}
+
+.quick-stats .stat-card::before,
+.quick-stats .stat-card:nth-child(2)::before,
+.quick-stats .stat-card:nth-child(3)::before,
+.quick-stats .stat-card:nth-child(4)::before,
+.quick-stats .stat-card:nth-child(5)::before,
+.quick-stats .stat-card:nth-child(6)::before {
+  display: none;
+}
+
+.quick-stats .stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(10, 46, 63, 0.08);
+  border-color: rgba(27, 107, 125, 0.14);
+}
+
+/* Consistent label + value typography for the stat cards */
+.quick-stats .stat-card .stat-info h3,
+.quick-stats.no-icons .stat-card .stat-info h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #6a8a9a;
+  margin-bottom: 6px;
+}
+
+.quick-stats .stat-card .stat-info .stat-number,
+.quick-stats.no-icons .stat-card .stat-info .stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0a2e3f;
+  line-height: 1.15;
+}
+
+/* ----------------------------------------
+   2. CAPACITY + ACCOMMODATION CARDS - match the stat cards
+   ----------------------------------------
+   The former translucent/blurred cards are unified with the same solid-white,
+   subtly-bordered card so every dashboard section shares one visual language. */
+.capacity-card,
+.accommodation-card {
+  background: #ffffff;
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.05);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.capacity-card:hover,
+.accommodation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(10, 46, 63, 0.08);
+}
+
+.capacity-progress {
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.05);
+}
+
+/* ----------------------------------------
+   3. SECTION CONTAINERS - one flat card
+   ---------------------------------------- */
+.dashboard-bookings {
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.05);
+}
+
+/* ----------------------------------------
+   4. TABLES - consistent, card-like wrapper
+   ---------------------------------------- */
+.bookings-table-wrapper {
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.05);
+  background: #ffffff;
+  overflow-x: auto;
+}
+
+.bookings-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.bookings-table tbody tr:hover {
+  background: rgba(27, 107, 125, 0.045);
+}
+
+/* ----------------------------------------
+   5. BUTTONS - calmer, consistent proportions
+   ----------------------------------------
+   Same shape and colour, just a calmer size and lift so the primary and
+   secondary buttons feel like one set on every page. */
+.btn-primary,
+.btn-secondary {
+  padding: 12px 26px;
+  font-size: 0.95rem;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 18px rgba(27, 107, 125, 0.28);
+}
+
+/* ----------------------------------------
+   6. FORMS - consistent field rhythm
+   ---------------------------------------- */
+.form-group {
+  margin-bottom: 16px;
+}
+
+/* ----------------------------------------
+   7. PAGE HEADER - consistent scale
+   ---------------------------------------- */
+.page-header {
+  padding: 22px 0 24px;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+}
+
+.page-header p {
+  font-size: 1rem;
+  color: #5a7a8a;
+}
+
+/* ========================================
+   RESPONSIVE - smooth desktop / tablet / mobile
+   ======================================== */
+
+/* Tablet - keep page titles clear of the fixed sidebar toggle button */
+@media (max-width: 768px) {
+  .dashboard-main.with-sidebar .page-header {
+    padding-top: 58px;
+  }
+  .page-header h1 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-stats .stat-card .stat-info .stat-number,
+  .quick-stats.no-icons .stat-card .stat-info .stat-number {
+    font-size: 1.7rem;
+  }
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+}

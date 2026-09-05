@@ -1,0 +1,756 @@
+/* ======================================== */
+/* ===== RESERVATION MANAGEMENT STYLES ===== */
+/* ======================================== */
+
+/* ===== CONFIRMATION MODAL ===== */
+.confirmation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.confirmation-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.confirmation-modal {
+  max-width: 440px;
+  width: 100%;
+  padding: 36px 32px 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: scale(0.95) translateY(20px);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.confirmation-modal-overlay.active .confirmation-modal {
+  transform: scale(1) translateY(0);
+}
+
+.confirmation-modal-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 2rem;
+}
+
+.confirmation-modal-icon.success {
+  background: rgba(46, 213, 115, 0.12);
+  color: #2ed573;
+}
+
+.confirmation-modal-icon.error {
+  background: rgba(231, 76, 94, 0.12);
+  color: #e74c5e;
+}
+
+.confirmation-modal-icon.warning {
+  background: rgba(255, 193, 7, 0.12);
+  color: #f59e0b;
+}
+
+.confirmation-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #0a2e3f;
+  margin-bottom: 8px;
+}
+
+.confirmation-modal-message {
+  color: #4a6a7a;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.confirmation-modal-message strong {
+  color: #0a2e3f;
+}
+
+.confirmation-modal-message small {
+  color: #5a7a8a;
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 4px;
+}
+
+.confirmation-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.confirmation-modal-actions .btn {
+  min-width: 120px;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirmation-modal-actions .btn.primary {
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(27, 107, 125, 0.3);
+}
+
+.confirmation-modal-actions .btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(27, 107, 125, 0.4);
+}
+
+.confirmation-modal-actions .btn.primary.success {
+  background: linear-gradient(135deg, #2ed573, #26c065);
+  box-shadow: 0 4px 16px rgba(46, 213, 115, 0.3);
+}
+
+.confirmation-modal-actions .btn.primary.success:hover {
+  box-shadow: 0 8px 24px rgba(46, 213, 115, 0.4);
+}
+
+.confirmation-modal-actions .btn.primary.error {
+  background: linear-gradient(135deg, #e74c5e, #c0392b);
+  box-shadow: 0 4px 16px rgba(231, 76, 94, 0.3);
+}
+
+.confirmation-modal-actions .btn.primary.error:hover {
+  box-shadow: 0 8px 24px rgba(231, 76, 94, 0.4);
+}
+
+.confirmation-modal-actions .btn.secondary {
+  background: rgba(0, 0, 0, 0.04);
+  color: #3a5a6a;
+}
+
+.confirmation-modal-actions .btn.secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ===== TOAST NOTIFICATION ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: #0a2e3f;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 320px;
+  max-width: 450px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+}
+
+.toast-content {
+  flex: 1;
+}
+
+.toast-message {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.toast-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #2ed573, #20b85a);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #e74c5e, #c0392b);
+}
+
+.toast.warning {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.toast.info {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+/* ===== MODAL OVERLAY (wraps .modal-large / details & logout modals) ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ===== MODAL LARGE ===== */
+.modal-large {
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.modal-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #0a2e3f;
+}
+
+.modal-body {
+  padding: 4px 0;
+}
+
+/* Detail sections */
+.detail-section {
+  margin-bottom: 16px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Detail rows */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.detail-row:last-of-type {
+  border-bottom: none;
+}
+
+.detail-row.highlight-row {
+  background: rgba(27, 107, 125, 0.04);
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+
+.detail-label {
+  color: #5a7a8a;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  color: #0a2e3f;
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}
+
+.detail-value .status {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.detail-value .eta-value {
+  color: #1a6b7a;
+  font-weight: 700;
+}
+
+.detail-value .eta-value.expired {
+  color: #e74c5e;
+  text-decoration: line-through;
+}
+
+/* Visitor type badges */
+.visitor-type {
+  display: inline-block;
+  padding: 2px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.visitor-type.local {
+  background: rgba(27, 107, 125, 0.10);
+  color: #1a6b7a;
+}
+
+.visitor-type.foreign {
+  background: rgba(231, 76, 94, 0.10);
+  color: #e74c5e;
+}
+
+/* Accommodation tags in details */
+.accommodation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.accommodation-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(27, 107, 125, 0.08);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #1a6b7a;
+  font-weight: 500;
+}
+
+/* Expired note */
+.expired-note {
+  background: rgba(231, 76, 94, 0.08);
+  border: 1px solid rgba(231, 76, 94, 0.15);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #c0392b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.expired-note i {
+  font-size: 1.1rem;
+}
+
+/* Modal actions inside details */
+#detailsActions {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#detailsActions .btn-sm {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+}
+
+#detailsActions .btn-sm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  margin-top: 20px;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  color: #c0d0d8;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 1.3rem;
+  color: #0a2e3f;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: #5a7a8a;
+  font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modal-large {
+    max-width: 95%;
+    margin: 10px;
+    padding: 24px 20px;
+    max-height: 85vh;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .modal-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 0;
+  }
+
+  .detail-row.highlight-row {
+    padding: 10px 12px;
+  }
+
+  .detail-value {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .accommodation-tags {
+    justify-content: flex-start;
+  }
+
+  #detailsActions {
+    flex-direction: column;
+  }
+
+  #detailsActions .btn-sm {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .confirmation-modal {
+    padding: 28px 20px 24px;
+    margin: 10px;
+  }
+
+  .confirmation-modal-actions {
+    flex-direction: column;
+  }
+
+  .confirmation-modal-actions .btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .toast {
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    min-width: unset;
+    max-width: unset;
+    padding: 14px 16px;
+  }
+
+  .toast-message {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-large {
+    padding: 20px 16px;
+  }
+
+  .modal-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .detail-label {
+    font-size: 0.8rem;
+  }
+
+  .detail-value {
+    font-size: 0.9rem;
+  }
+
+  .empty-state {
+    padding: 40px 16px;
+  }
+
+  .empty-state i {
+    font-size: 2.4rem;
+  }
+
+  .confirmation-modal-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.6rem;
+  }
+
+  .confirmation-modal-title {
+    font-size: 1.2rem;
+  }
+
+  .confirmation-modal-message {
+    font-size: 0.9rem;
+  }
+
+  .detail-section-title {
+    font-size: 0.7rem;
+  }
+}
+
+/* ===== EXPIRED NOTICE ===== */
+.expired-notice {
+  background: rgba(231, 76, 94, 0.08);
+  border: 1px solid rgba(231, 76, 94, 0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  color: #e74c5e;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.expired-notice i {
+  font-size: 1.2rem;
+}
+
+/* Expiration status in details */
+.detail-value .expired-status {
+  color: #e74c5e;
+  font-weight: 600;
+}
+
+.detail-value .active-status {
+  color: #2ed573;
+  font-weight: 600;
+}
+/* ===== Online Down Payment: section heading in details modal ===== */
+.detail-section-heading {
+  margin: 18px 0 4px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #1e6b86;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-section-heading i {
+  color: #1e6b86;
+}
+
+/* ======================================== */
+/* ===== MODAL PANEL INSIDE .modal-overlay ===== */
+/* ======================================== */
+/* The Reservation Details and Logout dialogs on this page use the
+   .modal-overlay > .modal pattern:
+
+     <div class="modal-overlay" id="detailsModal">
+       <div class="modal glass-panel modal-large"> ... </div>
+     </div>
+
+   style.css also defines a global `.modal` as a FULL-SCREEN overlay that is
+   `display: none` until it gets `.active`. The inner panel above carries that
+   same `.modal` class, so it inherited `display: none` - and the script only
+   ever adds `.active` to the OUTER .modal-overlay, never to the panel. The
+   result was a dimmed/blurred screen with no dialog visible when clicking
+   "View" on a reservation.
+
+   These rules re-declare the panel (only when it sits inside a
+   .modal-overlay, so no other modal on any other page is affected). They also
+   supply the panel look that `.glass-panel` was expected to provide but was
+   never defined anywhere. No markup or script changes needed. */
+.modal-overlay .modal {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: auto;
+  animation: slideUp 0.4s ease;
+}
+
+/* Reservation Details is the wide variant. This selector is more specific
+   than the rule above so its width/height win. */
+.modal-overlay .modal.modal-large {
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Close button sits in the panel's top-right corner. */
+.modal-overlay .modal .modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #5a7a8a;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+}
+
+.modal-overlay .modal .modal-close:hover {
+  color: #0a2e3f;
+}
+
+@media (max-width: 600px) {
+  .modal-overlay .modal {
+    padding: 24px 20px;
+  }
+}
+
+/* ======================================== */
+/* ===== PROOF OF PAYMENT PREVIEW MODAL ===== */
+/* ======================================== */
+.modal-overlay .modal.modal-image-preview {
+  max-width: min(90vw, 640px);
+  width: auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 46, 63, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.modal-image-preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* Cleaner, more professional round close button, pinned to the
+   top-right corner of the modal frame. Used on the payment preview
+   modal so it reads clearly against the darker backdrop. */
+.modal-overlay .modal .modal-close.modal-close-round {
+  top: -14px;
+  right: -14px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #0a2e3f;
+  border-radius: 50%;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.modal-overlay .modal .modal-close.modal-close-round:hover {
+  background: #1a6b7a;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+@media (max-width: 600px) {
+  .modal-overlay .modal .modal-close.modal-close-round {
+    top: -12px;
+    right: -12px;
+    width: 30px;
+    height: 30px;
+  }
+}

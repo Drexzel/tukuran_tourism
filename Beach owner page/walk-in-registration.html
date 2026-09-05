@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="beach-session.js"></script>
+  <title>Walk-in Guests · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bo-theme.css">
+  <link rel="stylesheet" href="walkin-accommodation.css">
+  <link rel="stylesheet" href="../assets/css/place-autocomplete.css">
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Baguio Beach</h2>
+        <p>Beach Operator</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="beach-owner-dashboard.html" class="sidebar-link">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="reservation-management.html" class="sidebar-link">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Reservations</span>
+      </a>
+      <a href="walk-in-registration.html" class="sidebar-link active">
+        <i class="fas fa-user-plus"></i>
+        <span>Walk-in Guests</span>
+      </a>
+     <a href="incident-alert.html" class="sidebar-link">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      <span>Incident Alert</span>
+    </a>
+      <a href="request-update.html" class="sidebar-link">
+        <i class="fas fa-paper-plane"></i>
+        <span>Request Update</span>
+      </a>
+      <a href="#" class="sidebar-link logout-link" id="logoutBtn3">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Walk-in Guests</h1>
+        <p>Register tourists arriving directly at the beach</p>
+      </div>
+
+      <div class="form-container bordered" style="max-width:640px; margin: 0 auto;">
+        <form id="walkinForm" class="auth-form" novalidate>
+        <!-- Beach (locked to the account's assigned beach) -->
+        <div class="form-group">
+          <label for="walkinBeach">Beach</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-umbrella-beach"></i></span>
+            <input type="text" id="walkinBeach" class="form-control" value="Loading..." readonly>
+          </div>
+          <div class="error-message" id="walkinBeachError">Your account is not linked to a beach yet. Please contact the Tourism Office.</div>
+        </div>
+
+        <!-- Name (Optional) -->
+        <div class="form-group">
+          <label for="walkinName">Name <span style="color: #5a7a8a; font-weight: 400;">(Optional)</span></label>
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-user"></i></span>
+            <input type="text" id="walkinName" class="form-control" placeholder="Enter guest name (optional)">
+          </div>
+        </div>
+
+        <!-- Age -->
+        <div class="form-group">
+          <label for="walkinAge">Age</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-calendar"></i></span>
+            <input type="number" id="walkinAge" class="form-control" placeholder="Enter age" min="0" required>
+          </div>
+          <div class="error-message" id="ageError">Please enter the guest's age</div>
+        </div>
+
+        <!-- Guest count is shown by the "Total Guests" total under the Guest
+             Breakdown by Age below (single source of truth). The old separate
+             "Total Number of Visitors" field was redundant and has been
+             removed. -->
+
+        <!-- Age Bracket / Guest Breakdown -->
+        <!-- Same four age groups, ranges, layout and auto-total as the
+             Reservation Form's Guest Breakdown by Age (Landing
+             page/reservation-form.html) - Kids, Teen, Adult, Senior - so
+             the two forms collect identical demographic data. -->
+        <div class="form-group age-bracket-group">
+          <label>Guest Breakdown by Age</label>
+          <small class="form-hint">Enter how many guests fall in each age group. Total Guests is calculated automatically.</small>
+          <div class="age-bracket-grid">
+            <div class="age-bracket-item">
+              <label for="walkinKids">Kids <span class="age-bracket-range">(0–12)</span></label>
+              <input type="number" id="walkinKids" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+            </div>
+            <div class="age-bracket-item">
+              <label for="walkinTeens">Teen <span class="age-bracket-range">(13–17)</span></label>
+              <input type="number" id="walkinTeens" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+            </div>
+            <div class="age-bracket-item">
+              <label for="walkinAdults">Adult <span class="age-bracket-range">(18–59)</span></label>
+              <input type="number" id="walkinAdults" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+            </div>
+            <div class="age-bracket-item">
+              <label for="walkinSeniors">Senior <span class="age-bracket-range">(60+)</span></label>
+              <input type="number" id="walkinSeniors" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+            </div>
+          </div>
+          <div class="age-bracket-total">
+            <span class="age-bracket-total-label"><i class="fas fa-users"></i> Total Guests</span>
+            <span class="age-bracket-total-value" id="walkinBracketTotal">0</span>
+          </div>
+          <div class="error-message" id="walkinBracketError">Please enter at least one guest in the age breakdown</div>
+        </div>
+
+        <!-- Demographic Fields -->
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="walkinMale">Male Visitors</label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fas fa-male"></i></span>
+              <input type="number" id="walkinMale" class="form-control" placeholder="Number of males" min="0" required>
+            </div>
+          </div>
+          <div class="form-group half">
+            <label for="walkinFemale">Female Visitors</label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fas fa-female"></i></span>
+              <input type="number" id="walkinFemale" class="form-control" placeholder="Number of females" min="0" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Place of Origin -->
+        <div class="form-group">
+          <label for="walkinHometown">Place of Origin</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <input type="text" id="walkinHometown" class="form-control" placeholder="Where are they from?" required>
+          </div>
+          <div class="error-message" id="hometownError">Please enter the place of origin</div>
+        </div>
+
+        <!-- Guest Type (Local / Foreign) -->
+        <!-- Same simple two-option field as the Reservation Form. Local is
+             the default; choosing Foreign reveals a single input for how
+             many of the Total Guests (from the age breakdown above) are
+             foreign - the rest are recorded as Local. This never creates a
+             separate/duplicate guest count: Local + Foreign always equals
+             Total Guests. -->
+        <div class="form-group">
+          <label for="walkinGuestType">Guest Type</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-flag"></i></span>
+            <select id="walkinGuestType" class="form-control" required>
+              <option value="local">Local</option>
+              <option value="foreign">Foreign</option>
+            </select>
+          </div>
+          <div class="error-message" id="walkinGuestTypeError">Please select a guest type</div>
+
+          <div class="form-group" id="walkinForeignCountBlock" style="display:none; margin-top:10px; margin-bottom:0;">
+            <label for="walkinForeignCount">Number of Foreign Guests</label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fas fa-globe"></i></span>
+              <input type="number" id="walkinForeignCount" class="form-control" placeholder="Out of the Total Guests above" min="0" inputmode="numeric">
+            </div>
+            <small class="form-hint">Out of the Total Guests entered in the breakdown above. The remaining guests are recorded as Local.</small>
+            <div class="error-message" id="walkinForeignCountError">Please enter a valid number of foreign guests (cannot exceed Total Guests)</div>
+          </div>
+        </div>
+
+        <!-- Accommodation Type - same behavior as the Reservation Form:
+             selecting a type reveals that beach's actual available units
+             (loaded live from the database), lets the operator tap one or
+             more unit numbers, and derives the quantity/total from the
+             selection automatically. -->
+        <div class="form-group">
+          <label for="walkinAccommodation">Accommodation Type</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="fas fa-bed"></i></span>
+            <select id="walkinAccommodation" class="form-control" required>
+              <option value="">Select accommodation</option>
+            </select>
+          </div>
+          <div class="error-message" id="walkinAccommodationError">No accommodation types are configured for this beach yet. Please contact the Tourism Office.</div>
+          <div class="error-message" id="walkinUnitError">Please select at least one available unit.</div>
+
+          <!-- Details shown only after an accommodation type is selected -->
+          <div class="accommodation-detail" id="walkinAccommodationDetail" style="display:none;">
+            <div class="accommodation-detail-head">
+              <span class="accommodation-detail-name" id="walkinAccDetailName">—</span>
+              <span class="accommodation-detail-price" id="walkinAccDetailPrice">—</span>
+            </div>
+            <div class="accommodation-detail-meta" id="walkinAccDetailMeta">
+              <i class="fas fa-layer-group"></i>
+              <span id="walkinAccDetailUnits">0</span> unit(s) available
+            </div>
+
+            <div class="accommodation-unit-block" id="walkinAccUnitBlock">
+              <span class="accommodation-sub-label">Select Unit(s) <span class="accommodation-sub-hint">— tap to select, tap again to remove. Pick more than one if the guest needs multiple units.</span></span>
+              <div class="accommodation-unit-grid" id="walkinAccUnitGrid"></div>
+              <div class="accommodation-unit-legend">
+                <span class="unit-legend-item"><span class="unit-legend-swatch is-available"></span> Available</span>
+                <span class="unit-legend-item"><span class="unit-legend-swatch is-selected"></span> Selected</span>
+                <span class="unit-legend-item"><span class="unit-legend-swatch is-unavailable"></span> Reserved / Occupied</span>
+              </div>
+              <div class="accommodation-selected-units" id="walkinAccSelectedUnits">No unit selected yet</div>
+            </div>
+
+            <div class="accommodation-qty-row">
+              <span class="accommodation-sub-label">Quantity <span class="accommodation-sub-hint">(auto-calculated)</span></span>
+              <div class="qty-stepper qty-stepper-readonly">
+                <input type="number" id="walkinAccQty" class="qty-input" min="0" value="0" readonly aria-label="Quantity (auto-calculated from selected units)">
+              </div>
+            </div>
+
+            <div class="accommodation-total">
+              <span class="accommodation-total-label"><i class="fas fa-tags"></i> Total Amount</span>
+              <span class="accommodation-total-value" id="walkinAccTotalValue">₱0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary btn-full">Save Registration <i class="fas fa-save"></i></button>
+        </div>
+      </form>
+
+      <!-- Success Message -->
+        <div id="walkinSuccess" class="success-message" style="display: none;">
+          <i class="fas fa-check-circle"></i>
+          <h4>Registration Saved!</h4>
+          <p>Walk-in guest has been successfully registered.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/place-autocomplete.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Progressive enhancement only - does not alter existing validation/
+    // submit logic in script.js, which keeps using the same
+    // #walkinHometown input id and value as before.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.attachPlaceAutocomplete) {
+        attachPlaceAutocomplete(document.getElementById('walkinHometown'));
+      }
+    });
+  </script>
+</body>
+</html>

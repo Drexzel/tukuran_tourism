@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="beach-session.js"></script>
+  <title>Capacity Monitoring · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Baguio Beach</h2>
+        <p>Beach Operator</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="beach-owner-dashboard.html" class="sidebar-link">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="reservation-management.html" class="sidebar-link">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Reservations</span>
+      </a>
+      <a href="walk-in-registration.html" class="sidebar-link">
+        <i class="fas fa-user-plus"></i>
+        <span>Walk-in Guests</span>
+      </a>
+      <a href="capacity-monitoring.html" class="sidebar-link active">
+        <i class="fas fa-chart-bar"></i>
+        <span>Capacity Monitoring</span>
+      </a>
+      <a href="incident-alert.html" class="sidebar-link">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      <span>Incident Alert</span>
+    </a>
+      <a href="request-update.html" class="sidebar-link">
+        <i class="fas fa-paper-plane"></i>
+        <span>Request Update</span>
+      </a>
+      <a href="#" class="sidebar-link logout-link" id="logoutBtn4">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Capacity Monitoring</h1>
+        <p>Monitor current beach occupancy and accommodation availability</p>
+      </div>
+
+      <!-- Capacity Overview Cards - NO ICONS -->
+      <div class="capacity-stats no-icons">
+        <div class="capacity-card glass">
+          <div class="capacity-info">
+            <h3>Maximum Capacity</h3>
+            <p class="capacity-number" id="maxCapacity">0</p>
+          </div>
+        </div>
+        <div class="capacity-card glass">
+          <div class="capacity-info">
+            <h3>Current Visitors</h3>
+            <p class="capacity-number" id="currentVisitors">0</p>
+          </div>
+        </div>
+        <div class="capacity-card glass">
+          <div class="capacity-info">
+            <h3>Remaining Slots</h3>
+            <p class="capacity-number" id="remainingSlots">0</p>
+          </div>
+        </div>
+        <div class="capacity-card glass">
+          <div class="capacity-info">
+            <h3>Current Status</h3>
+            <p class="capacity-status" id="currentStatus">Available</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="capacity-progress">
+        <div class="progress-header">
+          <span>Capacity Usage</span>
+          <span id="progressPercentage">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Accommodation Availability - NO ICONS -->
+      <section class="accommodation-section">
+        <h2>Accommodation Availability</h2>
+        <!-- Cards are rendered from this beach's own accommodations (see
+             renderCapacityMonitoring in script.js) - whatever types
+             Tourism Personnel configured for it in Beach Management, not
+             a fixed list. -->
+        <div class="accommodation-grid no-icons" id="accommodationGrid"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

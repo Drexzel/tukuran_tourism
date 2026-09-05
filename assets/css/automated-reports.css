@@ -1,0 +1,115 @@
+/* ========================================
+   AUTOMATED REPORTS - UI REFINEMENTS
+   ========================================
+   Presentation-only polish so the module reads like a clean, official LGU
+   Tourism Office report - no change to markup, data, report logic, the
+   print/export flow, or the palette/typography already defined in
+   style.css. Same convention as manage-beach-owners.css: base rules stay
+   in style.css, this file only tightens spacing/alignment and adds
+   subtle borders. Scoped to this page only. */
+
+/* --- Page header: a touch more formal, with a defined bottom edge --- */
+.page-header {
+  padding: 22px 0 22px;
+  border-bottom: 1px solid rgba(10, 46, 63, 0.08);
+  margin-bottom: 24px;
+}
+.page-header h1 { line-height: 1.2; }
+.page-header p { margin-top: 6px; }
+
+/* --- Report controls card: subtle border + tighter, even spacing --- */
+.report-controls {
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.04);
+  padding: 22px 24px;
+  margin-bottom: 24px;
+}
+.report-period:last-child { margin-bottom: 0; }
+.report-period label {
+  min-width: 110px;
+  flex-shrink: 0;
+}
+
+/* --- Report preview card: same subtle-border treatment --- */
+.report-preview {
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.04);
+  padding: 28px 32px;
+}
+
+/* --- Report header block: cleaner official letterhead spacing --- */
+.report-header {
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+}
+.report-header h2 { margin-bottom: 2px; }
+.report-header h3 { font-weight: 500; }
+
+/* --- Stat cards: match the demographic cards' border so the whole
+   report reads as one consistent card family, and keep every card the
+   same height regardless of label length --- */
+.report-summary {
+  margin-bottom: 22px;
+}
+.report-stat {
+  border: 1px solid rgba(27, 107, 125, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 84px;
+}
+
+/* --- Demographic section: align section title spacing with the rest --- */
+.report-details { margin-bottom: 4px; }
+.report-details h4 { margin-bottom: 14px; }
+.demographic-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --- Action buttons: equal, evenly-spaced footer --- */
+.report-actions-bottom {
+  margin-top: 22px;
+  padding-top: 18px;
+}
+.report-actions-bottom .btn-primary,
+.report-actions-bottom .btn-secondary {
+  min-width: 190px;
+}
+
+/* --- Beach breakdown / visitor trends: align spacing with the rest of
+   the report so section rhythm stays even top to bottom --- */
+.beach-breakdown-section,
+.visitor-trends {
+  margin-top: 22px;
+  padding-top: 18px;
+}
+
+/* --- Responsive: tablet --- */
+@media (max-width: 768px) {
+  .page-header { padding-top: 64px; } /* clears the fixed sidebar toggle */
+  .report-controls,
+  .report-preview {
+    padding: 20px;
+  }
+  .report-period label {
+    min-width: 0;
+  }
+}
+
+/* --- Responsive: mobile --- */
+@media (max-width: 480px) {
+  .report-controls,
+  .report-preview {
+    padding: 18px 16px;
+  }
+  .report-header h2 { font-size: 1.5rem; }
+  .report-header h3 { font-size: 1.05rem; }
+  .report-stat { min-height: 76px; }
+  .report-stat strong { font-size: 1.5rem; }
+  .report-actions-bottom .btn-primary,
+  .report-actions-bottom .btn-secondary {
+    min-width: 0;
+  }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="beach-session.js"></script>
+  <title>Incident Alert · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="incident-alert.css">
+  <link rel="stylesheet" href="bo-theme.css">
+</head>
+<body>
+    <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Baguio Beach</h2>
+        <p>Beach Operator</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="beach-owner-dashboard.html" class="sidebar-link">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="reservation-management.html" class="sidebar-link">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Reservations</span>
+      </a>
+      <a href="walk-in-registration.html" class="sidebar-link">
+        <i class="fas fa-user-plus"></i>
+        <span>Walk-in Guests</span>
+      </a>
+      <a href="incident-alert.html" class="sidebar-link active">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>Incident Alert</span>
+      </a>
+      <a href="request-update.html" class="sidebar-link">
+        <i class="fas fa-paper-plane"></i>
+        <span>Request Update</span>
+      </a>
+      <a href="#" class="sidebar-link logout-link" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Incident Alert</h1>
+        <p>Submit emergency incident alerts to the Tourism Office</p>
+      </div>
+
+      <!-- Alert Form -->
+      <div class="alert-form-container">
+        <div class="alert-form-card glass">
+          <div class="alert-form-header">
+            <h2><i class="fas fa-exclamation-triangle" style="color: #D32F2F; margin-right: 12px;"></i>Emergency Incident Report</h2>
+            <p>Please provide accurate information about the incident. All fields marked with <span class="required">*</span> are required.</p>
+          </div>
+
+          <form id="incidentAlertForm" class="alert-form" novalidate>
+            <!-- Beach Owner Information (Read-only) -->
+            <div class="form-section">
+              <h3>Beach Information</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Beach Name</label>
+                  <div class="form-control-static" id="alertBeachName">Baguio Beach</div>
+                </div>
+                <div class="form-group">
+                  <label>Beach Owner</label>
+                  <div class="form-control-static" id="alertOwnerName">Juan Dela Cruz</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Beach Location</label>
+                <div class="form-control-static" id="alertBeachLocation">Barangay Santo Niño, Tukuran, Zamboanga del Sur</div>
+              </div>
+            </div>
+
+            <!-- Incident Details -->
+            <div class="form-section">
+              <h3>Incident Details</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="incidentType">Type of Incident <span class="required">*</span></label>
+                  <select id="incidentType" class="form-control" required>
+                    <option value="">Select incident type...</option>
+                    <option value="Drowning">Drowning</option>
+                    <option value="Missing Person">Missing Person</option>
+                    <option value="Medical Emergency">Medical Emergency</option>
+                    <option value="Injury">Injury</option>
+                    <option value="Lost Property">Lost Property</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <div class="error-message" id="typeError">Please select an incident type</div>
+                </div>
+                <div class="form-group">
+                  <label for="incidentDate">Date of Incident <span class="required">*</span></label>
+                  <input type="date" id="incidentDate" class="form-control" required>
+                  <div class="error-message" id="dateError">Please select the date of incident</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="incidentTime">Time of Incident <span class="required">*</span></label>
+                <input type="time" id="incidentTime" class="form-control" required>
+                <div class="error-message" id="timeError">Please select the time of incident</div>
+              </div>
+
+              <div class="form-group">
+                <label for="incidentDescription">Brief Description <span class="required">*</span></label>
+                <textarea id="incidentDescription" class="form-control" rows="5" placeholder="Describe what happened, who was involved, and any actions taken..." required></textarea>
+                <div class="error-message" id="descriptionError">Please provide a brief description of the incident</div>
+                <span class="form-hint">Please provide as much detail as possible to help the Tourism Office respond appropriately.</span>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+              <button type="reset" class="btn-secondary">
+                <i class="fas fa-times"></i> Clear Form
+              </button>
+              <button type="submit" class="btn-primary btn-alert">
+                <i class="fas fa-paper-plane"></i> Send Alert
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Message -->
+          <div id="alertSuccess" class="alert-success" style="display: none;">
+            <div class="success-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Alert Sent Successfully!</h3>
+            <p>Your incident alert has been submitted to the Tourism Office. They will review and respond accordingly.</p>
+            <div class="success-details">
+              <div class="success-detail-item">
+                <span class="detail-label">Beach:</span>
+                <span class="detail-value" id="successBeach">Baguio Beach</span>
+              </div>
+              <div class="success-detail-item">
+                <span class="detail-label">Incident Type:</span>
+                <span class="detail-value" id="successType">Drowning</span>
+              </div>
+              <div class="success-detail-item">
+                <span class="detail-label">Date & Time:</span>
+                <span class="detail-value" id="successDateTime">2026-07-04 14:30</span>
+              </div>
+              <div class="success-detail-item">
+                <span class="detail-label">Status:</span>
+                <span class="detail-value status-badge pending">Pending Review</span>
+              </div>
+            </div>
+            <button class="btn-primary" id="submitAnotherBtn">
+              <i class="fas fa-plus"></i> Submit Another Alert
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Tips -->
+        <div class="alert-tips glass">
+          <h4><i class="fas fa-lightbulb" style="color: #F9A825;"></i> Quick Tips</h4>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Be as specific as possible in your description</li>
+            <li><i class="fas fa-check-circle"></i> Include the exact location within the beach</li>
+            <li><i class="fas fa-check-circle"></i> Mention if first aid has been administered</li>
+            <li><i class="fas fa-check-circle"></i> Note any witnesses or involved parties</li>
+            <li><i class="fas fa-check-circle"></i> For emergencies, call 911 first</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ========== MY SUBMITTED INCIDENT ALERTS (status from Tourism Office) ========== -->
+      <!-- Read-only list of this beach's submitted incidents. The Status
+           column reflects the latest status set by the Tourism Personnel and
+           refreshes automatically, so owners can see when their report moves
+           to Under Review or Resolved. -->
+      <section class="owner-incidents-section">
+        <div class="owner-incidents-header">
+          <h2>My Submitted Incident Alerts</h2>
+          <p>Track the status of the incident alerts you have sent to the Tourism Office.</p>
+        </div>
+        <div class="owner-incidents-card glass">
+          <div class="owner-incidents-table-wrapper">
+            <table class="owner-incidents-table">
+              <thead>
+                <tr>
+                  <th>Incident Type</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="ownerIncidentTableBody">
+                <!-- Rendered by incident-alert.js -->
+              </tbody>
+            </table>
+          </div>
+          <div class="owner-incidents-empty" id="ownerIncidentsEmpty" style="display:none;">
+            <i class="fas fa-clipboard-list"></i>
+            <p>You have not submitted any incident alerts yet.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="style.js"></script>
+  <script src="incident-alert.js"></script>
+</body>
+</html>

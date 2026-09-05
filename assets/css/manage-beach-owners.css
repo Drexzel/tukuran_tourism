@@ -1,0 +1,287 @@
+/* ========================================
+   MANAGE BEACH OWNERS - PAGE STYLES
+   ========================================
+   Extracted from an inline <style> block so the page-specific rules for
+   the owners table and the "Add Beach Owner" form live in their own file,
+   same convention as the other Tourism Personnel pages (e.g.
+   beach-management.css, incident-report.css). No visual redesign - the
+   original layout/colors are kept as-is, with small additions for form
+   validation states (error text/borders) and nicer focus/disabled states
+   on the Add Beach Owner form. */
+
+.owners-section { margin-top: 30px; }
+.owners-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+.owners-table-wrap { overflow-x: auto; background: rgba(255,255,255,0.7); border-radius: 16px; box-shadow: 0 4px 20px rgba(10,46,63,0.06); }
+table.owners-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+table.owners-table th, table.owners-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid rgba(10,46,63,0.08); font-size: 0.92rem; }
+table.owners-table th { color: #0a2e3f; font-weight: 700; background: rgba(43,138,158,0.08); }
+table.owners-table td { color: #3a5a6a; }
+.status-pill { padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+.status-pill.active { background: rgba(46,213,115,0.15); color: #1f8a4d; }
+.status-pill.pending { background: rgba(245,158,11,0.15); color: #b26b06; }
+.status-pill.suspended { background: rgba(231,76,94,0.15); color: #b5273c; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(10,46,63,0.5); display: none; align-items: center; justify-content: center; z-index: 999; padding: 20px; backdrop-filter: blur(2px); }
+.modal-overlay.active { display: flex; }
+.modal-box {
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+  animation: ownerModalSlideUp 0.3s ease;
+}
+@keyframes ownerModalSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.modal-box::-webkit-scrollbar { width: 8px; }
+.modal-box::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.modal-box::-webkit-scrollbar-thumb { background: #1a6b7a; border-radius: 10px; }
+.modal-box h3 { font-family: 'Playfair Display', serif; color: #0a2e3f; margin-bottom: 18px; }
+.modal-box .form-group { margin-bottom: 18px; }
+.modal-box label { display: block; margin-bottom: 6px; font-weight: 600; color: #0a2e3f; font-size: 0.9rem; }
+.modal-box .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(10,46,63,0.08);
+}
+@media (max-width: 480px) {
+  .modal-box .form-actions { flex-direction: column-reverse; }
+  .modal-box .form-actions button { width: 100%; }
+}
+
+/* Form field polish - kept subtle, matches the app's existing accent color */
+.modal-box .form-control {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.modal-box .form-control:focus {
+  outline: none;
+  border-color: #2b8a9e;
+  box-shadow: 0 0 0 3px rgba(43,138,158,0.15);
+}
+.modal-box .form-control.error {
+  border-color: #e74c5e;
+}
+
+/* Inline validation messages (same pattern as the Login/Register forms) */
+.modal-box .error-message {
+  display: none;
+  color: #e74c5e;
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
+.modal-box .error-message.visible {
+  display: block;
+}
+
+.credentials-box { background: rgba(43,138,158,0.08); border-radius: 12px; padding: 16px; margin-top: 16px; font-size: 0.9rem; color: #0a2e3f; }
+.credentials-box strong { display: inline-block; min-width: 90px; }
+.empty-state { text-align: center; padding: 50px 20px; color: #5a7a8a; }
+
+/* Disabled submit state while the request is in flight */
+#submitAddOwnerBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   MODAL HEADER + CLOSE (X) BUTTON
+   ======================================== */
+/* Mirrors the Add Beach modal header on Beach Management, for visual
+   consistency across the two admin pages. */
+.owners-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(27, 107, 125, 0.08);
+}
+.owners-modal-header h3 {
+  font-family: 'Playfair Display', serif;
+  color: #0a2e3f;
+  margin: 0;
+  font-size: 1.35rem;
+}
+.owners-modal-header h3 i {
+  color: #1a6b7a;
+  margin-right: 10px;
+}
+.modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(231, 76, 94, 0.08);
+  color: #e74c5e;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.modal-close-btn:hover {
+  background: #e74c5e;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* ========================================
+   ROW ACTION BUTTONS (View / Edit / Delete)
+   ======================================== */
+.owner-actions { display: flex; gap: 8px; white-space: nowrap; }
+.owner-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+.owner-action-btn.view { background: rgba(43,138,158,0.12); color: #1a6b7a; }
+.owner-action-btn.view:hover { background: #1a6b7a; color: #fff; }
+.owner-action-btn.edit { background: rgba(245,158,11,0.12); color: #b26b06; }
+.owner-action-btn.edit:hover { background: #f59e0b; color: #fff; }
+.owner-action-btn.delete { background: rgba(231,76,94,0.12); color: #b5273c; }
+.owner-action-btn.delete:hover { background: #e74c5e; color: #fff; }
+
+/* ========================================
+   VIEW OWNER DETAILS GRID
+   ======================================== */
+.owner-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+}
+.owner-details-grid .detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.owner-details-grid .detail-item.full-width { grid-column: 1 / -1; }
+.owner-details-grid .detail-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #5a7a8a;
+}
+.owner-details-grid .detail-value {
+  font-size: 0.98rem;
+  color: #0a2e3f;
+  font-weight: 500;
+}
+.owner-details-grid .detail-value.muted {
+  color: #8aa5b0;
+  font-style: italic;
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .owner-details-grid { grid-template-columns: 1fr; }
+}
+
+/* ========================================
+   UI REFINEMENTS (visual polish only)
+   ========================================
+   Presentation + responsiveness pass for a cleaner, professional LGU look.
+   No change to structure, data, or functionality - same palette, typography,
+   sidebar, icons, and buttons. This file only loads on Manage Beach Owners,
+   so these rules are scoped to this page. */
+
+/* --- Header: clean title + right-aligned Add button on one row --- */
+.owners-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px 0 20px;
+}
+.owners-page-header h1 {
+  margin: 0;
+  line-height: 1.2;
+}
+.owners-page-header .btn-primary {
+  flex-shrink: 0;
+}
+
+/* Tighten the gap between header and table (less empty space) */
+.owners-section { margin-top: 0; }
+
+/* --- Table: flatter, compact, consistently aligned --- */
+.owners-table-wrap {
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.04);
+  border-radius: 14px;
+}
+table.owners-table { min-width: 560px; }
+table.owners-table th,
+table.owners-table td {
+  padding: 14px 18px;
+  vertical-align: middle;
+}
+/* Subtle, professional row hover (no heavy effects) */
+table.owners-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+table.owners-table tbody tr:hover {
+  background: rgba(43, 138, 158, 0.045);
+}
+table.owners-table tbody tr:last-child td {
+  border-bottom: none;
+}
+/* Actions column hugs the right edge for a clean, aligned finish */
+table.owners-table th:last-child,
+table.owners-table td:last-child {
+  text-align: right;
+  width: 1%;
+  white-space: nowrap;
+}
+.owner-actions { justify-content: flex-end; }
+
+/* --- Action buttons: consistent size, spacing, rounding, clear hover --- */
+.owner-action-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+}
+
+/* --- Responsive: tablet & mobile (sidebar collapses at 768px) --- */
+@media (max-width: 768px) {
+  .owners-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    /* Clear the fixed sidebar toggle button (top-left) so the title
+       never sits underneath it. */
+    padding-top: 64px;
+    padding-bottom: 16px;
+  }
+  .owners-page-header h1 { font-size: 1.9rem; }
+}
+
+@media (max-width: 480px) {
+  .owners-page-header h1 { font-size: 1.6rem; }
+  .owners-page-header .btn-primary {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  table.owners-table th,
+  table.owners-table td { padding: 12px 14px; }
+}
+

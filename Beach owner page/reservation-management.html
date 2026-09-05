@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="beach-session.js?v=2"></script>
+  <title>Reservation Management · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="reservation-style.css?v=4">
+  <link rel="stylesheet" href="bo-theme.css">
+</head>
+<body>
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="sidebar-beach-name">
+        <h2>Baguio Beach</h2>
+        <p>Beach Operator</p>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="beach-owner-dashboard.html" class="sidebar-link">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="reservation-management.html" class="sidebar-link active">
+        <i class="fas fa-clipboard-list"></i>
+        <span>Reservations</span>
+      </a>
+      <a href="walk-in-registration.html" class="sidebar-link">
+        <i class="fas fa-user-plus"></i>
+        <span>Walk-in Guests</span>
+      </a>
+     <a href="incident-alert.html" class="sidebar-link">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      <span>Incident Alert</span>
+    </a>
+      <a href="request-update.html" class="sidebar-link">
+        <i class="fas fa-paper-plane"></i>
+        <span>Request Update</span>
+      </a>
+      <a href="#" class="sidebar-link logout-link" id="logoutBtn2">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="dashboard-main with-sidebar">
+    <div class="container">
+      <div class="page-header">
+        <h1>Reservation Management</h1>
+        <p>View and manage all beach reservations</p>
+      </div>
+
+      <!-- Status Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="pending">Pending</button>
+        <button class="filter-tab" data-filter="approved">Approved</button>
+        <button class="filter-tab" data-filter="cancelled">Cancelled</button>
+        <button class="filter-tab" data-filter="completed">Completed</button>
+      </div>
+
+      <!-- Reservations Table -->
+      <div class="bookings-table-wrapper">
+        <table class="bookings-table">
+          <thead>
+            <tr>
+              <th>Tourist Name</th>
+              <th>Date &amp; Time</th>
+              <th>Packs</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reservationsBody">
+            <tr id="reservationsLoadingRow">
+              <td colspan="5" style="text-align:center; padding:30px;">Loading reservations...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty state -->
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <i class="fas fa-inbox"></i>
+        <h3>No reservations found</h3>
+        <p>Try adjusting your filter criteria</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== VIEW DETAILS MODAL ========== -->
+  <div class="modal-overlay" id="detailsModal">
+    <div class="modal glass-panel modal-large">
+      <button class="modal-close" id="closeDetailsModal"><i class="fas fa-times"></i></button>
+      <div class="modal-header">
+        <h3 id="detailsModalTitle">Reservation Details</h3>
+        <span class="status" id="detailsStatus">Pending</span>
+      </div>
+      <div class="modal-body" id="detailsBody">
+        <!-- Dynamic content -->
+      </div>
+      <div class="modal-actions" id="detailsActions">
+        <!-- Dynamic actions -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PROOF OF PAYMENT PREVIEW MODAL ========== -->
+  <div class="modal-overlay" id="paymentPreviewModal">
+    <div class="modal glass-panel modal-image-preview">
+      <button class="modal-close modal-close-round" id="closePaymentPreview" aria-label="Close preview">
+        <i class="fas fa-times"></i>
+      </button>
+      <img id="paymentPreviewImage" src="" alt="Proof of payment">
+    </div>
+  </div>
+
+  <!-- ========== LOGOUT CONFIRMATION MODAL ========== -->
+  <div class="modal-overlay" id="logoutModal">
+    <div class="modal glass-panel">
+      <h3>End session</h3>
+      <p>Are you sure you want to log out of your beach owner account?</p>
+      <div class="modal-actions">
+        <button class="btn secondary" id="cancelLogout">Cancel</button>
+        <button class="btn primary" id="confirmLogout">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=2"></script>
+  <script src="reservation-script.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+/* ======================================== */
+/* ===== UPDATE REQUESTS - BEACH OWNER MODULE ===== */
+/* ======================================== */
+/* Reuses .alert-form-card / .alert-tips (incident-alert.css) and
+   .bookings-table / .status / .empty-state (style.css, reservation-style.css)
+   so this page matches the existing look and feel exactly. */
+
+.bookings-table td .request-details-cell {
+  max-width: 320px;
+  white-space: normal;
+  color: #3a5a6a;
+}
+
+.bookings-table td .admin-notes-cell {
+  max-width: 260px;
+  white-space: normal;
+  color: #5a7a8a;
+  font-style: italic;
+}

@@ -1,0 +1,497 @@
+/* ======================================== */
+/* ===== INCIDENT ALERT - BEACH OWNER MODULE ===== */
+/* ======================================== */
+
+/* Alert Form Container */
+.alert-form-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* Form Card */
+.alert-form-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  padding: 32px;
+  overflow: hidden;
+  position: relative;
+}
+
+.alert-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #D32F2F, #F9A825, #E65100);
+}
+
+.alert-form-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.alert-form-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #0a2e3f;
+  display: flex;
+  align-items: center;
+}
+
+.alert-form-header p {
+  color: #4a6a7a;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+.alert-form-header .required {
+  color: #D32F2F;
+  font-weight: 700;
+}
+
+/* Form Sections */
+.form-section {
+  margin-bottom: 28px;
+}
+
+.form-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0a2e3f;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(27, 107, 125, 0.06);
+}
+
+/* Form Controls */
+.alert-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.alert-form .form-group {
+  margin-bottom: 16px;
+}
+
+.alert-form label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #1a3a4a;
+  margin-bottom: 6px;
+}
+
+.alert-form .form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  color: #1a3a4a;
+}
+
+.alert-form .form-control:focus {
+  outline: none;
+  border-color: #1a6b7a;
+  box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.08);
+}
+
+.alert-form .form-control.error {
+  border-color: #D32F2F;
+}
+
+.alert-form .form-control.error:focus {
+  box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.08);
+}
+
+.alert-form textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.alert-form select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a3a4a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* Static Read-only Fields */
+.form-control-static {
+  padding: 12px 16px;
+  background: rgba(27, 107, 125, 0.04);
+  border-radius: 12px;
+  border: 2px solid rgba(27, 107, 125, 0.06);
+  font-size: 0.95rem;
+  color: #0a2e3f;
+  font-weight: 500;
+  cursor: default;
+}
+
+/* Error Messages */
+.alert-form .error-message {
+  font-size: 0.8rem;
+  color: #D32F2F;
+  margin-top: 4px;
+  display: none;
+}
+
+.alert-form .error-message.visible {
+  display: block;
+}
+
+/* Form Hints */
+.form-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Form Actions */
+.alert-form .form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  flex-wrap: wrap;
+}
+
+.alert-form .form-actions .btn-secondary {
+  padding: 12px 28px;
+}
+
+.alert-form .form-actions .btn-alert {
+  background: linear-gradient(135deg, #D32F2F, #E65100) !important;
+  padding: 12px 32px;
+  box-shadow: 0 4px 20px rgba(211, 47, 47, 0.25);
+}
+
+.alert-form .form-actions .btn-alert:hover {
+  box-shadow: 0 8px 32px rgba(211, 47, 47, 0.35);
+  transform: translateY(-3px);
+}
+
+/* Success Message */
+.alert-success {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.alert-success .success-icon {
+  font-size: 4rem;
+  color: #2ed573;
+  margin-bottom: 16px;
+}
+
+.alert-success h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #0a2e3f;
+  margin-bottom: 8px;
+}
+
+.alert-success p {
+  color: #4a6a7a;
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+
+.alert-success .success-details {
+  background: rgba(27, 107, 125, 0.04);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: left;
+  border: 1px solid rgba(27, 107, 125, 0.06);
+}
+
+.success-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.success-detail-item:last-child {
+  border-bottom: none;
+}
+
+.success-detail-item .detail-label {
+  font-weight: 500;
+  color: #5a7a8a;
+}
+
+.success-detail-item .detail-value {
+  font-weight: 500;
+  color: #0a2e3f;
+}
+
+.success-detail-item .status-badge {
+  display: inline-block;
+  padding: 2px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: rgba(255, 193, 7, 0.12);
+  color: #f59e0b;
+}
+
+/* Quick Tips */
+.alert-tips {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  padding: 24px 28px;
+  height: fit-content;
+  position: relative;
+  overflow: hidden;
+}
+
+.alert-tips::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #F9A825, #D32F2F);
+}
+
+.alert-tips h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0a2e3f;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-tips ul {
+  list-style: none;
+  padding: 0;
+}
+
+.alert-tips ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  color: #3a5a6a;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.alert-tips ul li:last-child {
+  border-bottom: none;
+}
+
+.alert-tips ul li i {
+  color: #2ed573;
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 1024px) {
+  .alert-form-container {
+    grid-template-columns: 1fr;
+  }
+  .alert-tips {
+    order: 2;
+  }
+  .alert-form-card {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .alert-form-card {
+    padding: 24px 20px;
+  }
+  .alert-form .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .alert-form-header h2 {
+    font-size: 1.3rem;
+  }
+  .alert-form .form-actions {
+    flex-direction: column;
+  }
+  .alert-form .form-actions .btn-secondary,
+  .alert-form .form-actions .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+  .alert-success .success-details {
+    padding: 16px;
+  }
+  .success-detail-item {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .alert-tips {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .alert-form-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .alert-form-header h2 {
+    font-size: 1.1rem;
+  }
+  .alert-form-header p {
+    font-size: 0.85rem;
+  }
+  .form-section h3 {
+    font-size: 1rem;
+  }
+  .alert-form .form-control {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+  }
+  .form-control-static {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+  }
+  .alert-success h3 {
+    font-size: 1.4rem;
+  }
+  .alert-tips ul li {
+    font-size: 0.85rem;
+  }
+}
+/* ======================================== */
+/* ===== MY SUBMITTED INCIDENT ALERTS ===== */
+/* (additive: read-only status list showing the latest status set by the
+   Tourism Office - does not change the existing form layout) */
+/* ======================================== */
+.owner-incidents-section {
+  margin-top: 32px;
+}
+
+.owner-incidents-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #0a2e3f;
+  margin: 0 0 4px;
+}
+
+.owner-incidents-header p {
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  margin: 0 0 16px;
+}
+
+.owner-incidents-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  padding: 12px 18px;
+}
+
+.owner-incidents-table-wrapper {
+  overflow-x: auto;
+}
+
+.owner-incidents-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.owner-incidents-table thead th {
+  text-align: left;
+  padding: 12px 14px;
+  color: #1a3a4a;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(27, 107, 125, 0.12);
+  white-space: nowrap;
+}
+
+.owner-incidents-table tbody td {
+  padding: 12px 14px;
+  color: #3a5a6a;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.owner-incidents-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.owner-status-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.owner-status-badge.pending {
+  background: rgba(255, 193, 7, 0.12);
+  color: #f59e0b;
+}
+
+.owner-status-badge.investigating {
+  background: rgba(21, 101, 192, 0.12);
+  color: #1565C0;
+}
+
+.owner-status-badge.resolved {
+  background: rgba(46, 213, 115, 0.12);
+  color: #2ed573;
+}
+
+.owner-status-badge.closed {
+  background: rgba(149, 165, 166, 0.12);
+  color: #95a5a6;
+}
+
+.owner-incidents-empty {
+  text-align: center;
+  padding: 34px 20px;
+  color: #5a7a8a;
+}
+
+.owner-incidents-empty i {
+  font-size: 2.2rem;
+  opacity: 0.3;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.owner-incidents-empty p {
+  margin: 0;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,16 @@
+/* ======================================== */
+/* ===== UPDATE REQUESTS - TOURISM PERSONNEL MODULE ===== */
+/* ======================================== */
+/* Reuses .incident-stats / .incident-controls / .incident-table-wrapper /
+   .incident-table / .status-badge / .type-badge / .modal (incident-report.css)
+   so this page matches the existing Incident Report look and feel.
+   Only adds the one badge color that page doesn't already define. */
+
+.status-badge.rejected {
+  background: rgba(231, 76, 94, 0.12);
+  color: #e74c5e;
+}
+
+.incident-detail-value strong {
+  color: #0a2e3f;
+}

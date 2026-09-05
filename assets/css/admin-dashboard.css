@@ -1,0 +1,950 @@
+/* ======================================== */
+/* ===== ADMIN DASHBOARD - LGU TOURISM DESIGN ===== */
+/* ======================================== */
+
+/* ======================================== */
+/* ===== TUKURAN TOURISM COLOR PALETTE ===== */
+/* ======================================== */
+:root {
+  --tukuran-red: #D32F2F;
+  --tukuran-gold: #F9A825;
+  --tukuran-orange: #E65100;
+  --tukuran-dark: #1A1A2E;
+  --tukuran-blue: #1565C0;
+  --tukuran-green: #2E7D32;
+  --tukuran-light: #FFF8E1;
+  --tukuran-magenta: #C2185B;
+  --tukuran-teal: #00838F;
+}
+
+/* Dashboard Banner - Enhanced with better image display */
+.dashboard-banner {
+  position: relative;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  text-align: left; /* Changed from center to left */
+  overflow: hidden;
+  border-radius: 0 0 35px 35px;
+  margin-bottom: 30px;
+  background: #1A1A2E;
+  padding-left: 60px; /* Added left padding */
+}
+
+/* Background image - FULL SIZE and perfectly fit */
+.dashboard-banner .banner-bg-image {
+  position: absolute;
+  inset: 0;
+    background: url('../../assets/images/admin-banner.jpg') center/cover no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Enhanced overlay - lighter to show image better */
+.dashboard-banner .banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(26, 26, 46, 0.70) 0%,
+    rgba(26, 26, 46, 0.50) 30%,
+    rgba(211, 47, 47, 0.10) 50%,
+    rgba(26, 26, 46, 0.40) 70%,
+    rgba(26, 26, 46, 0.60) 100%
+  );
+  z-index: 1;
+  border-radius: 0 0 35px 35px;
+}
+
+/* Multi-colored border accent - Enhanced */
+.dashboard-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, 
+    #D32F2F 0%, 
+    #F9A825 12%, 
+    #E65100 24%, 
+    #C2185B 36%,
+    #1565C0 48%, 
+    #00838F 60%,
+    #2E7D32 72%, 
+    #F9A825 84%, 
+    #D32F2F 100%
+  );
+  z-index: 3;
+  border-radius: 0 0 35px 35px;
+  box-shadow: 0 4px 30px rgba(211, 47, 47, 0.35);
+}
+
+/* Corner decorations - tourism vibe */
+.dashboard-banner .corner-deco {
+  position: absolute;
+  z-index: 2;
+  width: 80px;
+  height: 80px;
+  opacity: 0.15;
+}
+
+.dashboard-banner .corner-deco.tl {
+  top: 10px;
+  left: 10px;
+  border-top: 3px solid #F9A825;
+  border-left: 3px solid #F9A825;
+  border-radius: 4px 0 0 0;
+}
+
+.dashboard-banner .corner-deco.tr {
+  top: 10px;
+  right: 10px;
+  border-top: 3px solid #D32F2F;
+  border-right: 3px solid #D32F2F;
+  border-radius: 0 4px 0 0;
+}
+
+.dashboard-banner .corner-deco.bl {
+  bottom: 20px;
+  left: 10px;
+  border-bottom: 3px solid #1565C0;
+  border-left: 3px solid #1565C0;
+  border-radius: 0 0 0 4px;
+}
+
+.dashboard-banner .corner-deco.br {
+  bottom: 20px;
+  right: 10px;
+  border-bottom: 3px solid #2E7D32;
+  border-right: 3px solid #2E7D32;
+  border-radius: 0 0 4px 0;
+}
+
+/* Floating tourism elements - repositioned */
+.dashboard-banner .floating-element {
+  position: absolute;
+  z-index: 1;
+  font-size: 2.5rem;
+  opacity: 0.08;
+  animation: floatElement 6s ease-in-out infinite;
+}
+
+.dashboard-banner .floating-element:nth-child(1) {
+  top: 15%;
+  right: 15%;
+  left: auto;
+  animation-delay: 0s;
+  color: #F9A825;
+}
+
+.dashboard-banner .floating-element:nth-child(2) {
+  top: 30%;
+  right: 5%;
+  left: auto;
+  animation-delay: 2s;
+  color: #D32F2F;
+}
+
+.dashboard-banner .floating-element:nth-child(3) {
+  bottom: 30%;
+  right: 12%;
+  left: auto;
+  animation-delay: 4s;
+  color: #1565C0;
+}
+
+.dashboard-banner .floating-element:nth-child(4) {
+  bottom: 15%;
+  right: 20%;
+  left: auto;
+  animation-delay: 1s;
+  color: #2E7D32;
+}
+
+@keyframes floatElement {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 20px 0;
+  max-width: 600px;
+  text-align: left;
+}
+
+.banner-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.4rem;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Simple white text for "Tukuran Tourism Office" */
+.banner-content h1 span {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px 0;
+}
+
+/* Welcome badge with TOURISM COLORS - Multi-color like reference */
+.welcome-badge {
+  display: inline-block;
+  padding: 12px 35px;
+  background: linear-gradient(135deg, #D32F2F, #E65100);
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 30px rgba(211, 47, 47, 0.4);
+  margin-top: 10px;
+  letter-spacing: 1.5px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+/* Multi-colored gradient text for "GEH! TUKURAN, GIBALIK-BALIKAN" */
+.welcome-badge .badge-text {
+  background: linear-gradient(135deg, 
+    #F9A825 0%, 
+    #D32F2F 20%, 
+    #E65100 35%, 
+    #C2185B 50%,
+    #1565C0 65%, 
+    #00838F 80%,
+    #2E7D32 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 100% 100%;
+  font-weight: 800;
+}
+
+/* Rotating border for the badge */
+.welcome-badge::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, 
+    #F9A825, 
+    #D32F2F, 
+    #1565C0, 
+    #2E7D32,
+    #F9A825
+  );
+  background-size: 300% 300%;
+  border-radius: 50px;
+  z-index: -1;
+  animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.welcome-badge:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 50px rgba(211, 47, 47, 0.5);
+}
+
+.welcome-badge i {
+  margin-right: 12px;
+  font-size: 1.2rem;
+  color: #F9A825;
+  -webkit-text-fill-color: #F9A825;
+}
+
+/* Dashboard Stats with Tourism Theme */
+.admin-stats .stat-card {
+  position: relative;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Multi-colored top border for stat cards */
+.admin-stats .stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    #D32F2F 0%, 
+    #F9A825 20%, 
+    #E65100 40%, 
+    #1565C0 60%, 
+    #2E7D32 80%,
+    #D32F2F 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerBorder 3s ease-in-out infinite;
+}
+
+@keyframes shimmerBorder {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.admin-stats .stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 20, 30, 0.12);
+  border-color: rgba(211, 47, 47, 0.15);
+}
+
+.admin-stats .stat-card .stat-info {
+  width: 100%;
+}
+
+.admin-stats .stat-card .stat-info h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.admin-stats .stat-card .stat-info .stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #D32F2F, #E65100, #F9A825);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.stat-change {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.stat-change.positive {
+  background: rgba(46, 213, 115, 0.10);
+  color: #2ed573;
+}
+
+.stat-change.negative {
+  background: rgba(231, 76, 94, 0.10);
+  color: #e74c5e;
+}
+
+.stat-change.neutral {
+  background: rgba(255, 193, 7, 0.10);
+  color: #ffc107;
+}
+
+/* Admin Stats Grid - Updated to 5 columns */
+.admin-stats {
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+/* Analytics Section */
+.analytics-section {
+  margin: 24px 0;
+}
+
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.analytics-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #0a2e3f;
+  margin: 0;
+  position: relative;
+}
+
+.analytics-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #D32F2F, #F9A825, #1565C0);
+  border-radius: 10px;
+}
+
+.analytics-controls {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.chart-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chart-dropdown label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4a6a7a;
+}
+
+.chart-dropdown .form-control {
+  padding: 8px 14px;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  min-width: 180px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  font-family: 'Inter', sans-serif;
+  color: #1a3a4a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a3a4a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.chart-dropdown .form-control:focus {
+  border-color: #D32F2F;
+  box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.08);
+  outline: none;
+}
+
+/* Chart Grid */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.chart-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.chart-card {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #D32F2F, #F9A825, #E65100, #1565C0, #2E7D32);
+}
+
+.chart-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 20, 30, 0.08);
+}
+
+.chart-card h4 {
+  font-size: 1rem;
+  color: #0a2e3f;
+  margin-bottom: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Occupancy Section */
+.occupancy-section {
+  margin: 40px 0;
+}
+
+.occupancy-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #0a2e3f;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.occupancy-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #D32F2F, #F9A825, #2E7D32);
+  border-radius: 10px;
+}
+
+.occupancy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.occupancy-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.occupancy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #D32F2F, #F9A825, #E65100);
+}
+
+.occupancy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 20, 30, 0.08);
+}
+
+.occupancy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.occupancy-header .beach-name {
+  font-weight: 600;
+  color: #0a2e3f;
+  font-size: 1rem;
+}
+
+.occupancy-header .occupancy-percent {
+  font-weight: 700;
+  color: #D32F2F;
+  font-size: 1.1rem;
+}
+
+.occupancy-bar {
+  height: 8px;
+  background: #f0f7fa;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.occupancy-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+.occupancy-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #5a7a8a;
+}
+
+.occupancy-details span:last-child {
+  color: #1a6b7a;
+  font-weight: 500;
+}
+
+/* ======================================== */
+/* ===== LOGOUT BUTTON - TOURISM VIBES ===== */
+/* ======================================== */
+
+/* Logout link in sidebar */
+.sidebar-link.logout-link {
+  margin-top: auto;
+  color: #D32F2F;
+  background: rgba(211, 47, 47, 0.06);
+  border-radius: 12px;
+  border-left: 3px solid #D32F2F;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.sidebar-link.logout-link:hover {
+  background: rgba(211, 47, 47, 0.12);
+  color: #b71c1c;
+  transform: translateX(4px);
+}
+
+.sidebar-link.logout-link i {
+  color: #D32F2F;
+}
+
+.sidebar-link.logout-link:hover i {
+  color: #b71c1c;
+}
+
+/* Logout Button in Modal */
+.btn-logout {
+  background: linear-gradient(135deg, #D32F2F, #E65100) !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 12px 28px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 16px rgba(211, 47, 47, 0.25) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.btn-logout:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 28px rgba(211, 47, 47, 0.35) !important;
+  background: linear-gradient(135deg, #c62828, #d84315) !important;
+}
+
+.btn-logout i {
+  font-size: 1.1rem;
+}
+
+/* Cancel button in modal */
+#cancelLogout {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #1a3a4a !important;
+  border: 2px solid rgba(27, 107, 125, 0.15) !important;
+  padding: 12px 28px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+#cancelLogout:hover {
+  background: #fff !important;
+  border-color: #D32F2F !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Modal header with tourism icon */
+.modal-content h3 i {
+  color: #D32F2F;
+  font-size: 1.6rem;
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 1024px) {
+  .admin-stats {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .occupancy-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .analytics-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .analytics-controls {
+    flex-direction: column;
+  }
+  .chart-dropdown {
+    width: 100%;
+  }
+  .chart-dropdown .form-control {
+    min-width: 100%;
+    width: 100%;
+  }
+  .banner-content h1 {
+    font-size: 2.6rem;
+  }
+  .dashboard-banner {
+    padding-left: 40px;
+  }
+  .dashboard-banner .corner-deco {
+    width: 50px;
+    height: 50px;
+  }
+  .welcome-badge {
+    font-size: 1rem;
+    padding: 10px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+  .chart-grid .full-width {
+    grid-column: 1;
+  }
+  .occupancy-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .admin-stats .stat-card .stat-info .stat-number {
+    font-size: 1.6rem;
+  }
+  .analytics-section h2 {
+    font-size: 1.4rem;
+  }
+  .occupancy-section h2 {
+    font-size: 1.4rem;
+  }
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+  .banner-content p {
+    font-size: 1rem;
+  }
+  .dashboard-banner {
+    height: 280px;
+    padding-left: 30px;
+  }
+  .dashboard-banner .floating-element {
+    display: none;
+  }
+  .dashboard-banner .corner-deco {
+    width: 35px;
+    height: 35px;
+  }
+  .welcome-badge {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-stats {
+    grid-template-columns: 1fr !important;
+  }
+  .admin-stats .stat-card {
+    padding: 16px;
+  }
+  .admin-stats .stat-card .stat-info .stat-number {
+    font-size: 1.4rem;
+  }
+  .chart-card {
+    padding: 14px;
+  }
+  .occupancy-card {
+    padding: 16px;
+  }
+  .btn-logout {
+    padding: 10px 20px !important;
+    font-size: 0.85rem !important;
+  }
+  #cancelLogout {
+    padding: 10px 20px !important;
+    font-size: 0.85rem !important;
+  }
+  .banner-content h1 {
+    font-size: 1.6rem;
+  }
+  .banner-content p {
+    font-size: 0.9rem;
+  }
+  .dashboard-banner {
+    height: 220px;
+    padding-left: 20px;
+    border-radius: 0 0 20px 20px;
+  }
+  .dashboard-banner::after {
+    height: 5px;
+  }
+  .welcome-badge {
+    font-size: 0.75rem;
+    padding: 6px 16px;
+    letter-spacing: 0.5px;
+  }
+  .welcome-badge i {
+    font-size: 0.9rem;
+    margin-right: 6px;
+  }
+  .dashboard-banner .corner-deco {
+    display: none;
+  }
+}
+/* ======================================== */
+/* ===== MOST VISITED BEACHES (RANKING) ===== */
+/* ======================================== */
+/* Top-of-dashboard horizontal ranking bar chart. Reuses .chart-card/.glass
+   for the card look; only adds the header row, the "Total Participating
+   Beaches" badge, and the empty state. */
+.ranking-section {
+  margin: 24px 0;
+}
+
+.ranking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.ranking-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #0a2e3f;
+  margin: 0;
+  position: relative;
+}
+
+.ranking-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #D32F2F, #F9A825, #1565C0);
+  border-radius: 10px;
+}
+
+/* "Total Participating Beaches" badge shown beside the heading */
+.ranking-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.ranking-total-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #4a6a7a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ranking-total-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1a6b7a;
+  line-height: 1.15;
+}
+
+.ranking-card {
+  /* Compact: the card never dominates the page. When there are many
+     participating beaches the chart scrolls vertically INSIDE the card
+     (see .ranking-canvas-wrap) instead of stretching the whole dashboard. */
+  padding: 16px 18px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Inner wrapper whose height is set from JS (thinner bars, ~30px per beach).
+   The canvas fills this wrapper, so a tall list simply scrolls within the
+   fixed-height card above. */
+.ranking-canvas-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ranking-card canvas {
+  width: 100% !important;
+}
+
+/* Fixed, balanced height for the pie/doughnut/line/bar analytics charts so
+   they resize with screen width but never stretch excessively in height. */
+.chart-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+.chart-canvas-wrap canvas {
+  width: 100% !important;
+}
+
+/* Charts scale down in height on smaller screens (no overflow, no overlap) */
+@media (max-width: 768px) {
+  .chart-canvas-wrap { height: 210px; }
+  .ranking-card { max-height: 280px; }
+}
+@media (max-width: 480px) {
+  .chart-canvas-wrap { height: 190px; }
+  .ranking-card { max-height: 250px; }
+}
+
+.ranking-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #5a7a8a;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .ranking-header {
+    align-items: flex-start;
+  }
+  .ranking-total {
+    align-items: flex-start;
+  }
+  .ranking-total-value {
+    font-size: 1.6rem;
+  }
+}
