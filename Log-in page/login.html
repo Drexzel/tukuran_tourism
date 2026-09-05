@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Login · Tukuran Beach Management</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="log-in.css">
+</head>
+<body>
+  <!-- ========== LOGIN PAGE ========== -->
+  <div class="auth-page login-page">
+    <!-- Left Column - Hero Image -->
+    <div class="auth-hero">
+      <div class="auth-hero-overlay"></div>
+      <div class="auth-hero-content">
+        <div class="auth-logos">
+          <div class="logo-circle">
+            <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+          </div>
+          <div class="logo-circle">
+            <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+          </div>
+          <div class="logo-circle">
+            <img src="images/system-logo.png" alt="System" loading="lazy">
+          </div>
+        </div>
+        <h1>Tukuran Beach Management</h1>
+        <p>Access your account to manage beach reservations, monitor tourism activities, and explore the beautiful coastal destinations of Tukuran.</p>
+      </div>
+    </div>
+
+    <!-- Right Column - Login Form -->
+    <div class="auth-form-container">
+      <div class="auth-card glass">
+        <div class="auth-header">
+          <h2>Welcome Back</h2>
+          <p>Sign in to continue accessing the Tukuran Beach Management System</p>
+        </div>
+
+        <form id="loginForm" class="auth-form" novalidate>
+          <!-- Email or Username -->
+          <!-- The system automatically detects the account's role
+               (Tourism Personnel, Beach Operator, or Tourist) from the
+               database after a successful sign-in - no role selection is
+               required here. -->
+          <div class="form-group">
+            <label for="loginEmail">Email or Username</label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fas fa-user"></i></span>
+              <input type="text" id="loginEmail" class="form-control" placeholder="Enter your email or username" required autocomplete="username">
+            </div>
+            <div class="error-message" id="emailError">Please enter your email or username</div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="input-group">
+              <span class="input-icon"><i class="fas fa-lock"></i></span>
+              <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required minlength="6">
+              <button type="button" class="password-toggle" id="loginPasswordToggle">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <div class="error-message" id="passwordError">Password must be at least 6 characters</div>
+          </div>
+
+          <!-- Options Row -->
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span>
+              Remember Me
+            </label>
+            <a href="#" class="forgot-password" id="forgotPassword">Forgot Password?</a>
+          </div>
+
+        <!-- Buttons -->
+<div class="form-actions">
+    <button type="submit" class="btn-primary btn-full">
+        Login <i class="fas fa-arrow-right"></i>
+    </button>
+
+   <a href="../Landing page/beach.html" class="btn-secondary btn-full">
+    Back to Home
+</a>
+</div>
+
+        <!-- Beach Owner accounts are now created only by the Tourism
+             Office admin (see api/add-beach-owner.php), so the
+             self-registration link has been removed. -->
+        <div class="auth-footer">
+          <p>Beach Owner? Contact the Tukuran Tourism Office to request account access.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FORGOT PASSWORD MODAL (Future Implementation) ========== -->
+  <div id="forgotModal" class="modal">
+    <div class="modal-content glass">
+      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+      <h3>Reset Password</h3>
+      <p>Enter your email address and we'll send you a link to reset your password.</p>
+      <div class="form-group">
+        <label for="resetEmail">Email Address</label>
+        <div class="input-group">
+          <span class="input-icon"><i class="fas fa-envelope"></i></span>
+          <input type="email" id="resetEmail" class="form-control" placeholder="Enter your email">
+        </div>
+      </div>
+      <button class="btn-primary btn-full">Send Reset Link</button>
+      <p class="modal-note">This feature will be available soon.</p>
+    </div>
+  </div>
+
+  <!-- ========== LOGIN STATUS MODAL (Success / Error) ========== -->
+  <div id="loginStatusModal" class="modal status-modal" role="dialog" aria-modal="true" aria-labelledby="statusTitle">
+    <div class="modal-content glass status-modal-content">
+      <div class="status-icon" id="statusIcon">
+        <i class="fas fa-check" id="statusIconSymbol"></i>
+      </div>
+      <h3 id="statusTitle">Login Successful</h3>
+      <p id="statusMessage">Redirecting...</p>
+      <div class="status-progress" id="statusProgress"><span></span></div>
+      <button type="button" class="btn-primary btn-full status-ok-btn" id="statusOkBtn">OK</button>
+    </div>
+  </div>
+
+  <script src="log-in.js"></script>
+</body>
+</html>

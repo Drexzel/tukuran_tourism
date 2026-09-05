@@ -1,0 +1,880 @@
+/* ======================================== */
+/* ===== BEACH DETAILS SPECIFIC STYLES ===== */
+/* ======================================== */
+
+/* Back Link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1a6b7a;
+  font-weight: 500;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  gap: 14px;
+}
+
+/* Beach Gallery */
+.beach-gallery {
+  margin-bottom: 30px;
+}
+
+.gallery-main {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 400px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-main:hover img {
+  transform: scale(1.03);
+}
+
+/* Small "click to view larger" hint, shown on hover (and always visible
+   on touch devices, since there's no hover state to reveal it there). */
+.gallery-expand-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(10, 46, 63, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-main:hover .gallery-expand-hint,
+.gallery-main:focus-visible .gallery-expand-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.gallery-thumbs img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.gallery-thumbs img:hover {
+  border-color: #1a6b7a;
+  transform: scale(1.05);
+}
+
+/* Image Preview / Gallery Lightbox */
+.gallery-lightbox .gallery-lightbox-content {
+  max-width: 900px;
+  width: 100%;
+  padding: 16px;
+  background: rgba(10, 20, 26, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-lightbox-content img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.gallery-lightbox .modal-close {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-lightbox .modal-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.gallery-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.gallery-lightbox-prev {
+  left: 16px;
+}
+
+.gallery-lightbox-next {
+  right: 16px;
+}
+
+.gallery-lightbox-count {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+}
+
+/* Beach Info Details */
+.beach-info-details {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.beach-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.beach-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #0a2e3f;
+}
+
+.beach-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.beach-rating .reviews {
+  color: #5a7a8a;
+  font-weight: 400;
+}
+
+.beach-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0,0,0,0.04);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #3a5a6a;
+}
+
+.meta-item i {
+  color: #1a6b7a;
+  width: 20px;
+}
+
+.meta-item strong#beachCapacity {
+  color: #1a6b7a;
+}
+
+/* Beach Description */
+.beach-description {
+  margin: 24px 0;
+}
+
+.beach-description h3 {
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  margin-bottom: 10px;
+}
+
+.beach-description p {
+  color: #3a5a6a;
+  line-height: 1.8;
+}
+
+/* Accommodation Types */
+.beach-accommodation {
+  margin: 24px 0;
+}
+
+.beach-accommodation h3 {
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  margin-bottom: 12px;
+}
+
+.accommodation-types-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Accommodation type "chips" are now buttons: click one to reveal its
+   remaining slots / unit count / price in the panel below instead of
+   showing every field for every type at once. */
+.accommodation-type-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(27, 107, 125, 0.06);
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1a3a4a;
+  border: 1px solid rgba(27, 107, 125, 0.08);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.accommodation-type-item i {
+  color: #1a6b7a;
+  font-size: 1.1rem;
+}
+
+.accommodation-type-item:hover {
+  background: rgba(27, 107, 125, 0.12);
+}
+
+.accommodation-type-item.active {
+  background: #1a6b7a;
+  border-color: #1a6b7a;
+  color: #fff;
+}
+
+.accommodation-type-item.active i {
+  color: #fff;
+}
+
+/* Accommodation Detail Panel - shows the selected type's slots/price */
+.accommodation-detail-panel {
+  margin-top: 16px;
+  padding: 18px 20px;
+  background: rgba(27, 107, 125, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(27, 107, 125, 0.08);
+  animation: fadeIn 0.25s ease;
+}
+
+.accommodation-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #0a2e3f;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+
+.accommodation-detail-header i {
+  color: #1a6b7a;
+}
+
+.accommodation-detail-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.accommodation-detail-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.accommodation-detail-label {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.accommodation-detail-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a6b7a;
+}
+
+.accommodation-detail-value.is-full {
+  color: #e0653f;
+}
+
+.accommodation-detail-note {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(27, 107, 125, 0.08);
+  font-size: 0.85rem;
+  color: #5a7a8a;
+}
+
+/* Amenities */
+.beach-amenities {
+  margin: 24px 0;
+}
+
+.beach-amenities h3 {
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  margin-bottom: 12px;
+}
+
+.amenities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.amenity-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(27, 107, 125, 0.06);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #1a3a4a;
+}
+
+.amenity-tag i {
+  color: #1a6b7a;
+}
+
+/* Ratings and Reviews */
+.beach-reviews {
+  margin: 24px 0;
+}
+
+.beach-reviews h3 {
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  margin-bottom: 16px;
+}
+
+/* Average Rating */
+.average-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(27, 107, 125, 0.04);
+  border-radius: 12px;
+  border: 1px solid rgba(27, 107, 125, 0.06);
+  margin-bottom: 24px;
+}
+
+.average-rating .rating-stars {
+  color: #f59e0b;
+  font-size: 1.4rem;
+}
+
+.average-rating .rating-average {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0a2e3f;
+}
+
+.average-rating .rating-count {
+  font-size: 0.95rem;
+  color: #5a7a8a;
+}
+
+/* Review Form */
+.review-form-container {
+  background: rgba(27, 107, 125, 0.03);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(27, 107, 125, 0.06);
+}
+
+.review-form-container h4 {
+  font-size: 1.1rem;
+  color: #0a2e3f;
+  margin-bottom: 16px;
+}
+
+.review-form .form-group {
+  margin-bottom: 16px;
+}
+
+.review-form .form-group label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #1a3a4a;
+  margin-bottom: 6px;
+}
+
+.review-form .form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  transition: all 0.3s ease;
+  color: #1a3a4a;
+}
+
+.review-form .form-control:focus {
+  outline: none;
+  border-color: #1a6b7a;
+  box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.10);
+}
+
+/* Star Rating Input */
+.star-rating-input {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 4px;
+}
+
+.star-rating-input input {
+  display: none;
+}
+
+.star-rating-input label {
+  cursor: pointer;
+  font-size: 2rem;
+  color: #d1d5db;
+  transition: all 0.3s ease;
+}
+
+.star-rating-input label:hover,
+.star-rating-input label:hover ~ label,
+.star-rating-input input:checked ~ label {
+  color: #f59e0b;
+}
+
+/* Reviews List */
+.reviews-list h4 {
+  font-size: 1.1rem;
+  color: #0a2e3f;
+  margin-bottom: 16px;
+}
+
+.review-item {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.5s ease;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-item:hover {
+  background: rgba(27, 107, 125, 0.02);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  color: #0a2e3f;
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+}
+
+.review-stars {
+  color: #f59e0b;
+  font-size: 0.95rem;
+}
+
+.review-text {
+  color: #3a5a6a;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Empty state - shown when a beach has no reviews yet */
+.reviews-empty {
+  color: #5a7a8a;
+  font-size: 0.95rem;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Review Form Success/Error Message */
+.review-success-message,
+.review-error-message {
+  animation: slideDown 0.5s ease;
+}
+
+.review-form-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.review-form-message i {
+  font-size: 1.4rem;
+}
+
+.review-form-message.is-success {
+  background: rgba(46, 213, 115, 0.12);
+  border: 1px solid rgba(46, 213, 115, 0.25);
+  color: #2d7d4a;
+}
+
+.review-form-message.is-success i {
+  color: #2ed573;
+}
+
+.review-form-message.is-error {
+  background: rgba(224, 101, 63, 0.1);
+  border: 1px solid rgba(224, 101, 63, 0.25);
+  color: #b8471f;
+}
+
+.review-form-message.is-error i {
+  color: #e0653f;
+}
+
+/* Beach Contact Information */
+.beach-contact {
+  margin: 24px 0;
+}
+
+.beach-contact h3 {
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  margin-bottom: 12px;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: rgba(27, 107, 125, 0.04);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(27, 107, 125, 0.06);
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+}
+
+.contact-info-item i {
+  font-size: 1.2rem;
+  color: #1a6b7a;
+  width: 24px;
+  text-align: center;
+}
+
+.contact-info-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.contact-value {
+  font-size: 0.95rem;
+  color: #0a2e3f;
+  font-weight: 500;
+}
+
+/* Map Section with Leaflet */
+.beach-map {
+  margin: 24px 0;
+}
+
+.beach-map h3 {
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  margin-bottom: 12px;
+}
+
+.leaflet-map-container {
+  height: 320px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Custom Leaflet Marker Popup */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid rgba(27, 107, 125, 0.08) !important;
+}
+
+.leaflet-popup-tip {
+  background: #fff !important;
+}
+
+/* Reserve Button */
+.beach-reserve {
+  margin-top: 28px;
+  text-align: center;
+}
+
+/* ======================================== */
+/* ===== ANIMATIONS ===== */
+/* ======================================== */
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 768px) {
+  .gallery-main {
+    height: 250px;
+  }
+
+  .gallery-thumbs img {
+    width: 80px;
+    height: 60px;
+  }
+
+  .beach-info-details {
+    padding: 20px;
+  }
+
+  .beach-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .beach-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .beach-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accommodation-types-grid {
+    gap: 8px;
+  }
+
+  .accommodation-type-item {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .accommodation-detail-panel {
+    padding: 14px 16px;
+  }
+
+  .accommodation-detail-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .gallery-lightbox-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+
+  .gallery-lightbox-prev {
+    left: 8px;
+  }
+
+  .gallery-lightbox-next {
+    right: 8px;
+  }
+
+  .gallery-expand-hint {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .average-rating {
+    flex-wrap: wrap;
+  }
+
+  .star-rating-input label {
+    font-size: 1.6rem;
+  }
+
+  .review-form-container {
+    padding: 16px;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .contact-info-item {
+    padding: 6px 8px;
+  }
+
+  .leaflet-map-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-main {
+    height: 200px;
+  }
+
+  .gallery-thumbs img {
+    width: 60px;
+    height: 50px;
+  }
+
+  .beach-info-details {
+    padding: 16px;
+  }
+
+  .beach-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .accommodation-type-item {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .accommodation-detail-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-lightbox-content {
+    padding: 10px;
+  }
+
+  .average-rating .rating-stars {
+    font-size: 1.1rem;
+  }
+
+  .average-rating .rating-average {
+    font-size: 1.4rem;
+  }
+
+  .contact-info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .contact-info-item i {
+    width: 100%;
+    text-align: left;
+  }
+
+  .leaflet-map-container {
+    height: 200px;
+  }
+}
+/* Price per unit shown inside each accommodation type pill (Tourist View) */
+.accommodation-type-item .accommodation-type-price {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a6b7a;
+  padding-left: 8px;
+  margin-left: 4px;
+  border-left: 1px solid rgba(27, 107, 125, 0.18);
+}

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Reservation Form · Tukuran Beach</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- ===== CSS FILES ===== -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reservation-form.css">
+  <link rel="stylesheet" href="site-nav-theme.css">
+  <link rel="stylesheet" href="../assets/css/place-autocomplete.css">
+</head>
+<body>
+  <!-- ========== NAVIGATION ========== -->
+  <header id="navbar" class="navbar dashboard-nav">
+    <div class="nav-container">
+      <div class="nav-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality of Tukuran" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism Office" loading="lazy">
+        </div>
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="beach.html#home" class="nav-link">Home</a>
+        <a href="browse-beaches.html" class="nav-link">Beaches</a>
+        <a href="beach.html#map" class="nav-link">Map</a>
+        <a href="about-tukuran.html" class="nav-link">About Tukuran</a>
+        <a href="beach.html#contact" class="nav-link">Contact</a>
+        <a href="../Log-in page/login.html" class="nav-link" style="background: linear-gradient(135deg, #1e6b86, #2a9bbf); color: #ffffff !important; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.2);">Login</a>
+      </nav>
+      <div class="nav-toggle" id="navToggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== RESERVATION FORM CONTENT ========== -->
+  <main class="dashboard-main">
+    <div class="container">
+      <div class="page-header">
+        <h1>Make a Reservation</h1>
+        <p>Fill in the details below to book your beach experience</p>
+      </div>
+
+      <div class="reservation-form-wrapper">
+        <!-- Step 1: Reservation Form -->
+        <div id="formStep" class="reservation-step">
+          <!-- Two-step progress: Details first, Payment after "Next" -->
+          <div class="form-steps" id="formSteps">
+            <div class="form-step is-active" id="stepDot1">
+              <span class="form-step-num">1</span>
+              <span class="form-step-label">Reservation Details</span>
+            </div>
+            <span class="form-step-bar"></span>
+            <div class="form-step" id="stepDot2">
+              <span class="form-step-num">2</span>
+              <span class="form-step-label">Payment</span>
+            </div>
+          </div>
+
+          <div class="form-container bordered">
+            <form id="reservationForm" class="auth-form" novalidate>
+              <!-- ===== SUBSTEP 1 · RESERVATION DETAILS ===== -->
+              <div class="form-substep" id="detailsSubstep">
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-user"></i></span>
+                  <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="error-message" id="fullNameError">Please enter your full name</div>
+              </div>
+
+              <!-- Contact Number -->
+              <div class="form-group">
+                <label for="contactNumber">Contact Number</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-phone"></i></span>
+                  <input type="tel" id="contactNumber" class="form-control" placeholder="Enter your contact number" required>
+                </div>
+                <div class="error-message" id="contactError">Please enter a valid contact number</div>
+              </div>
+
+              <!-- Place of Origin -->
+              <div class="form-group">
+                <label for="placeOrigin">Place of Origin</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
+                  <input type="text" id="placeOrigin" class="form-control" placeholder="Where are you from?" required>
+                </div>
+                <div class="error-message" id="originError">Please enter your place of origin</div>
+              </div>
+
+              <!-- Guest Type (Local / Foreign) -->
+              <!-- Simple two-option classification used consistently across
+                   the Reservation Form and the Walk-in Guest Form. Local is
+                   the default; choosing Foreign reveals a single input for
+                   how many of the total guests (from the age breakdown
+                   below) are foreign - the rest are recorded as Local. This
+                   never creates a separate/duplicate guest count: Local +
+                   Foreign always equals Total Guests. -->
+              <div class="form-group">
+                <label for="guestType">Guest Type</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-flag"></i></span>
+                  <select id="guestType" class="form-control" required>
+                    <option value="local">Local</option>
+                    <option value="foreign">Foreign</option>
+                  </select>
+                </div>
+                <div class="error-message" id="guestTypeError">Please select a guest type</div>
+
+                <div class="form-group" id="foreignCountBlock" style="display:none; margin-top:10px; margin-bottom:0;">
+                  <label for="foreignCount">Number of Foreign Guests</label>
+                  <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-globe"></i></span>
+                    <input type="number" id="foreignCount" class="form-control" placeholder="Out of the total guests below" min="0" inputmode="numeric">
+                  </div>
+                  <small class="form-hint">Out of the Total Guests entered in the breakdown below. The remaining guests are recorded as Local.</small>
+                  <div class="error-message" id="foreignCountError">Please enter a valid number of foreign guests (cannot exceed Total Guests)</div>
+                </div>
+              </div>
+
+              <!-- Email Address -->
+              <div class="form-group">
+                <label for="emailAddress">Email Address</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                  <input type="email" id="emailAddress" class="form-control" placeholder="Enter your email address" required>
+                </div>
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
+              </div>
+
+              <!-- Total number of visitors is the sum of the age groups
+                   below, so no separate field is needed. This hidden input
+                   keeps the calculated total available to the rest of the
+                   form and is submitted as num_visitors, unchanged. -->
+              <input type="hidden" id="numVisitors" value="">
+
+              <!-- Guest Breakdown by Age -->
+              <!-- The lead guest enters how many guests fall in each of four
+                   simple age groups; the Total Guests below is their sum. -->
+              <div class="form-group age-bracket-group">
+                <label>Guest Breakdown by Age</label>
+                <small class="form-hint">Enter how many guests fall in each age group. Total Guests is calculated automatically.</small>
+                <div class="age-bracket-grid">
+                  <div class="age-bracket-item">
+                    <label for="ageKids">Kids <span class="age-bracket-range">(0–12)</span></label>
+                    <input type="number" id="ageKids" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+                  </div>
+                  <div class="age-bracket-item">
+                    <label for="ageTeens">Teen <span class="age-bracket-range">(13–17)</span></label>
+                    <input type="number" id="ageTeens" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+                  </div>
+                  <div class="age-bracket-item">
+                    <label for="ageAdults">Adult <span class="age-bracket-range">(18–59)</span></label>
+                    <input type="number" id="ageAdults" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+                  </div>
+                  <div class="age-bracket-item">
+                    <label for="ageSeniors">Senior <span class="age-bracket-range">(60+)</span></label>
+                    <input type="number" id="ageSeniors" class="form-control age-bracket-input" min="0" value="0" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="age-bracket-total">
+                  <span class="age-bracket-total-label"><i class="fas fa-users"></i> Total Guests</span>
+                  <span class="age-bracket-total-value" id="ageBracketTotal">0</span>
+                </div>
+                <div class="error-message" id="visitorsError">Please add at least one guest in the breakdown above</div>
+              </div>
+
+              <!-- Demographic Fields -->
+              <div class="form-row">
+                <div class="form-group half">
+                  <label for="maleCount">Male Visitors</label>
+                  <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-male"></i></span>
+                    <input type="number" id="maleCount" class="form-control" placeholder="Number of males" min="0" required>
+                  </div>
+                </div>
+                <div class="form-group half">
+                  <label for="femaleCount">Female Visitors</label>
+                  <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-female"></i></span>
+                    <input type="number" id="femaleCount" class="form-control" placeholder="Number of females" min="0" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reservation Date -->
+              <div class="form-group">
+                <label for="reservationDate">Reservation Date</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-calendar"></i></span>
+                  <input type="date" id="reservationDate" class="form-control" required>
+                </div>
+                <div class="error-message" id="dateError">Please select a reservation date</div>
+              </div>
+
+              <!-- Smart Resort Recommendation: shown only when this beach's
+                   actual current capacity cannot fit the entered number of
+                   guests (for the selected date, when one is set). Purely
+                   rule-based / database-driven - see api/beach-recommendations.php. -->
+              <div class="capacity-notice" id="capacityNotice" style="display:none;">
+                <div class="capacity-notice-text">
+                  <i class="fas fa-triangle-exclamation"></i>
+                  <span id="capacityNoticeText">This beach may not be able to accommodate your group size right now.</span>
+                </div>
+                <button type="button" class="btn-outline-sm" id="findSimilarBeachesBtn">Find Similar Available Beaches</button>
+              </div>
+
+              <div class="similar-beaches-panel" id="similarBeachesPanel" style="display:none;">
+                <div class="similar-beaches-loading" id="similarBeachesLoading" style="display:none;">
+                  <i class="fas fa-circle-notch fa-spin"></i> Looking for similar available beaches…
+                </div>
+                <div class="similar-beaches-empty" id="similarBeachesEmpty" style="display:none;">
+                  No similar active beaches with enough capacity were found for this date.
+                </div>
+                <div class="similar-beaches-list" id="similarBeachesList"></div>
+              </div>
+
+              <!-- Estimated Time of Arrival (ETA) -->
+              <div class="form-group">
+                <label for="etaTime">Estimated Time of Arrival (ETA)</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-clock"></i></span>
+                  <input type="time" id="etaTime" class="form-control" required>
+                </div>
+                <div class="error-message" id="timeError">Please select your estimated time of arrival</div>
+                <small class="form-hint">Please estimate your arrival time. You have 30 minutes after your ETA to confirm your arrival.</small>
+              </div>
+
+              <!-- Accommodation Type -->
+              <!-- The options are filled from the accommodations this beach
+                   actually offers (populated in reservation-form.js). After a
+                   type is chosen, the panel below shows its available units,
+                   price and unit numbers so the guest can pick a unit and
+                   quantity, with the total amount calculated automatically. -->
+              <div class="form-group">
+                <label for="accommodationType">Accommodation Type</label>
+                <div class="input-group">
+                  <span class="input-icon"><i class="fas fa-bed"></i></span>
+                  <select id="accommodationType" class="form-control" required>
+                    <option value="">Select accommodation type</option>
+                    <option value="cottage">Cottage</option>
+                    <option value="room">Room</option>
+                    <option value="picnic-table">Picnic Table</option>
+                    <option value="tent">Tent</option>
+                  </select>
+                </div>
+                <div class="error-message" id="accommodationError">Please select an accommodation type</div>
+
+                <!-- Details shown only after an accommodation is selected -->
+                <div class="accommodation-detail" id="accommodationDetail" style="display:none;">
+                  <div class="accommodation-detail-head">
+                    <span class="accommodation-detail-name" id="accDetailName">—</span>
+                    <span class="accommodation-detail-price" id="accDetailPrice">—</span>
+                  </div>
+                  <div class="accommodation-detail-meta" id="accDetailMeta">
+                    <i class="fas fa-layer-group"></i>
+                    <span id="accDetailUnits">0</span> unit(s) available
+                  </div>
+
+                  <div class="accommodation-unit-block" id="accUnitBlock">
+                    <span class="accommodation-sub-label">Select Unit(s) <span class="accommodation-sub-hint">— tap to select, tap again to remove. Pick more than one if you need multiple units.</span></span>
+                    <div class="accommodation-unit-grid" id="accUnitGrid"></div>
+                    <div class="accommodation-unit-legend">
+                      <span class="unit-legend-item"><span class="unit-legend-swatch is-available"></span> Available</span>
+                      <span class="unit-legend-item"><span class="unit-legend-swatch is-selected"></span> Selected</span>
+                      <span class="unit-legend-item"><span class="unit-legend-swatch is-unavailable"></span> Reserved / Unavailable</span>
+                    </div>
+                    <div class="accommodation-selected-units" id="accSelectedUnits">No unit selected yet</div>
+                  </div>
+
+                  <div class="accommodation-qty-row">
+                    <span class="accommodation-sub-label">Quantity <span class="accommodation-sub-hint">(auto-calculated)</span></span>
+                    <div class="qty-stepper qty-stepper-readonly">
+                      <input type="number" id="accQty" class="qty-input" min="0" value="0" readonly aria-label="Quantity (auto-calculated from selected units)">
+                    </div>
+                  </div>
+
+                  <div class="accommodation-total">
+                    <span class="accommodation-total-label"><i class="fas fa-tags"></i> Total Amount</span>
+                    <span class="accommodation-total-value" id="accTotalValue">₱0</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Continue to Payment -->
+              <div class="form-actions">
+                <button type="button" id="toPaymentBtn" class="btn-primary btn-full">Next <i class="fas fa-arrow-right"></i></button>
+              </div>
+              </div><!-- /#detailsSubstep -->
+
+              <!-- ===== SUBSTEP 2 · PAYMENT ===== -->
+              <!-- Shown only after the guest completes the details and clicks
+                   "Next", so the first screen stays short. -->
+              <div class="form-substep" id="paymentSubstep" style="display:none;">
+              <!-- ===== PAYMENT INFORMATION ===== -->
+              <div class="payment-section" id="paymentSection">
+                <h3 class="payment-section-title"><i class="fas fa-wallet"></i> Payment Information</h3>
+
+                <!-- Payment reminder -->
+                <div class="payment-reminder" id="paymentReminder">
+                  <i class="fas fa-circle-info"></i>
+                  <p>To confirm your booking, please pay the required 50% (or Full) non-refundable down payment using the payment details below. Enter your Payment Reference Number and upload your Proof of Payment before submitting your reservation. Reservation requests cannot be submitted without completing these payment requirements.</p>
+                </div>
+
+                <!-- Resort payment details (auto-filled for the selected beach) -->
+                <div class="payment-details" id="paymentDetails">
+                  <div class="payment-details-loading" id="paymentDetailsLoading">
+                    <i class="fas fa-spinner fa-spin"></i> Loading the resort's payment details…
+                  </div>
+                  <div class="payment-details-body" id="paymentDetailsBody" style="display:none;">
+                    <div class="payment-details-info">
+                      <h4 id="paymentBeachName">Resort Payment Details</h4>
+                      <div class="payment-detail-row" id="gcashNumberRow">
+                        <span class="payment-detail-label"><i class="fas fa-mobile-screen"></i> GCash Number</span>
+                        <span class="payment-detail-value" id="gcashNumberValue">—</span>
+                      </div>
+                      <div class="payment-detail-row" id="gcashNameRow">
+                        <span class="payment-detail-label"><i class="fas fa-user"></i> GCash Account Name</span>
+                        <span class="payment-detail-value" id="gcashNameValue">—</span>
+                      </div>
+                      <div class="payment-detail-row" id="bankNameRow" style="display:none;">
+                        <span class="payment-detail-label"><i class="fas fa-building-columns"></i> Bank</span>
+                        <span class="payment-detail-value" id="bankNameValue">—</span>
+                      </div>
+                      <div class="payment-detail-row" id="bankAccountNameRow" style="display:none;">
+                        <span class="payment-detail-label"><i class="fas fa-user"></i> Bank Account Name</span>
+                        <span class="payment-detail-value" id="bankAccountNameValue">—</span>
+                      </div>
+                      <div class="payment-detail-row" id="bankAccountNumberRow" style="display:none;">
+                        <span class="payment-detail-label"><i class="fas fa-hashtag"></i> Bank Account Number</span>
+                        <span class="payment-detail-value" id="bankAccountNumberValue">—</span>
+                      </div>
+                    </div>
+                    <div class="payment-qr-wrap" id="paymentQrWrap" style="display:none;">
+                      <span class="payment-detail-label"><i class="fas fa-qrcode"></i> GCash QR Code</span>
+                      <img id="paymentQrImage" src="" alt="GCash QR Code" class="payment-qr-image">
+                    </div>
+                  </div>
+                  <div class="payment-details-empty" id="paymentDetailsEmpty" style="display:none;">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    This resort has not published its online payment details yet. Please contact the Tourism Office or the resort directly before submitting.
+                  </div>
+                </div>
+
+                <!-- Payment Reference Number -->
+                <div class="form-group">
+                  <label for="paymentReference">Payment Reference Number <span class="required" style="color:#e74c5e;">*</span></label>
+                  <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-receipt"></i></span>
+                    <input type="text" id="paymentReference" class="form-control" placeholder="Enter the reference number from your payment" required>
+                  </div>
+                  <div class="error-message" id="paymentReferenceError">Please enter your payment reference number</div>
+                </div>
+
+                <!-- Upload Proof of Payment -->
+                <div class="form-group">
+                  <label for="paymentProof">Upload Proof of Payment <span class="required" style="color:#e74c5e;">*</span></label>
+                  <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-upload"></i></span>
+                    <input type="file" id="paymentProof" class="form-control" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
+                  </div>
+                  <small class="form-hint">Accepted formats: JPG, JPEG, PNG or PDF (max 5MB).</small>
+                  <!-- Instant preview of the uploaded proof so the tourist
+                       can verify it before submitting. Stays visible until
+                       the file is changed or the reservation is submitted. -->
+                  <div class="proof-preview" id="proofPreviewWrap" style="display:none;">
+                    <span class="proof-preview-label"><i class="fas fa-eye"></i> Preview</span>
+                    <img id="proofPreviewImage" src="" alt="Proof of payment preview" class="proof-preview-image" style="display:none;">
+                    <div id="proofPreviewFile" class="proof-preview-file" style="display:none;">
+                      <i class="fas fa-file-pdf"></i>
+                      <span id="proofPreviewFileName">document.pdf</span>
+                    </div>
+                  </div>
+                  <div class="error-message" id="paymentProofError">Please upload your proof of payment (JPG, JPEG, PNG or PDF)</div>
+                </div>
+              </div>
+
+              <!-- Back / Submit Buttons -->
+              <div class="form-actions form-actions-split">
+                <button type="button" id="backToDetailsBtn" class="btn-secondary">Back</button>
+                <button type="submit" class="btn-primary">Review Reservation <i class="fas fa-arrow-right"></i></button>
+              </div>
+              </div><!-- /#paymentSubstep -->
+            </form>
+          </div>
+        </div>
+
+        <!-- Step 2: Reservation Review -->
+        <div id="reviewStep" class="reservation-step" style="display: none;">
+          <div class="review-container bordered">
+            <h2>Review Your Reservation</h2>
+            <p class="review-subtitle">Please check your details before confirming</p>
+            
+            <div class="review-details" id="reviewDetails">
+              <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <div class="review-actions">
+              <button class="btn-secondary" id="backToFormBtn">Back to Edit</button>
+              <button class="btn-primary" id="confirmReservationBtn">Confirm Reservation <i class="fas fa-check"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Submitted -->
+        <div id="pendingStep" class="reservation-step" style="display: none;">
+          <div class="pending-confirmation bordered">
+            <div class="confirmation-header">
+              <i class="fas fa-envelope-open-text"></i>
+              <h3>Reservation Submitted!</h3>
+            </div>
+            <p>We've sent your reservation confirmation - including your Reference Number, ETA, and Grace Period - to your email address.</p>
+
+            <div class="pending-actions">
+              <button class="btn-secondary" id="cancelPendingBtn">Cancel Reservation</button>
+              <a href="browse-beaches.html" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Browse More Beaches</a>
+            </div>
+            <p class="pending-note">The Beach Owner will review your reservation. You'll get another email as soon as it's approved.</p>
+            <p class="pending-note" style="color: #e74c5e; font-weight: 500;">⚠️ Didn't get the email? Check your spam folder, or contact the Tourism Office.</p>
+
+            <!-- Simple inline message for a cancellation the database says
+                 can no longer be processed (already cancelled/expired/past
+                 its date) - filled in by reservation-form.js. -->
+            <p class="pending-note" id="cancelNotEligibleNote" style="display:none; color:#a12b3a; font-weight:500;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== CANCEL RESERVATION CONFIRMATION MODAL ========== -->
+  <div class="modal" id="cancelConfirmModal">
+    <div class="modal-content">
+      <h3 id="cancelModalTitle">Cancel Reservation?</h3>
+      <p id="cancelModalMessage">Are you sure you want to cancel this reservation?</p>
+      <div class="modal-actions" id="cancelModalActions">
+        <button type="button" class="btn-outline" id="cancelModalNoBtn">No</button>
+        <button type="button" class="btn-primary btn-danger" id="cancelModalYesBtn">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JS FILES ===== -->
+  <!-- NOTE: script.js is intentionally NOT included here. It contains an
+       older, simulated version of this exact reservation flow (guarded by
+       `.dashboard-main`, which this page's <main> also matches). Loading
+       both scripts attached two competing click handlers to the same
+       #confirmReservationBtn: script.js's handler redirected the page to a
+       dead static reservation-confirmation.html after a hardcoded 2-second
+       timeout, which cancelled reservation-form.js's real fetch() to
+       api/reservations.php before the database insert / confirmation email
+       could reliably finish. reservation-form.js already implements every
+       feature this page needs (sticky navbar, mobile nav, validation,
+       review step, submission, countdown, cancel) on its own. -->
+  <script src="../assets/js/place-autocomplete.js"></script>
+  <script src="reservation-form.js"></script>
+  <script>
+    // Progressive enhancement only - does not alter existing validation/
+    // submit logic in reservation-form.js, which keeps using the same
+    // #placeOrigin input id and value as before.
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.attachPlaceAutocomplete) {
+        attachPlaceAutocomplete(document.getElementById('placeOrigin'));
+      }
+    });
+  </script>
+</body>
+</html>

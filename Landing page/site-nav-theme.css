@@ -1,0 +1,163 @@
+/* ============================================================
+   SITE-WIDE NAVIGATION THEME  (Tukuran Tourism)
+   ------------------------------------------------------------
+   Loaded LAST on every inner page (Beaches, Map, About Tukuran,
+   History, Tourist Spots, Festivals, Beach Details, Reservation…)
+   so the navigation bar matches the landing page exactly instead
+   of staying white.
+
+   It gives every page the same turquoise/teal glass navigation,
+   light links, aqua active-underline, and turquoise Login pill —
+   the identical palette used on the landing hero.
+
+   Brand palette (kept consistent across the whole site):
+     --tk-teal-deep : #0b4250   deep teal (navbar base)
+     --tk-teal      : #114e5e
+     --tk-turq      : #2b8a9e   primary turquoise
+     --tk-turq-bright: #34c4d6  bright turquoise accent
+     --tk-aqua      : #7fe9dd   light aqua highlight
+     --tk-aqua-soft : #eaf9fb   near-white link text
+   ============================================================ */
+
+:root {
+  --tk-teal-deep: #0b4250;
+  --tk-teal: #114e5e;
+  --tk-turq: #2b8a9e;
+  --tk-turq-bright: #34c4d6;
+  --tk-aqua: #7fe9dd;
+  --tk-aqua-soft: #eaf9fb;
+}
+
+/* ------------------------------------------------------------
+   NAVBAR — solid turquoise glass (works on light page backgrounds)
+   ------------------------------------------------------------ */
+.navbar {
+  background: linear-gradient(90deg,
+      rgba(11, 66, 80, 0.97) 0%,
+      rgba(17, 104, 122, 0.95) 100%) !important;
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 26px rgba(6, 40, 52, 0.24) !important;
+}
+
+.navbar.scrolled {
+  background: linear-gradient(90deg,
+      rgba(9, 58, 70, 0.98) 0%,
+      rgba(15, 96, 113, 0.98) 100%) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px rgba(6, 40, 52, 0.34) !important;
+}
+
+/* Logo circles stay white (logos read best on white) with a light rim
+   so they sit cleanly on the teal bar. */
+.navbar .logo-circle {
+  background: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+}
+
+/* Links + dropdown toggle — light on teal. */
+.navbar .nav-link,
+.navbar .nav-dropdown-toggle {
+  color: #eaf9fb !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+}
+
+/* Active page — lighter turquoise pill + glowing aqua underline. */
+.navbar .nav-link.active {
+  background: rgba(127, 233, 221, 0.20) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.navbar .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 3px;
+  border-radius: 10px;
+  background: var(--tk-aqua) !important;
+  box-shadow: 0 0 10px rgba(127, 233, 221, 0.7);
+}
+
+/* About Tukuran dropdown toggle, active on its four inner pages. */
+.navbar .nav-dropdown-toggle.active {
+  background: rgba(127, 233, 221, 0.20) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Hamburger / caret light too. */
+.navbar .nav-toggle {
+  color: #eaf9fb;
+}
+.navbar .nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ------------------------------------------------------------
+   LOGIN PILL — bright turquoise (overrides the inline style
+   on the inner pages via !important).
+   ------------------------------------------------------------ */
+.navbar .nav-menu a[href*="login"],
+.navbar .nav-menu a.nav-link:last-child {
+  background: linear-gradient(135deg, var(--tk-turq-bright), var(--tk-turq)) !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 6px 18px rgba(6, 40, 52, 0.35) !important;
+}
+
+.navbar .nav-menu a[href*="login"]:hover,
+.navbar .nav-menu a.nav-link:last-child:hover {
+  background: linear-gradient(135deg, #45d3e4, #2f95a8) !important;
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------
+   DROPDOWN PANEL — keep the clean white panel (same as landing),
+   only ensure a soft teal-tinted hover.
+   ------------------------------------------------------------ */
+.navbar .nav-dropdown-menu {
+  border: 1px solid rgba(20, 116, 134, 0.14);
+  box-shadow: 0 14px 36px rgba(6, 40, 52, 0.20);
+}
+
+/* ------------------------------------------------------------
+   MOBILE — dropped menu picks up the same teal glass so the
+   light links stay readable.
+   ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .navbar .nav-menu {
+    background: linear-gradient(180deg,
+        rgba(9, 58, 70, 0.98) 0%,
+        rgba(17, 104, 122, 0.98) 100%) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 22px 44px rgba(6, 40, 52, 0.34) !important;
+  }
+
+  .navbar .nav-menu .nav-dropdown-menu {
+    background: transparent !important;
+    box-shadow: none;
+    border: none;
+  }
+
+  .navbar .nav-menu .nav-dropdown-menu a {
+    color: #eaf9fb !important;
+  }
+
+  .navbar .nav-menu .nav-dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+  }
+}

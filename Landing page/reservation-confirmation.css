@@ -1,0 +1,165 @@
+/* ======================================== */
+/* ===== RESERVATION CONFIRMATION SPECIFIC STYLES ===== */
+/* ======================================== */
+
+/* Confirmation Page */
+.confirmation-page {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.confirmation-card {
+  padding: 40px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.04);
+}
+
+/* Confirmation Status */
+.confirmation-status {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.confirmation-status i {
+  font-size: 4rem;
+  margin-bottom: 12px;
+}
+
+.confirmation-status.pending-status i {
+  color: #ffc107;
+}
+
+.confirmation-status.confirmed i {
+  color: #2ed573;
+}
+
+.confirmation-status h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #0a2e3f;
+}
+
+.confirmation-status p {
+  color: #4a6a7a;
+}
+
+/* Confirmation Details */
+.confirmation-details {
+  margin: 24px 0;
+  padding: 20px;
+  background: #f8fbfe;
+  border-radius: 16px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #0a2e3f;
+  font-weight: 500;
+}
+
+/* Status Badge */
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status.confirmed {
+  background: rgba(46, 213, 115, 0.12);
+  color: #2ed573;
+}
+
+.status.pending {
+  background: rgba(255, 193, 7, 0.12);
+  color: #ffc107;
+}
+
+.status.cancelled {
+  background: rgba(231, 76, 94, 0.12);
+  color: #e74c5e;
+}
+
+.status.expired {
+  background: rgba(149, 165, 166, 0.12);
+  color: #95a5a6;
+}
+
+/* Confirmation Footer */
+.confirmation-footer {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1a6b7a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-bottom-color: #1a6b7a;
+  gap: 14px;
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 768px) {
+  .confirmation-card {
+    padding: 24px;
+  }
+  
+  .confirmation-status h2 {
+    font-size: 1.6rem;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmation-card {
+    padding: 16px;
+  }
+  
+  .confirmation-status h2 {
+    font-size: 1.3rem;
+  }
+  
+  .confirmation-status i {
+    font-size: 3rem;
+  }
+  
+  .confirmation-details {
+    padding: 16px;
+  }
+}

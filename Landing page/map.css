@@ -1,0 +1,348 @@
+/* ======================================== */
+/* ===== MAP PAGE SPECIFIC STYLES ===== */
+/* ======================================== */
+
+/* Page Header */
+.page-header {
+  padding: 20px 0 30px;
+}
+
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: #0a2e3f;
+}
+
+.page-header p {
+  color: #4a6a7a;
+  font-size: 1.05rem;
+  margin-top: 4px;
+}
+
+/* Map Container */
+.map-container-wrapper {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+#tukuranMap {
+  height: 550px;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  z-index: 1;
+}
+
+/* Map Legend */
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(27, 107, 125, 0.06);
+  margin-top: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #1a3a4a;
+}
+
+.legend-item .marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.legend-item .marker-dot.beach-marker {
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+}
+
+.legend-item .marker-dot.popular-marker {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Beach List Sidebar */
+.beach-list-sidebar {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(27, 107, 125, 0.06);
+}
+
+.beach-list-sidebar h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #0a2e3f;
+  margin-bottom: 16px;
+}
+
+.beach-list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  margin-bottom: 6px;
+}
+
+.beach-list-item:hover {
+  background: rgba(27, 107, 125, 0.04);
+  border-color: rgba(27, 107, 125, 0.08);
+}
+
+.beach-list-item.active {
+  background: rgba(27, 107, 125, 0.08);
+  border-color: rgba(27, 107, 125, 0.15);
+}
+
+.beach-list-item .beach-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #1a6b7a;
+}
+
+.beach-list-item .beach-dot.popular {
+  background: #f59e0b;
+}
+
+.beach-list-item .beach-info-list {
+  flex: 1;
+}
+
+.beach-list-item .beach-name-list {
+  font-weight: 600;
+  color: #0a2e3f;
+  font-size: 0.95rem;
+}
+
+.beach-list-item .beach-barangay-list {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+}
+
+.beach-list-item .beach-fee-list {
+  font-size: 0.8rem;
+  color: #1a6b7a;
+  font-weight: 500;
+}
+
+.beach-list-item .beach-action-list {
+  color: #1a6b7a;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.beach-list-item:hover .beach-action-list {
+  opacity: 1;
+}
+
+/* Custom Leaflet Styles */
+.custom-beach-marker {
+  background: transparent;
+  border: none;
+}
+
+.custom-beach-marker .marker-pin {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  border: 3px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.custom-beach-marker .marker-pin:hover {
+  transform: scale(1.1);
+}
+
+.custom-beach-marker .marker-pin.popular {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Leaflet Popup Customization */
+.beach-popup {
+  font-family: 'Inter', sans-serif;
+  padding: 4px;
+  min-width: 200px;
+}
+
+.beach-popup .popup-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.beach-popup .popup-barangay {
+  color: #5a7a8a;
+  font-size: 0.85rem;
+  display: block;
+  margin: 2px 0;
+}
+
+.beach-popup .popup-barangay i {
+  color: #1a6b7a;
+  margin-right: 4px;
+}
+
+.beach-popup .popup-fee {
+  color: #1a6b7a;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: block;
+  margin: 4px 0;
+}
+
+.beach-popup .popup-rating {
+  color: #f59e0b;
+  font-size: 0.85rem;
+  display: block;
+  margin: 4px 0;
+}
+
+.beach-popup .popup-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid #eef5f8;
+}
+
+.beach-popup .popup-btn {
+  display: inline-block;
+  color: #1a6b7a;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  background: rgba(27, 107, 125, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.beach-popup .popup-btn:hover {
+  background: rgba(27, 107, 125, 0.16);
+}
+
+/* Leaflet Overrides */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid rgba(27, 107, 125, 0.08) !important;
+}
+
+.leaflet-popup-tip {
+  background: #fff !important;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.leaflet-control-zoom a {
+  background: #fff !important;
+  color: #1a3a4a !important;
+  border: 1px solid rgba(27, 107, 125, 0.06) !important;
+  transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #1a6b7a !important;
+  color: #fff !important;
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 1024px) {
+  #tukuranMap {
+    height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  #tukuranMap {
+    height: 380px;
+  }
+  
+  .map-legend {
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  
+  .legend-item {
+    font-size: 0.8rem;
+  }
+  
+  .beach-list-item {
+    padding: 10px 12px;
+  }
+  
+  .beach-list-item .beach-action-list {
+    opacity: 1;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #tukuranMap {
+    height: 300px;
+    border-radius: 12px;
+  }
+  
+  .map-legend {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .beach-list-sidebar {
+    padding: 16px;
+  }
+  
+  .beach-list-sidebar h3 {
+    font-size: 1.2rem;
+  }
+  
+  .beach-list-item .beach-name-list {
+    font-size: 0.85rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .page-header p {
+    font-size: 0.95rem;
+  }
+}

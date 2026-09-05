@@ -1,0 +1,1175 @@
+/* ======================================== */
+/* ===== RESERVATION FORM SPECIFIC STYLES ===== */
+/* ======================================== */
+
+/* Page Header */
+.page-header {
+  padding: 20px 0 30px;
+}
+
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: #0a2e3f;
+}
+
+.page-header p {
+  color: #4a6a7a;
+  font-size: 1.05rem;
+  margin-top: 4px;
+}
+
+/* Reservation Form Wrapper */
+.reservation-form-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Form Row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.half {
+  flex: 1;
+}
+
+/* Bordered Containers */
+.bordered {
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  border-radius: 20px;
+  padding: 32px;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.bordered:hover {
+  border-color: rgba(27, 107, 125, 0.20);
+  box-shadow: 0 8px 32px rgba(0, 20, 30, 0.06);
+}
+
+.form-container.bordered {
+  padding: 32px;
+}
+
+/* Form Groups */
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+
+.auth-form label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #1a3a4a;
+  margin-bottom: 6px;
+}
+
+.auth-form .form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  transition: all 0.3s ease;
+  color: #1a3a4a;
+}
+
+.auth-form .form-control:focus {
+  outline: none;
+  border-color: #1a6b7a;
+  box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.10);
+}
+
+.auth-form .form-control.error {
+  border-color: #e74c5e;
+}
+
+.auth-form .form-control.error:focus {
+  box-shadow: 0 0 0 4px rgba(231, 76, 94, 0.10);
+}
+
+.auth-form select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a3a4a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+}
+
+.input-group .input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5a7a8a;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.input-group .form-control {
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
+/* Error Messages */
+.error-message {
+  font-size: 0.8rem;
+  color: #e74c5e;
+  margin-top: 4px;
+  display: none;
+}
+
+.error-message.visible {
+  display: block;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Form Hint */
+.form-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* ===== REVIEW STEP ===== */
+.review-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.review-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #0a2e3f;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.review-subtitle {
+  text-align: center;
+  color: #4a6a7a;
+  margin-bottom: 24px;
+}
+
+.review-details {
+  margin: 20px 0;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-label {
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.review-value {
+  color: #0a2e3f;
+  font-weight: 600;
+}
+
+.review-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.review-actions .btn-primary,
+.review-actions .btn-secondary {
+  min-width: 160px;
+  justify-content: center;
+}
+
+/* ===== PENDING CONFIRMATION ===== */
+.pending-confirmation {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(255, 193, 7, 0.06);
+  border: 1px solid rgba(255, 193, 7, 0.15);
+  border-radius: 20px;
+  padding: 32px;
+  margin-top: 24px;
+}
+
+.confirmation-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.confirmation-header i {
+  font-size: 2.4rem;
+  color: #ffc107;
+}
+
+.confirmation-header h3 {
+  font-size: 1.4rem;
+  color: #0a2e3f;
+}
+
+.pending-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.pending-note {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #5a7a8a;
+  font-style: italic;
+}
+
+/* ===== ETA INFO DISPLAY ===== */
+.eta-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0 20px;
+  padding: 16px;
+  background: rgba(27, 107, 125, 0.04);
+  border-radius: 12px;
+  border: 1px solid rgba(27, 107, 125, 0.08);
+}
+
+.eta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eta-label {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.eta-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0a2e3f;
+}
+
+.eta-value.expired {
+  color: #e74c5e;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  color: #fff;
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(27, 107, 125, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(27, 107, 125, 0.45);
+  background: linear-gradient(135deg, #2f9bb0, #1e7a8a);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a3a4a;
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid rgba(27, 107, 125, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  background: #fff;
+  border-color: #1a6b7a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* ======================================== */
+/* ===== RESPONSIVE ===== */
+/* ======================================== */
+
+@media (max-width: 768px) {
+  .bordered {
+    padding: 20px;
+  }
+  
+  .form-container.bordered {
+    padding: 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .review-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .review-actions {
+    flex-direction: column;
+  }
+  
+  .review-actions .btn-primary,
+  .review-actions .btn-secondary {
+    width: 100%;
+  }
+  
+  .eta-info {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .eta-item {
+    align-items: center;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bordered {
+    padding: 16px;
+  }
+  
+  .form-container.bordered {
+    padding: 16px;
+  }
+  
+  .review-container h2 {
+    font-size: 1.4rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .confirmation-header h3 {
+    font-size: 1.2rem;
+  }
+}
+/* ======================================== */
+/* ===== ONLINE DOWN PAYMENT SECTION ===== */
+/* ======================================== */
+
+.payment-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px dashed #d5e2e8;
+}
+
+.payment-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  color: #0a2e3f;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-section-title i {
+  color: #1e6b86;
+}
+
+/* Reminder banner */
+.payment-reminder {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #eef6fa;
+  border: 1px solid #b9d9e6;
+  border-left: 4px solid #1e6b86;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.payment-reminder i {
+  color: #1e6b86;
+  font-size: 1.15rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.payment-reminder p {
+  margin: 0;
+  color: #234b5c;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Resort payment details card */
+.payment-details {
+  background: #ffffff;
+  border: 1px solid #d5e2e8;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.payment-details-loading,
+.payment-details-empty {
+  color: #4a6a7a;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.payment-details-empty {
+  color: #a12b3a;
+}
+
+.payment-details-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.payment-details-info {
+  flex: 1 1 260px;
+  min-width: 240px;
+}
+
+.payment-details-info h4 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: #0a2e3f;
+}
+
+.payment-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eef2f4;
+}
+
+.payment-detail-row:last-child {
+  border-bottom: none;
+}
+
+.payment-detail-label {
+  font-size: 0.82rem;
+  color: #6a8494;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.payment-detail-label i {
+  color: #1e6b86;
+}
+
+.payment-detail-value {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #0a2e3f;
+  word-break: break-word;
+}
+
+.payment-qr-wrap {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.payment-qr-image {
+  display: block;
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border: 1px solid #d5e2e8;
+  border-radius: 10px;
+  background: #fff;
+  padding: 6px;
+  margin-top: 6px;
+}
+
+@media (max-width: 520px) {
+  .payment-details-body {
+    flex-direction: column;
+    align-items: center;
+  }
+  .payment-qr-image {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* ===== Proof of Payment: instant preview ===== */
+.proof-preview {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #d5e2e8;
+  border-radius: 10px;
+  background: #f8fbfc;
+}
+
+.proof-preview-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #6a8494;
+  margin-bottom: 8px;
+}
+
+.proof-preview-label i {
+  color: #1e6b86;
+}
+
+.proof-preview-image {
+  max-width: 100%;
+  max-height: 240px;
+  border-radius: 8px;
+  border: 1px solid #d5e2e8;
+  background: #fff;
+  display: block;
+}
+
+.proof-preview-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #d5e2e8;
+  color: #0a2e3f;
+  font-weight: 600;
+  font-size: 0.92rem;
+  word-break: break-all;
+}
+
+.proof-preview-file i {
+  color: #c0392b;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* ======================================== */
+/* ===== AGE BRACKET / GUEST BREAKDOWN ===== */
+/* ======================================== */
+/* Additive styling for the "Guest Breakdown by Age" section. Reuses the
+   existing .form-control input look; only adds the grid + total banner. */
+.age-bracket-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.age-bracket-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.age-bracket-item label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #234b5c;
+  margin-bottom: 6px;
+}
+
+.age-bracket-item .age-bracket-range {
+  color: #6a8a9a;
+  font-weight: 400;
+}
+
+.age-bracket-item .age-bracket-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(27, 107, 125, 0.10);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #1a3a4a;
+  transition: all 0.3s ease;
+}
+
+.age-bracket-item .age-bracket-input:focus {
+  outline: none;
+  border-color: #1a6b7a;
+  box-shadow: 0 0 0 4px rgba(27, 107, 125, 0.10);
+}
+
+.age-bracket-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #eef6fa;
+  border: 1px solid #b9d9e6;
+  border-left: 4px solid #1e6b86;
+  border-radius: 10px;
+}
+
+.age-bracket-total-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #234b5c;
+}
+
+.age-bracket-total-label i {
+  color: #1e6b86;
+}
+
+.age-bracket-total-value {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #0a2e3f;
+}
+
+@media (max-width: 520px) {
+  .age-bracket-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======================================== */
+/* ===== STEP INDICATOR (Details -> Payment) ===== */
+/* ======================================== */
+/* A quiet two-step progress header above the form. Reuses the palette; the
+   active step is marked in the primary teal. */
+.form-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto 18px;
+}
+
+.form-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6a8494;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.form-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e6eef2;
+  color: #6a8494;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.form-step.is-active {
+  color: #0a2e3f;
+}
+
+.form-step.is-active .form-step-num {
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(27, 107, 125, 0.30);
+}
+
+.form-step-bar {
+  width: 44px;
+  height: 2px;
+  background: #d5e2e8;
+  border-radius: 2px;
+}
+
+/* The payment section now opens Step 2, so its former top divider (a dashed
+   rule that separated it from the fields above) is no longer needed. */
+#paymentSubstep .payment-section {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Split action row: Back on the left, primary action on the right */
+.form-actions-split {
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.form-actions-split .btn-secondary,
+.form-actions-split .btn-primary {
+  flex: 1;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .form-step-label {
+    display: none;
+  }
+  .form-step-bar {
+    width: 32px;
+  }
+}
+
+/* ======================================== */
+/* ===== ACCOMMODATION DETAIL (on select) ===== */
+/* ======================================== */
+/* Shown only after an accommodation type is chosen: its available units,
+   price, unit-number picker, quantity stepper and calculated total. */
+/* ========================================
+   Smart Resort Recommendation: capacity notice + similar-beach cards
+   ======================================== */
+.capacity-notice {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(230, 162, 60, 0.35);
+  border-radius: 12px;
+  background: #fff8ec;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.capacity-notice-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #7a5410;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.capacity-notice-text i {
+  color: #e0a53c;
+  margin-top: 2px;
+}
+
+.btn-outline-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #1a6b7a;
+  border: 1.5px solid #1a6b7a;
+  padding: 9px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-sm:hover {
+  background: #1a6b7a;
+  color: #fff;
+}
+
+.similar-beaches-panel {
+  margin-top: 14px;
+}
+
+.similar-beaches-loading,
+.similar-beaches-empty {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f7fbfc;
+  border: 1px solid #d5e2e8;
+  color: #4d6572;
+  font-size: 0.88rem;
+}
+
+.similar-beaches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.similar-beach-card {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid #d5e2e8;
+  border-radius: 12px;
+  background: #fff;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.similar-beach-card-image {
+  width: 84px;
+  height: 84px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #eef1f2;
+}
+
+.similar-beach-card-body {
+  flex: 1 1 200px;
+  min-width: 180px;
+}
+
+.similar-beach-card-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: #0a2e3f;
+}
+
+.similar-beach-card-meta {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #6a8494;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.similar-beach-card-badge {
+  display: inline-block;
+  margin-top: 6px;
+  margin-right: 6px;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.similar-beach-card-badge.is-match {
+  background: rgba(27, 107, 125, 0.12);
+  color: #1a6b7a;
+}
+
+.similar-beach-card-badge.is-capacity {
+  background: rgba(74, 158, 90, 0.12);
+  color: #2f7a41;
+}
+
+.similar-beach-card-action {
+  flex-shrink: 0;
+}
+
+.accommodation-detail {
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid #d5e2e8;
+  border-radius: 12px;
+  background: #f7fbfc;
+}
+
+.accommodation-detail-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.accommodation-detail-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0a2e3f;
+}
+
+.accommodation-detail-price {
+  font-weight: 700;
+  color: #1a6b7a;
+  white-space: nowrap;
+}
+
+.accommodation-detail-meta {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #6a8494;
+}
+
+.accommodation-detail-meta i {
+  color: #1e6b86;
+  margin-right: 4px;
+}
+
+.accommodation-sub-label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #234b5c;
+  margin: 14px 0 8px;
+}
+
+/* Unit-number chips */
+.accommodation-unit-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.accommodation-unit-chip {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1.5px solid rgba(27, 107, 125, 0.20);
+  border-radius: 10px;
+  background: #fff;
+  color: #234b5c;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.accommodation-unit-chip:hover {
+  border-color: #1a6b7a;
+  box-shadow: 0 2px 8px rgba(27, 107, 125, 0.12);
+}
+
+.accommodation-unit-chip.is-selected {
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  border-color: #1a6b7a;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(27, 107, 125, 0.28);
+}
+
+/* Unavailable / already-reserved unit chips can't be selected */
+.accommodation-unit-chip.is-unavailable {
+  background: #eef1f2;
+  border-color: #d7dee1;
+  color: #a7b2b8;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.accommodation-unit-chip.is-unavailable:hover {
+  border-color: #d7dee1;
+  box-shadow: none;
+}
+
+.accommodation-sub-hint {
+  display: block;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: #6a8494;
+  margin-top: 2px;
+}
+
+/* Legend explaining the unit chip colors */
+.accommodation-unit-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: #4d6572;
+}
+
+.unit-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.unit-legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(27, 107, 125, 0.20);
+  background: #fff;
+}
+
+.unit-legend-swatch.is-selected {
+  background: linear-gradient(135deg, #2b8a9e, #1a6b7a);
+  border-color: #1a6b7a;
+}
+
+.unit-legend-swatch.is-unavailable {
+  background: #eef1f2;
+  border-color: #d7dee1;
+}
+
+/* Selected unit numbers, shown so the tourist can confirm before submitting */
+.accommodation-selected-units {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #eef6fa;
+  border: 1px dashed #b9d9e6;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #234b5c;
+}
+
+/* Quantity stepper */
+.accommodation-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.accommodation-qty-row .accommodation-sub-label {
+  margin: 0;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid rgba(27, 107, 125, 0.20);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #eef6fa;
+  color: #1a6b7a;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.qty-btn:hover {
+  background: #dceaf1;
+}
+
+.qty-stepper-readonly {
+  border-color: rgba(27, 107, 125, 0.12);
+  background: #f7fbfc;
+}
+
+.qty-stepper-readonly .qty-input {
+  border-left: none;
+  border-right: none;
+  background: transparent;
+  cursor: default;
+}
+
+.qty-input {
+  width: 52px;
+  height: 40px;
+  border: none;
+  border-left: 1.5px solid rgba(27, 107, 125, 0.15);
+  border-right: 1.5px solid rgba(27, 107, 125, 0.15);
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0a2e3f;
+  background: #fff;
+  -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Calculated total */
+.accommodation-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: #eef6fa;
+  border: 1px solid #b9d9e6;
+  border-left: 4px solid #1e6b86;
+  border-radius: 10px;
+}
+
+.accommodation-total-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #234b5c;
+}
+
+.accommodation-total-label i {
+  color: #1e6b86;
+}
+
+.accommodation-total-value {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #0a2e3f;
+}

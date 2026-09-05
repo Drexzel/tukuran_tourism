@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>About Tukuran · Tukuran Tourism</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nav-dropdown.css">
+  <link rel="stylesheet" href="tourism-pages.css">
+  <link rel="stylesheet" href="site-nav-theme.css">
+</head>
+<body class="tp-page">
+  <!-- ========== NAVIGATION ========== -->
+  <header id="navbar" class="navbar dashboard-nav">
+    <div class="nav-container">
+      <div class="nav-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png" alt="Municipality of Tukuran" loading="lazy">
+        </div>
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png" alt="Tourism Office" loading="lazy">
+        </div>
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="beach.html#home" class="nav-link">Home</a>
+        <a href="browse-beaches.html" class="nav-link">Beaches</a>
+        <a href="map.html" class="nav-link">Map</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
+            About Tukuran <i class="fas fa-chevron-down nav-caret"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="about-tukuran.html">About Tukuran</a>
+            <a href="history.html">History</a>
+            <a href="tourist-spots.html">Tourist Spots</a>
+            <a href="festivals.html">Festivals</a>
+          </div>
+        </div>
+        <a href="beach.html#contact" class="nav-link">Contact</a>
+        <a href="../Log-in page/login.html" class="nav-link" style="background: linear-gradient(135deg, #1e6b86, #2a9bbf); color: #ffffff !important; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.2);">Login</a>
+      </nav>
+      <div class="nav-toggle" id="navToggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CONTENT ========== -->
+  <main class="dashboard-main">
+    <div class="container">
+      <div class="page-header">
+        <h1>About Tukuran</h1>
+        <p>Get to know the peaceful coastal municipality of Zamboanga del Sur.</p>
+      </div>
+
+      <section class="tp-section">
+        <div class="tp-article">
+          <p class="tp-lead">
+            Tukuran is a peaceful municipality in Zamboanga del Sur known for its beautiful coastal
+            destinations, welcoming communities, and growing tourism industry. This platform was
+            developed to promote the municipality's beaches, improve the visitor experience, and
+            provide an organized way to access beach information and tourism services.
+          </p>
+        </div>
+      </section>
+
+      <!-- Municipality at a glance -->
+      <section class="tp-section">
+        <h2><i class="fas fa-map-pin"></i> Municipality at a Glance</h2>
+        <div class="tp-grid">
+          <div class="tp-card">
+            <div class="tp-card-icon"><i class="fas fa-map-pin"></i></div>
+            <h3>Location</h3>
+            <p>Tukuran, Province of Zamboanga del Sur, Philippines.</p>
+          </div>
+          <div class="tp-card">
+            <div class="tp-card-icon"><i class="fas fa-compass"></i></div>
+            <h3>Region</h3>
+            <p>Zamboanga Peninsula (Region IX).</p>
+          </div>
+          <div class="tp-card">
+            <div class="tp-card-icon"><i class="fas fa-water"></i></div>
+            <h3>Known For</h3>
+            <p>Coastal destinations, clean beaches, and a relaxing natural environment.</p>
+          </div>
+          <div class="tp-card">
+            <div class="tp-card-icon"><i class="fas fa-landmark"></i></div>
+            <h3>Tourism Office</h3>
+            <p>Municipal Tourism Office · tourism@tukuran.gov.ph</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dynamic figures pulled from the database (no hardcoded numbers) -->
+      <section class="tp-section">
+        <h2><i class="fas fa-chart-line"></i> Tourism at a Glance</h2>
+        <div class="tp-stats">
+          <div class="tp-stat">
+            <div class="tp-stat-value" id="statTotalBeaches">--</div>
+            <div class="tp-stat-label">Registered Beaches</div>
+          </div>
+          <div class="tp-stat">
+            <div class="tp-stat-value" id="statMostVisited">--</div>
+            <div class="tp-stat-label">Most Visited Beach</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tp-section">
+        <div class="tp-note">
+          <i class="fas fa-circle-info"></i>
+          Explore Tukuran further through the
+          <a href="history.html">History</a>,
+          <a href="tourist-spots.html">Tourist Spots</a>, and
+          <a href="festivals.html">Festivals</a> pages.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-logos">
+        <div class="logo-circle footer-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle footer-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle footer-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="beach.html#home">Home</a>
+        <a href="browse-beaches.html">Beaches</a>
+        <a href="map.html">Map</a>
+        <a href="about-tukuran.html">About Tukuran</a>
+        <a href="beach.html#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4>About Tukuran</h4>
+        <a href="about-tukuran.html">About Tukuran</a>
+        <a href="history.html">History</a>
+        <a href="tourist-spots.html">Tourist Spots</a>
+        <a href="festivals.html">Festivals</a>
+      </div>
+      <div class="footer-social">
+        <h4>Tourism Contact</h4>
+        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Tukuran Beach Management and Reservation System. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // Minimal, self-contained navbar behaviour for this page (sticky state +
+    // mobile menu toggle) — matches the pattern used across the landing site.
+    (function () {
+      var navbar = document.getElementById('navbar');
+      var navToggle = document.getElementById('navToggle');
+      var navMenu = document.getElementById('navMenu');
+      window.addEventListener('scroll', function () {
+        if (!navbar) return;
+        if (window.scrollY > 80) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+      });
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          navMenu.classList.toggle('open');
+          var icon = navToggle.querySelector('i');
+          if (icon) icon.className = navMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+        });
+        document.addEventListener('click', function (e) {
+          if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove('open');
+            var icon = navToggle.querySelector('i');
+            if (icon) icon.className = 'fas fa-bars';
+          }
+        });
+      }
+    })();
+
+    // Load the two figures from the existing database API (no hardcoded values)
+    (function () {
+      fetch('../api/beach-stats.php')
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res || !res.success || !res.data) return;
+          var total = document.getElementById('statTotalBeaches');
+          var most = document.getElementById('statMostVisited');
+          if (total) total.textContent = (typeof res.data.total_beaches === 'number') ? res.data.total_beaches : '0';
+          if (most) most.textContent = res.data.most_visited ? res.data.most_visited.beach_name : 'No data yet';
+        })
+        .catch(function () {
+          var total = document.getElementById('statTotalBeaches');
+          var most = document.getElementById('statMostVisited');
+          if (total) total.textContent = '0';
+          if (most) most.textContent = 'No data yet';
+        });
+    })();
+  </script>
+  <script src="nav-dropdown.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+/* ============================================================
+   BROWSE BEACHES — UI POLISH
+   ------------------------------------------------------------
+   Loaded after browse-beaches.css. Purely visual refinements —
+   no IDs, JS hooks, database calls, or page structure changed.
+   The search field markup gained a small icon wrapper and a
+   "filter-group-search" class; the underlying #searchBeach
+   input (used by browse-beaches.js) is untouched.
+   ============================================================ */
+
+/* ================= PAGE HEADER ================= */
+.page-header {
+  padding: 24px 0 28px;
+}
+
+/* ================= FILTER BAR ================= */
+/* Search comes first and reads as the primary control; the two
+   dropdowns follow as secondary refinements. */
+.filter-bar {
+  gap: 14px;
+  margin-bottom: 34px;
+  align-items: stretch;
+}
+
+.filter-group {
+  min-width: 170px;
+}
+
+.filter-group-search {
+  flex: 1.6;
+  min-width: 240px;
+  position: relative;
+}
+
+.filter-group-search .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5a7a8a;
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.filter-group-search .form-control {
+  padding-left: 42px;
+}
+
+.filter-bar .form-control {
+  height: 46px;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-color: rgba(27, 107, 125, 0.14);
+  font-size: 0.92rem;
+}
+
+.filter-bar select.form-control {
+  cursor: pointer;
+}
+
+.filter-bar .form-control::placeholder {
+  color: #7d95a3;
+}
+
+/* ================= BEACH GRID / CARDS ================= */
+.beach-grid {
+  gap: 28px;
+}
+
+.beach-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(27, 107, 125, 0.06);
+}
+
+.beach-img {
+  height: 200px;
+}
+
+.beach-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px 22px 22px;
+}
+
+.beach-info h3 {
+  font-size: 1.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barangay {
+  font-size: 0.86rem;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Meta info as clean, minimal chips instead of loose inline text */
+.beach-meta {
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.beach-meta span {
+  background: rgba(27, 107, 125, 0.06);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.beach-meta .rating {
+  background: rgba(245, 158, 11, 0.10);
+}
+
+.beach-meta .capacity {
+  background: rgba(27, 107, 125, 0.08);
+}
+
+.amenities {
+  font-size: 0.86rem;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Push actions to the bottom so cards align evenly regardless
+   of how much text a given beach has. */
+.beach-actions {
+  margin-top: auto;
+  gap: 10px;
+}
+
+/* Consistent, equal-weight button pair */
+.beach-actions .btn-outline {
+  flex: 1;
+  justify-content: center;
+  padding: 10px 14px;
+  border: 2px solid rgba(27, 107, 125, 0.25);
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(27, 107, 125, 0.25);
+  font-size: 0.86rem;
+}
+
+.beach-actions .btn-outline:hover {
+  background: rgba(27, 107, 125, 0.06);
+  border-color: #1a6b7a;
+}
+
+.beach-actions .btn-sm {
+  flex: 1;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.86rem;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .beach-grid {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    gap: 12px;
+  }
+
+  .filter-group-search {
+    min-width: 100%;
+  }
+
+  .page-header {
+    padding: 16px 0 24px;
+  }
+
+  .beach-img {
+    height: 190px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar .form-control {
+    height: 44px;
+    font-size: 0.9rem;
+  }
+
+  .beach-info {
+    padding: 16px 18px 18px;
+  }
+
+  .beach-actions {
+    flex-direction: column;
+  }
+
+  .beach-actions .btn-outline,
+  .beach-actions .btn-sm {
+    width: 100%;
+  }
+}

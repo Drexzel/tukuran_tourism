@@ -1,0 +1,307 @@
+/* ============================================================
+   ABOUT TUKURAN — CONTENT PAGES
+   ------------------------------------------------------------
+   Shared, minimal content styling for the four dedicated pages reached from
+   the About Tukuran dropdown (About Tukuran, History, Tourist Spots,
+   Festivals). Loaded after style.css so it inherits the site's navbar,
+   footer, palette and typography, and only adds layout for the page bodies.
+   No existing styles are overridden.
+   ============================================================ */
+
+.tp-page .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Page intro under the header */
+.tp-lead {
+  max-width: 760px;
+  color: #4a6a7a;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+/* Generic section rhythm */
+.tp-section {
+  margin: 34px 0;
+}
+
+.tp-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  color: #0a2e3f;
+  margin-bottom: 14px;
+}
+
+.tp-section h2 i {
+  color: #1a6b7a;
+  margin-right: 8px;
+  font-size: 1.4rem;
+}
+
+.tp-article p {
+  color: #33525f;
+  font-size: 1.02rem;
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+
+.tp-article p:last-child {
+  margin-bottom: 0;
+}
+
+/* Info highlight cards */
+.tp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.tp-card {
+  background: #ffffff;
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  border-radius: 16px;
+  padding: 24px 22px;
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(10, 46, 63, 0.08);
+}
+
+.tp-card .tp-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(27, 107, 125, 0.08);
+  color: #1a6b7a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+
+.tp-card h3 {
+  font-size: 1.05rem;
+  color: #0a2e3f;
+  margin-bottom: 6px;
+}
+
+.tp-card p {
+  color: #5a7a8a;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* Small dynamic stat chips (values loaded from the database) */
+.tp-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.tp-stat {
+  flex: 1;
+  min-width: 160px;
+  background: #ffffff;
+  border: 1px solid rgba(10, 46, 63, 0.08);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(10, 46, 63, 0.05);
+}
+
+.tp-stat .tp-stat-value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #1a6b7a;
+  line-height: 1.1;
+}
+
+.tp-stat .tp-stat-label {
+  font-size: 0.82rem;
+  color: #6a8a9a;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 4px;
+}
+
+/* Image gallery (History page) */
+.tp-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.tp-gallery figure {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(0, 20, 30, 0.08);
+}
+
+.tp-gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.tp-gallery figure:hover img {
+  transform: scale(1.05);
+}
+
+/* Tourist-spot cards (loaded dynamically from the database) */
+.tp-spot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 26px;
+}
+
+.tp-spot-card {
+  background: #ffffff;
+  border: 1px solid rgba(10, 46, 63, 0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tp-spot-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 20, 30, 0.10);
+}
+
+.tp-spot-img {
+  height: 190px;
+  overflow: hidden;
+}
+
+.tp-spot-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tp-spot-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tp-spot-body h3 {
+  font-size: 1.2rem;
+  color: #0a2e3f;
+  margin-bottom: 4px;
+}
+
+.tp-spot-barangay {
+  font-size: 0.86rem;
+  color: #5a7a8a;
+  margin-bottom: 10px;
+}
+
+.tp-spot-barangay i {
+  color: #1a6b7a;
+  margin-right: 4px;
+}
+
+.tp-spot-desc {
+  font-size: 0.9rem;
+  color: #4a6a7a;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.tp-spot-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.tp-spot-meta span {
+  background: rgba(27, 107, 125, 0.06);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1a6b7a;
+}
+
+.tp-spot-meta .rating {
+  background: rgba(245, 158, 11, 0.10);
+  color: #b26b00;
+}
+
+.tp-spot-card .btn-outline {
+  margin-top: auto;
+}
+
+/* Loading / empty states */
+.tp-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #5a7a8a;
+}
+
+.tp-state i {
+  font-size: 2.5rem;
+  color: #1a6b7a;
+  opacity: 0.45;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.tp-state h3 {
+  font-family: 'Playfair Display', serif;
+  color: #0a2e3f;
+  margin-bottom: 6px;
+}
+
+/* Simple note / callout */
+.tp-note {
+  background: rgba(27, 107, 125, 0.05);
+  border: 1px solid rgba(27, 107, 125, 0.10);
+  border-radius: 14px;
+  padding: 18px 22px;
+  color: #33525f;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.tp-note i {
+  color: #1a6b7a;
+  margin-right: 8px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .tp-section h2 {
+    font-size: 1.45rem;
+  }
+  .tp-gallery img {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tp-lead {
+    font-size: 1rem;
+  }
+  .tp-spot-grid {
+    grid-template-columns: 1fr;
+  }
+}

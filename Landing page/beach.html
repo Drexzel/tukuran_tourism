@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Tukuran Beach · Management & Reservation</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts (clean, tropical) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="beach.css">
+  <link rel="stylesheet" href="landing-polish.css">
+  <link rel="stylesheet" href="nav-dropdown.css">
+  <link rel="stylesheet" href="landing-enhance.css">
+  <link rel="stylesheet" href="site-nav-theme.css">
+  <style>
+    /* Additional style to highlight the Login link in the menu bar */
+    .nav-menu a.nav-link:last-child {
+      background: linear-gradient(135deg, #1e6b86, #2a9bbf);
+      color: #ffffff !important;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-menu a.nav-link:last-child:hover {
+      background: linear-gradient(135deg, #155a73, #1e7a9e);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(30, 107, 134, 0.4);
+      color: #ffffff !important;
+    }
+
+    /* Adjust for mobile view */
+    @media (max-width: 768px) {
+      .nav-menu a.nav-link:last-child {
+        background: linear-gradient(135deg, #1e6b86, #2a9bbf);
+        color: #ffffff !important;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        margin: 0.3rem 0;
+        display: inline-block;
+        width: auto;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== NAVIGATION ========== -->
+<header id="navbar" class="navbar">
+  <div class="nav-container">
+    <div class="nav-logos">
+      <div class="logo-circle">
+        <img src="images/municipality-logo.png" alt="Municipality of Tukuran" class="nav-logo" loading="lazy">
+      </div>
+      <div class="logo-circle">
+        <img src="images/tourism-logo.png" alt="Tourism Office" class="nav-logo" loading="lazy">
+      </div>
+    </div>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="browse-beaches.html" class="nav-link">Beaches</a>
+      <a href="map.html" class="nav-link">Map</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          About Tukuran <i class="fas fa-chevron-down nav-caret"></i>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="about-tukuran.html">About Tukuran</a>
+          <a href="history.html">History</a>
+          <a href="tourist-spots.html">Tourist Spots</a>
+          <a href="festivals.html">Festivals</a>
+        </div>
+      </div>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="../Log-in page/login.html" class="nav-link" style="background: linear-gradient(135deg, #1e6b86, #2a9bbf); color: #ffffff !important; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.2);">Login</a>
+    </nav>
+    <div class="nav-toggle" id="navToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</header>
+
+  <!-- ========== HERO ========== -->
+  <section id="home" class="hero">
+    <!-- Full-screen fading slideshow of real Tukuran beach photographs.
+         Cross-fades every 5s (see hero-slideshow.js). -->
+    <div class="hero-slideshow" aria-hidden="true">
+      <div class="hero-slide is-active" style="background-image: url('images/hero.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/tukuran-history.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/beach1.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/beach-slide-4.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/beach-slide-5.jpg');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="hero-eyebrow">Municipality of Tukuran &middot; Zamboanga del Sur</span>
+          <span class="hero-slogan">Geh! TUKURAN Gibalik-balikan!</span>
+        </h1>
+        <p class="hero-desc">
+          Discover the beaches of Tukuran, Zamboanga del Sur &mdash; where every visit calls you back.
+        </p>
+        <a href="#beaches" class="btn-primary hero-btn">Explore Beaches <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="hero-dots" aria-hidden="true"></div>
+    <a href="#beaches" class="scroll-indicator"><i class="fas fa-chevron-down"></i></a>
+  </section>
+
+ <!-- ========== FEATURED BEACHES ========== -->
+<section id="beaches" class="beaches section-pad">
+  <div class="container">
+    <h2 class="section-title">Featured Beaches</h2>
+    <p class="section-sub">Explore the most visited beaches in Tukuran and discover their unique beauty, peaceful surroundings, and relaxing coastal experiences.</p>
+    
+    <!-- ADD THIS VIEW ALL BUTTON -->
+    <div style="text-align: center; margin-bottom: 30px;">
+      <a href="browse-beaches.html" class="btn-primary" style="background: linear-gradient(135deg, #2b8a9e, #1a6b7a);">
+        <i class="fas fa-th-list"></i> View All Beaches <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    
+    <div class="beach-grid" id="beachGrid">
+      <!-- Populated dynamically by beach.js from the MySQL database
+           (via api/get-beaches.php), reflecting exactly the beaches added
+           by Tourism Personnel. -->
+      <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color:#5a7a8a;">
+        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 10px; display:block;"></i>
+        Loading beaches...
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ========== WHY VISIT ========== -->
+  <section id="why-visit" class="features section-pad">
+    <div class="container">
+      <h2 class="section-title">Why Visit Tukuran</h2>
+      <div class="feature-grid">
+        <div class="feature-card reveal">
+          <i class="fas fa-water feature-icon"></i>
+          <h3>Clean Beaches</h3>
+          <p>Experience crystal-clear waters and well-maintained coastlines perfect for relaxation.</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fas fa-leaf feature-icon"></i>
+          <h3>Relaxing Environment</h3>
+          <p>Enjoy peaceful surroundings ideal for family gatherings and weekend vacations.</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fas fa-camera-retro feature-icon"></i>
+          <h3>Amazing Views</h3>
+          <p>Capture beautiful landscapes, sunsets, and unforgettable beach memories.</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fas fa-shield-alt feature-icon"></i>
+          <h3>Safe and Organized</h3>
+          <p>Experience improved visitor management through organized tourism services and monitoring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="contact section-pad">
+    <div class="container">
+      <h2 class="section-title">Contact Information</h2>
+      <div class="contact-card glass">
+        <div class="contact-item"><i class="fas fa-building"></i> <span>Tukuran Municipal Tourism Office</span></div>
+        <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+639271180775">0927 118 0775</a></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:tukurantourismoffice@gmail.com">tukurantourismoffice@gmail.com</a></div>
+        <div class="contact-item"><i class="fab fa-facebook-messenger"></i> <a href="https://www.facebook.com/search/top/?q=Geh%21%20Tukuran%2C%20Gibalik-balikan" target="_blank" rel="noopener">Geh! Tukuran, Gibalik-balikan</a></div>
+        <div class="contact-social">
+          <a href="https://www.facebook.com/search/top/?q=Geh%21%20Tukuran%2C%20Gibalik-balikan" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Tukuran+Municipal+Tourism+Office%2C+Tukuran%2C+Zamboanga+del+Sur" target="_blank" rel="noopener" class="social-btn"><i class="fas fa-map-marked-alt"></i> Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-logos">
+        <div class="logo-circle footer-circle">
+          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+        </div>
+        <div class="logo-circle footer-circle">
+          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+        </div>
+        <div class="logo-circle footer-circle">
+          <img src="images/system-logo.png" alt="System" loading="lazy">
+        </div>
+      </div>
+
+      <div class="footer-links">
+  <h4>Quick Links</h4>
+  <a href="#home">Home</a>
+  <a href="browse-beaches.html">Beaches</a>
+  <a href="map.html">Map</a>
+  <a href="about-tukuran.html">About</a>
+  <a href="#contact">Contact</a>
+</div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms and Conditions</a>
+        <a href="#">FAQs</a>
+      </div>
+      <div class="footer-social">
+        <h4>Tourism Contact</h4>
+        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Tukuran Beach Management and Reservation System. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- scroll to top button -->
+  <button id="scrollTopBtn" class="scroll-top"><i class="fas fa-chevron-up"></i></button>
+
+  <script src="beach.js"></script>
+  <script src="nav-dropdown.js"></script>
+  <script src="hero-slideshow.js"></script>
+</body>
+</html>

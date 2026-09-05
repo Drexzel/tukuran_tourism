@@ -1,0 +1,335 @@
+/* ============================================================
+   LANDING PAGE — UI ENHANCEMENT LAYER
+   ------------------------------------------------------------
+   Loaded LAST, after beach.css and landing-polish.css. Purely
+   visual: it restyles the navigation into a cohesive turquoise
+   glass bar, turns the static hero into a full-screen fading
+   photo slideshow, and presents the "Geh! TUKURAN Gibalik-
+   balikan!" slogan with a turquoise-to-teal gradient.
+
+   No IDs, markup structure, workflow, or JS behaviour required
+   by the system is changed — every rule targets existing or
+   additive presentational classes only.
+
+   Brand palette (kept consistent with the existing site):
+     --tk-teal-deep : #0b4250   deep teal (navbar base)
+     --tk-teal      : #114e5e / #1a6b7a
+     --tk-turq      : #2b8a9e   primary turquoise
+     --tk-turq-bright: #34c4d6  bright turquoise accent
+     --tk-aqua      : #7fe9dd   light aqua highlight
+     --tk-aqua-soft : #cfeaf2   soft aqua text
+   ============================================================ */
+
+:root {
+  --tk-teal-deep: #0b4250;
+  --tk-teal: #114e5e;
+  --tk-turq: #2b8a9e;
+  --tk-turq-bright: #34c4d6;
+  --tk-aqua: #7fe9dd;
+  --tk-aqua-soft: #cfeaf2;
+}
+
+/* ============================================================
+   NAVIGATION — turquoise glassmorphism, sticky
+   ============================================================ */
+.navbar {
+  background: linear-gradient(90deg,
+      rgba(11, 66, 80, 0.66) 0%,
+      rgba(20, 116, 134, 0.60) 100%);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 26px rgba(6, 40, 52, 0.22);
+}
+
+.navbar.scrolled {
+  background: linear-gradient(90deg,
+      rgba(9, 58, 70, 0.94) 0%,
+      rgba(17, 104, 122, 0.92) 100%);
+  border-bottom-color: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px rgba(6, 40, 52, 0.34);
+}
+
+/* Logo circles stay white (the logos read best on white) but pick up
+   a lighter rim so they sit cleanly on the teal glass. */
+.navbar .logo-circle {
+  background: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+}
+
+/* Links: light on teal, with a soft translucent highlight. */
+.nav-link,
+.nav-dropdown-toggle {
+  color: #eaf9fb;
+}
+
+.nav-link:hover,
+.nav-dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+/* Active menu item — lighter turquoise accent. */
+.nav-link.active {
+  background: rgba(127, 233, 221, 0.20);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  background: var(--tk-aqua);
+  box-shadow: 0 0 10px rgba(127, 233, 221, 0.7);
+}
+
+.nav-toggle {
+  color: #eaf9fb;
+}
+
+.nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Login pill — refined to sit on the teal bar with a bright rim. */
+.nav-menu a.nav-link:last-child,
+.nav-menu > a[href*="login"] {
+  background: linear-gradient(135deg, var(--tk-turq-bright), var(--tk-turq)) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 6px 18px rgba(6, 40, 52, 0.35) !important;
+}
+
+.nav-menu a.nav-link:last-child:hover,
+.nav-menu > a[href*="login"]:hover {
+  background: linear-gradient(135deg, #45d3e4, #2f95a8) !important;
+}
+
+/* ============================================================
+   HERO — full-screen photo slideshow
+   ============================================================ */
+/* Remove the single fixed background image; the slideshow layer
+   below now carries the imagery. A deep teal fallback shows only
+   for the brief moment before the first photo paints. */
+.hero {
+  background: var(--tk-teal-deep);
+  isolation: isolate;
+}
+
+/* Slideshow layer sits behind the overlay and content. */
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.6s ease-in-out, transform 6s ease-out;
+  will-change: opacity, transform;
+}
+
+/* The active photo fades in and performs a slow, subtle Ken-Burns
+   zoom for a living, premium feel. */
+.hero-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Keep the overlay above the slides for text readability. */
+.hero-overlay {
+  z-index: 1;
+}
+
+/* Slightly richer, more even overlay so white text stays crisp over
+   every photo in the rotation. */
+.hero-overlay {
+  background: linear-gradient(180deg,
+      rgba(3, 24, 34, 0.58) 0%,
+      rgba(3, 24, 34, 0.44) 45%,
+      rgba(3, 24, 34, 0.70) 100%);
+}
+
+.hero-container {
+  z-index: 2;
+}
+
+/* ---------- Slide indicator dots ---------- */
+.hero-dots {
+  position: absolute;
+  bottom: 74px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 12px;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.hero-dot.is-active {
+  width: 30px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--tk-aqua), var(--tk-turq-bright));
+  box-shadow: 0 0 12px rgba(127, 233, 221, 0.6);
+}
+
+/* ============================================================
+   HERO SLOGAN — turquoise-to-teal gradient headline
+   ============================================================ */
+.hero-title {
+  margin-bottom: 22px;
+  /* Let the eyebrow + slogan handle their own staggered entrance
+     instead of the whole block fading as one. */
+  opacity: 1;
+  animation: none;
+}
+
+/* Small eyebrow above the slogan for an official, place-anchored feel. */
+.hero-eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--tk-aqua-soft);
+  margin-bottom: 16px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+/* The slogan itself — bold Playfair display with a bright
+   turquoise-to-teal gradient that reads clearly on the dark photo. */
+.hero-slogan {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.3rem, 6vw, 4.6rem);
+  line-height: 1.08;
+  letter-spacing: 0.5px;
+  background: linear-gradient(100deg,
+      #b6f5ee 0%,
+      #7fe9dd 26%,
+      #34c4d6 60%,
+      #1f9fb5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Soft dark halo keeps the light gradient legible on brighter photos. */
+  filter: drop-shadow(0 3px 18px rgba(0, 30, 40, 0.55));
+  opacity: 0;
+  animation: heroSloganIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+/* Dedicated, slightly softer entrance for the slogan. */
+@keyframes heroSloganIn {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: drop-shadow(0 3px 18px rgba(0, 30, 40, 0.55)) blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: drop-shadow(0 3px 18px rgba(0, 30, 40, 0.55)) blur(0);
+  }
+}
+
+.hero-desc {
+  opacity: 0;
+  animation: fadeUp 1s ease 0.9s forwards;
+}
+
+.hero-btn {
+  opacity: 0;
+  animation: fadeUp 1s ease 1.1s forwards;
+}
+
+/* ============================================================
+   RESPONSIVE REFINEMENTS
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Mobile menu panel picks up the same turquoise glass so the
+     light links stay readable when the menu drops down. */
+  .nav-menu {
+    background: linear-gradient(180deg,
+        rgba(9, 58, 70, 0.98) 0%,
+        rgba(17, 104, 122, 0.98) 100%) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 22px 44px rgba(6, 40, 52, 0.34) !important;
+  }
+
+  /* Dropdown items inside the mobile menu need light text too. */
+  .nav-menu .nav-dropdown-menu a {
+    color: #eaf9fb;
+  }
+
+  .nav-menu .nav-dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+
+  .hero-eyebrow {
+    letter-spacing: 3px;
+    font-size: 0.78rem;
+  }
+
+  .hero-dots {
+    bottom: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slogan {
+    letter-spacing: 0;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 2.5px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY — respect reduced-motion preferences
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    transition: opacity 0.4s ease;
+    transform: none;
+  }
+  .hero-slide.is-active {
+    transform: none;
+  }
+  .hero-eyebrow,
+  .hero-slogan,
+  .hero-desc,
+  .hero-btn {
+    animation: none;
+    opacity: 1;
+    filter: none;
+  }
+}
