@@ -1,209 +1,2750 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.5"
+  >
+
   <title>Tourist Spots · Tukuran Tourism</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- =========================================================
+       FONT AWESOME
+       ========================================================= -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  >
+
+  <!-- =========================================================
+       GOOGLE FONTS
+       ========================================================= -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- =========================================================
+       EXISTING STYLES
+       ========================================================= -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="nav-dropdown.css">
   <link rel="stylesheet" href="tourism-pages.css">
   <link rel="stylesheet" href="site-nav-theme.css">
+
+
+  <style>
+
+    /* =========================================================
+       TOURIST SPOTS PAGE
+       ========================================================= */
+
+    :root {
+      --spot-deep: #073f4d;
+      --spot-deep-2: #0a5262;
+      --spot-teal: #0d6878;
+      --spot-blue: #1d8fa3;
+      --spot-aqua: #71d8d0;
+
+      --spot-light: #f5fbfa;
+      --spot-cream: #faf7ef;
+      --spot-text: #153f4a;
+      --spot-muted: #6b858d;
+      --spot-white: #ffffff;
+
+      --spot-line: rgba(7, 63, 77, 0.10);
+
+      --spot-shadow:
+        0 20px 55px rgba(7, 63, 77, 0.10);
+
+      --spot-shadow-hover:
+        0 28px 70px rgba(7, 63, 77, 0.16);
+    }
+
+
+    /* =========================================================
+       PAGE BASE
+       ========================================================= */
+
+    .spots-page {
+      background:
+        radial-gradient(
+          circle at 8% 18%,
+          rgba(29, 143, 163, 0.07),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 92% 72%,
+          rgba(113, 216, 208, 0.08),
+          transparent 30%
+        ),
+        var(--spot-light);
+
+      color: var(--spot-text);
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .spots-hero {
+      position: relative;
+
+      min-height: 500px;
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(3, 42, 51, 0.90) 0%,
+          rgba(3, 59, 71, 0.68) 48%,
+          rgba(3, 59, 71, 0.25) 100%
+        ),
+        url("images/tourist-spots-hero.jpg");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+
+    /* Decorative circle */
+
+    .spots-hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      right: -170px;
+      top: -170px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.14);
+
+      box-shadow:
+        0 0 0 40px rgba(255,255,255,0.02),
+        0 0 0 80px rgba(255,255,255,0.015);
+    }
+
+
+    .spots-hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      left: -140px;
+      bottom: -140px;
+
+      border-radius: 50%;
+
+      background: rgba(113,216,208,0.10);
+    }
+
+
+    /* =========================================================
+       HERO CONTAINER
+       ========================================================= */
+
+    .spots-hero-container {
+      position: relative;
+
+      z-index: 2;
+
+      width: min(1150px, calc(100% - 40px));
+
+      margin: auto;
+
+      padding: 70px 0 75px;
+    }
+
+
+    /* =========================================================
+       HERO EYEBROW
+       ========================================================= */
+
+    .spots-eyebrow {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 18px;
+
+      color: var(--spot-aqua);
+
+      font-size: 0.70rem;
+
+      font-weight: 700;
+
+      letter-spacing: 3.5px;
+
+      text-transform: uppercase;
+    }
+
+
+    .spots-eyebrow::before {
+      content: "";
+
+      width: 35px;
+      height: 2px;
+
+      background: var(--spot-aqua);
+    }
+
+
+    /* =========================================================
+       HERO TITLE
+       ========================================================= */
+
+    .spots-hero h1 {
+      max-width: 760px;
+
+      margin: 0 0 18px;
+
+      color: white;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(2.8rem, 6.5vw, 5.3rem);
+
+      line-height: 0.98;
+
+      letter-spacing: -1.5px;
+    }
+
+
+    .spots-hero h1 span {
+      display: inline;
+
+      background:
+        linear-gradient(
+          100deg,
+          #ffffff 0%,
+          #c8f7f2 50%,
+          #67d8d4 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      color: transparent;
+    }
+
+
+    /* =========================================================
+       HERO DESCRIPTION
+       ========================================================= */
+
+    .spots-hero-description {
+      max-width: 570px;
+
+      margin: 0 0 23px;
+
+      color: rgba(255,255,255,0.84);
+
+      font-size: 0.88rem;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       HERO BADGE
+       ========================================================= */
+
+    .spots-hero-badge {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding: 9px 15px;
+
+      border: 1px solid rgba(255,255,255,0.20);
+
+      border-radius: 50px;
+
+      background: rgba(255,255,255,0.09);
+
+      backdrop-filter: blur(10px);
+
+      color: white;
+
+      font-size: 0.72rem;
+
+      font-weight: 600;
+    }
+
+
+    .spots-hero-badge i {
+      color: var(--spot-aqua);
+    }
+
+
+    /* =========================================================
+       HERO WAVE
+       ========================================================= */
+
+    .spots-wave {
+      position: absolute;
+
+      left: 0;
+      bottom: -1px;
+
+      width: 100%;
+      height: 55px;
+
+      z-index: 3;
+
+      overflow: hidden;
+    }
+
+
+    .spots-wave svg {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* =========================================================
+       INTRODUCTION
+       ========================================================= */
+
+    .spots-intro {
+      padding: 55px 20px 30px;
+
+      text-align: center;
+    }
+
+
+    .spots-intro-inner {
+      width: min(760px, 100%);
+
+      margin: auto;
+    }
+
+
+    .spots-intro-label {
+      display: inline-block;
+
+      margin-bottom: 10px;
+
+      color: var(--spot-blue);
+
+      font-size: 0.68rem;
+
+      font-weight: 700;
+
+      letter-spacing: 2.5px;
+
+      text-transform: uppercase;
+    }
+
+
+    .spots-intro h2 {
+      margin: 0 0 14px;
+
+      color: var(--spot-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+
+      line-height: 1.1;
+    }
+
+
+    .spots-intro p {
+      margin: 0;
+
+      color: var(--spot-muted);
+
+      font-size: 0.86rem;
+
+      line-height: 1.75;
+    }
+
+
+    /* =========================================================
+       TOURIST SPOTS SECTION
+       ========================================================= */
+
+    .spots-section {
+      padding: 25px 20px 70px;
+    }
+
+
+    .spots-grid {
+      width: min(1060px, 100%);
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 25px;
+    }
+
+
+    /* =========================================================
+       SPOT CARD
+       ========================================================= */
+
+    .spot-card {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 24px;
+
+      background: white;
+
+      border: 1px solid rgba(7,63,77,0.07);
+
+      box-shadow: var(--spot-shadow);
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+
+    .spot-card:hover {
+      transform: translateY(-7px);
+
+      box-shadow: var(--spot-shadow-hover);
+    }
+
+
+    /* =========================================================
+       SPOT IMAGE
+       ========================================================= */
+
+    .spot-image {
+      position: relative;
+
+      height: 300px;
+
+      overflow: hidden;
+
+      background: #dcecef;
+    }
+
+
+    .spot-image::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 45%,
+          rgba(3,36,45,0.56) 100%
+        );
+    }
+
+
+    .spot-image img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      transition: transform 0.7s ease;
+    }
+
+
+    .spot-card:hover .spot-image img {
+      transform: scale(1.06);
+    }
+
+
+    /* =========================================================
+       SPOT NUMBER
+       ========================================================= */
+
+    .spot-number {
+      position: absolute;
+
+      z-index: 3;
+
+      top: 17px;
+      left: 17px;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.93);
+
+      color: var(--spot-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 0.95rem;
+
+      font-weight: 700;
+
+      box-shadow:
+        0 7px 18px rgba(0,0,0,0.14);
+    }
+
+
+    /* =========================================================
+       SPOT LOCATION ON IMAGE
+       ========================================================= */
+
+    .spot-location {
+      position: absolute;
+
+      z-index: 3;
+
+      left: 17px;
+      bottom: 17px;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding: 8px 12px;
+
+      border-radius: 50px;
+
+      background: rgba(3,47,58,0.78);
+
+      backdrop-filter: blur(9px);
+
+      color: white;
+
+      font-size: 0.70rem;
+
+      font-weight: 600;
+    }
+
+
+    .spot-location i {
+      color: var(--spot-aqua);
+    }
+
+
+    /* =========================================================
+       SPOT BODY
+       ========================================================= */
+
+    .spot-body {
+      padding: 23px 25px 25px;
+    }
+
+
+    .spot-body h3 {
+      margin: 0 0 9px;
+
+      color: var(--spot-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 1.65rem;
+
+      line-height: 1.1;
+    }
+
+
+    .spot-body p {
+      margin: 0 0 20px;
+
+      color: var(--spot-muted);
+
+      font-size: 0.82rem;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================================================
+       SPOT FOOTER
+       ========================================================= */
+
+    .spot-footer {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+    }
+
+
+    .spot-type {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      color: var(--spot-blue);
+
+      font-size: 0.68rem;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.8px;
+    }
+
+
+    .spot-type i {
+      font-size: 0.78rem;
+    }
+
+
+    /* =========================================================
+       EXPLORE BUTTON
+       ========================================================= */
+
+    .explore-btn {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding: 9px 14px;
+
+      border: none;
+
+      border-radius: 50px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--spot-deep),
+          var(--spot-teal)
+        );
+
+      color: white;
+
+      font-size: 0.70rem;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+
+    .explore-btn:hover {
+      transform: translateX(3px);
+
+      box-shadow:
+        0 7px 18px rgba(7,63,77,0.20);
+    }
+
+
+    /* =========================================================
+       MODAL OVERLAY
+       ========================================================= */
+
+    .spot-modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 9999;
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 18px;
+
+      background:
+        rgba(3,32,40,0.76);
+
+      backdrop-filter: blur(9px);
+
+      opacity: 0;
+
+      transition: opacity 0.3s ease;
+    }
+
+
+    .spot-modal.show {
+      display: flex;
+
+      opacity: 1;
+    }
+
+
+    /* =========================================================
+       MODAL BOX
+       ========================================================= */
+
+    .spot-modal-box {
+      position: relative;
+
+      width: min(900px, 94vw);
+
+      max-height: 88vh;
+
+      overflow-y: auto;
+
+      border-radius: 24px;
+
+      background: #f7fbfa;
+
+      box-shadow:
+        0 35px 100px rgba(0,0,0,0.32);
+
+      transform:
+        translateY(18px)
+        scale(0.98);
+
+      transition:
+        transform 0.3s ease;
+    }
+
+
+    .spot-modal.show .spot-modal-box {
+      transform:
+        translateY(0)
+        scale(1);
+    }
+
+
+    /* =========================================================
+       MODAL GALLERY
+       ========================================================= */
+
+    .modal-gallery {
+      position: relative;
+
+      width: 100%;
+
+      height: 340px;
+
+      overflow: hidden;
+
+      background: #dcecef;
+    }
+
+
+    .modal-image {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      transition:
+        opacity 0.25s ease;
+    }
+
+
+    /* Dark gradient on photo */
+
+    .modal-gallery::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.03),
+          rgba(0,0,0,0.16)
+        );
+    }
+
+
+    /* =========================================================
+       GALLERY ARROWS
+       ========================================================= */
+
+    .gallery-arrow {
+      position: absolute;
+
+      z-index: 4;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      width: 46px;
+      height: 46px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: rgba(3,63,77,0.78);
+
+      color: white;
+
+      font-size: 0.9rem;
+
+      cursor: pointer;
+
+      backdrop-filter: blur(8px);
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+
+    .gallery-arrow:hover {
+      background: rgba(3,63,77,0.95);
+    }
+
+
+    .gallery-prev {
+      left: 20px;
+    }
+
+
+    .gallery-next {
+      right: 20px;
+    }
+
+
+    .gallery-prev:hover {
+      transform:
+        translateY(-50%)
+        translateX(-2px);
+    }
+
+
+    .gallery-next:hover {
+      transform:
+        translateY(-50%)
+        translateX(2px);
+    }
+
+
+    /* =========================================================
+       PHOTO COUNTER
+       ========================================================= */
+
+    .gallery-counter {
+      position: absolute;
+
+      z-index: 4;
+
+      right: 20px;
+      bottom: 20px;
+
+      padding: 8px 12px;
+
+      border-radius: 50px;
+
+      background: rgba(3,47,58,0.80);
+
+      color: white;
+
+      font-size: 0.70rem;
+
+      font-weight: 700;
+
+      backdrop-filter: blur(8px);
+    }
+
+
+    /* =========================================================
+       GALLERY DOTS
+       ========================================================= */
+
+    .gallery-dots {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 7px;
+
+      padding: 10px 20px 3px;
+
+      background: #f7fbfa;
+    }
+
+
+    .gallery-dot {
+      width: 7px;
+      height: 7px;
+
+      padding: 0;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: #bdd7da;
+
+      cursor: pointer;
+
+      transition:
+        width 0.25s ease,
+        border-radius 0.25s ease,
+        background 0.25s ease;
+    }
+
+
+    .gallery-dot.active {
+      width: 22px;
+
+      border-radius: 10px;
+
+      background: var(--spot-teal);
+    }
+
+
+    /* =========================================================
+       MODAL CONTENT
+       ========================================================= */
+
+    .spot-modal-box .modal-content {
+
+      width: 100% !important;
+
+      max-width: none !important;
+
+      box-sizing: border-box;
+
+      display: block !important;
+
+      padding: 24px 46px 30px !important;
+
+      text-align: left !important;
+
+      background: #ffffff;
+    }
+
+
+    /* =========================================================
+       MODAL LABEL
+       ========================================================= */
+
+    .spot-modal-box .modal-label {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: flex-start;
+
+      gap: 8px;
+
+      width: 100%;
+
+      margin-bottom: 8px;
+
+      color: var(--spot-blue);
+
+      font-size: 0.67rem;
+
+      font-weight: 700;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+
+    .spot-modal-box .modal-label i {
+      font-size: 0.72rem;
+    }
+
+
+    /* =========================================================
+       MODAL TITLE
+       ========================================================= */
+
+    .spot-modal-box .modal-content h2 {
+
+      width: 100%;
+
+      margin: 0 0 9px;
+
+      color: var(--spot-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(2rem, 4vw, 2.8rem);
+
+      line-height: 1.08;
+
+      letter-spacing: -0.5px;
+
+      text-align: left !important;
+    }
+
+
+    /* =========================================================
+       MODAL LOCATION
+       ========================================================= */
+
+    .spot-modal-box .modal-location {
+
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: flex-start;
+
+      width: 100%;
+
+      gap: 8px;
+
+      margin-bottom: 15px;
+
+      color: var(--spot-muted);
+
+      font-size: 0.75rem;
+
+      font-weight: 600;
+
+      line-height: 1.5;
+
+      text-align: left !important;
+    }
+
+
+    .spot-modal-box .modal-location i {
+      flex-shrink: 0;
+
+      margin-top: 3px;
+
+      color: var(--spot-blue);
+    }
+
+
+    /* =========================================================
+       MODAL DESCRIPTION
+       ========================================================= */
+
+    .spot-modal-box .modal-description {
+
+      width: min(760px, 100%);
+
+      margin: 0 0 19px;
+
+      color: var(--spot-muted);
+
+      font-size: 0.84rem;
+
+      line-height: 1.72;
+
+      text-align: left !important;
+    }
+
+
+    /* Because existing code uses p#modalDescription */
+
+    .spot-modal-box #modalDescription {
+
+      width: min(760px, 100%);
+
+      margin: 0 0 19px;
+
+      color: var(--spot-muted);
+
+      font-size: 0.84rem;
+
+      line-height: 1.72;
+
+      text-align: left !important;
+    }
+
+
+    /* =========================================================
+       MODAL TAGLINE
+       ========================================================= */
+
+    .modal-tagline {
+
+      width: 100%;
+
+      box-sizing: border-box;
+
+      margin-top: 18px;
+
+      padding: 16px 0 0;
+
+      border-top: 1px solid var(--spot-line);
+
+      color: var(--spot-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 1.05rem;
+
+      font-style: italic;
+
+      line-height: 1.45;
+
+      text-align: left;
+    }
+
+
+    .modal-tagline i {
+      margin-right: 6px;
+
+      color: var(--spot-blue);
+    }
+
+
+    /* =========================================================
+       CLOSE BUTTON
+       ========================================================= */
+
+    .modal-close {
+      position: absolute;
+
+      z-index: 10;
+
+      top: 15px;
+      right: 15px;
+
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.92);
+
+      color: var(--spot-deep);
+
+      font-size: 0.90rem;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 7px 20px rgba(0,0,0,0.14);
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+
+    .modal-close:hover {
+      transform: rotate(90deg);
+
+      background: white;
+    }
+
+
+    /* =========================================================
+       CLOSING SECTION
+       ========================================================= */
+
+    .spots-closing {
+      display: none;
+    }
+
+
+    /* =========================================================
+       INFORMATION NOTE
+       REMOVED FROM DESIGN
+       ========================================================= */
+
+    .spots-note {
+      display: none;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 850px) {
+
+      .spots-hero {
+        min-height: 470px;
+      }
+
+
+      .spots-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 620px;
+      }
+
+
+      .spot-image {
+        height: 330px;
+      }
+
+
+      .modal-gallery {
+        height: 320px;
+      }
+    }
+
+
+    /* =========================================================
+       TABLET / MOBILE
+       ========================================================= */
+
+    @media (max-width: 600px) {
+
+      .spots-hero {
+        min-height: 460px;
+      }
+
+
+      .spots-hero-container {
+        width: min(100% - 32px, 1150px);
+
+        padding: 60px 0 65px;
+      }
+
+
+      .spots-eyebrow {
+        font-size: 0.64rem;
+
+        letter-spacing: 2.5px;
+
+        margin-bottom: 15px;
+      }
+
+
+      .spots-hero h1 {
+        font-size: 3.05rem;
+
+        line-height: 1;
+
+        letter-spacing: -1px;
+
+        margin-bottom: 16px;
+      }
+
+
+      .spots-hero-description {
+        max-width: 500px;
+
+        font-size: 0.80rem;
+
+        line-height: 1.65;
+      }
+
+
+      .spots-hero-badge {
+        font-size: 0.67rem;
+
+        padding: 8px 12px;
+      }
+
+
+      .spots-intro {
+        padding: 45px 18px 25px;
+      }
+
+
+      .spots-intro h2 {
+        font-size: 2rem;
+      }
+
+
+      .spots-intro p {
+        font-size: 0.80rem;
+      }
+
+
+      .spots-section {
+        padding: 20px 16px 55px;
+      }
+
+
+      .spot-image {
+        height: 280px;
+      }
+
+
+      .spot-body {
+        padding: 21px 21px 23px;
+      }
+
+
+      .spot-body h3 {
+        font-size: 1.55rem;
+      }
+
+
+      .spot-body p {
+        font-size: 0.78rem;
+      }
+
+
+      .spot-footer {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+
+      .explore-btn {
+        width: 100%;
+
+        justify-content: center;
+      }
+
+
+      /* Modal */
+
+      .spot-modal {
+        padding: 8px;
+      }
+
+
+      .spot-modal-box {
+        width: 96vw;
+
+        max-height: 94vh;
+
+        border-radius: 20px;
+      }
+
+
+      .modal-gallery {
+        height: 245px;
+      }
+
+
+      .gallery-arrow {
+        width: 38px;
+        height: 38px;
+
+        font-size: 0.78rem;
+      }
+
+
+      .gallery-prev {
+        left: 12px;
+      }
+
+
+      .gallery-next {
+        right: 12px;
+      }
+
+
+      .gallery-counter {
+        right: 12px;
+        bottom: 12px;
+
+        font-size: 0.65rem;
+      }
+
+
+      .spot-modal-box .modal-content {
+        padding: 21px 22px 26px !important;
+      }
+
+
+      .spot-modal-box .modal-content h2 {
+        font-size: 2rem;
+
+        line-height: 1.08;
+      }
+
+
+      .spot-modal-box .modal-location {
+        font-size: 0.70rem;
+      }
+
+
+      .spot-modal-box #modalDescription {
+        font-size: 0.80rem;
+
+        line-height: 1.68;
+      }
+
+
+      .modal-tagline {
+        font-size: 0.98rem;
+      }
+
+
+      .modal-close {
+        width: 37px;
+        height: 37px;
+
+        top: 11px;
+        right: 11px;
+      }
+    }
+
+
+  </style>
 </head>
-<body class="tp-page">
-  <!-- ========== NAVIGATION ========== -->
+
+
+<body class="tp-page spots-page">
+
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+
   <header id="navbar" class="navbar dashboard-nav">
+
     <div class="nav-container">
+
+
+      <!-- LOGOS -->
+
       <div class="nav-logos">
+
         <div class="logo-circle">
-          <img src="images/municipality-logo.png" alt="Municipality of Tukuran" loading="lazy">
+
+          <img
+            src="images/municipality-logo.png"
+            alt="Municipality of Tukuran"
+            loading="lazy"
+          >
+
         </div>
+
+
         <div class="logo-circle">
-          <img src="images/tourism-logo.png" alt="Tourism Office" loading="lazy">
+
+          <img
+            src="images/tourism-logo.png"
+            alt="Tourism Office"
+            loading="lazy"
+          >
+
         </div>
+
       </div>
+
+
+      <!-- MENU -->
+
       <nav class="nav-menu" id="navMenu">
-        <a href="beach.html#home" class="nav-link">Home</a>
-        <a href="browse-beaches.html" class="nav-link">Beaches</a>
-        <a href="map.html" class="nav-link">Map</a>
+
+        <a
+          href="beach.html#home"
+          class="nav-link"
+        >
+          Home
+        </a>
+
+
+        <a
+          href="browse-beaches.html"
+          class="nav-link"
+        >
+          Beaches
+        </a>
+
+
+        <a
+          href="map.html"
+          class="nav-link"
+        >
+          Map
+        </a>
+
+
+        <!-- ABOUT DROPDOWN -->
+
         <div class="nav-dropdown">
-          <button type="button" class="nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
-            About Tukuran <i class="fas fa-chevron-down nav-caret"></i>
+
+          <button
+            type="button"
+            class="nav-dropdown-toggle active"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+
+            About
+
+            <i class="fas fa-chevron-down nav-caret"></i>
+
           </button>
+
+
           <div class="nav-dropdown-menu">
-            <a href="about-tukuran.html">About Tukuran</a>
-            <a href="history.html">History</a>
-            <a href="tourist-spots.html">Tourist Spots</a>
-            <a href="festivals.html">Festivals</a>
+
+            <a href="history.html">
+              History
+            </a>
+
+            <a href="tourist-spots.html">
+              Tourist Spots
+            </a>
+
+            <a href="festivals.html">
+              Festivals
+            </a>
+
           </div>
+
         </div>
-        <a href="beach.html#contact" class="nav-link">Contact</a>
-        <a href="../Log-in page/login.html" class="nav-link" style="background: linear-gradient(135deg, #1e6b86, #2a9bbf); color: #ffffff !important; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.2);">Login</a>
+
+
+        <!-- LOGIN -->
+
+        <a
+          href="../Log-in page/login.html"
+          class="nav-link"
+          style="
+            background: linear-gradient(135deg, #1e6b86, #2a9bbf);
+            color: #ffffff !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+          "
+        >
+          Login
+        </a>
+
       </nav>
-      <div class="nav-toggle" id="navToggle">
+
+
+      <!-- MOBILE TOGGLE -->
+
+      <div
+        class="nav-toggle"
+        id="navToggle"
+      >
+
         <i class="fas fa-bars"></i>
+
       </div>
+
     </div>
+
   </header>
 
-  <!-- ========== CONTENT ========== -->
-  <main class="dashboard-main">
-    <div class="container">
-      <div class="page-header">
-        <h1>Tourist Spots</h1>
-        <p>Discover the coastal destinations of Tukuran, loaded directly from the tourism database.</p>
+
+
+  <!-- =========================================================
+       MAIN
+       ========================================================= -->
+
+  <main>
+
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="spots-hero">
+
+      <div class="spots-hero-container">
+
+
+        <div class="spots-eyebrow">
+          Tukuran, Zamboanga del Sur
+        </div>
+
+
+        <h1>
+          Discover <span>Tukuran</span>
+        </h1>
+
+
+        <p class="spots-hero-description">
+          Explore the natural and historical destinations that
+          showcase the beauty, character, and heritage of the
+          Municipality of Tukuran.
+        </p>
+
+
+        <div class="spots-hero-badge">
+
+          <i class="fas fa-location-dot"></i>
+
+          Tourist Destinations
+
+        </div>
+
       </div>
 
-      <section class="tp-section">
-        <!-- Populated dynamically by the script below from the same database
-             API (api/get-beaches.php) the rest of the system uses, so the list
-             always reflects the beaches registered by Tourism Personnel. -->
-        <div class="tp-spot-grid" id="spotGrid">
-          <div class="tp-state">
-            <i class="fas fa-spinner fa-spin"></i>
-            Loading tourist spots...
+
+      <!-- WAVE -->
+
+      <div class="spots-wave">
+
+        <svg
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+        >
+
+          <path
+            d="
+              M0,70
+              C180,120 280,10 480,55
+              C690,105 790,20 980,55
+              C1170,90 1260,25 1440,60
+              L1440,120
+              L0,120
+              Z
+            "
+            fill="#f5fbfa"
+          ></path>
+
+        </svg>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="spots-intro">
+
+      <div class="spots-intro-inner">
+
+        <span class="spots-intro-label">
+          Places to Explore
+        </span>
+
+
+        <h2>
+          Discover the hidden character of Tukuran
+        </h2>
+
+
+        <p>
+          From historical sites to natural landscapes, Tukuran
+          offers places where visitors can appreciate the
+          municipality's heritage and natural surroundings.
+          Explore these local destinations and experience
+          another side of Tukuran.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         TOURIST SPOTS
+         ======================================================= -->
+
+    <section class="spots-section">
+
+      <div class="spots-grid">
+
+
+        <!-- =================================================
+             OLD SPANISH CAMP
+             ================================================= -->
+
+        <article class="spot-card">
+
+          <div class="spot-image">
+
+            <span class="spot-number">
+              01
+            </span>
+
+
+            <img
+              src="images/old-spanish-camp.jpg"
+              alt="Old Spanish Camp, Barangay Militar"
+              loading="lazy"
+            >
+
+
+            <div class="spot-location">
+
+              <i class="fas fa-location-dot"></i>
+
+              Barangay Militar
+
+            </div>
+
           </div>
+
+
+          <div class="spot-body">
+
+            <h3>
+              Old Spanish Camp
+            </h3>
+
+
+            <p>
+              A historical destination located in Barangay
+              Militar, Tukuran. The site offers visitors an
+              opportunity to learn about a part of the local
+              history and heritage of the municipality.
+            </p>
+
+
+            <div class="spot-footer">
+
+              <span class="spot-type">
+
+                <i class="fas fa-landmark"></i>
+
+                Historical Site
+
+              </span>
+
+
+              <button
+                type="button"
+                class="explore-btn"
+                data-spot="spanish"
+              >
+
+                Explore Spot
+
+                <i class="fas fa-arrow-right"></i>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             MT. TURONG-TURONG
+             ================================================= -->
+
+        <article class="spot-card">
+
+          <div class="spot-image">
+
+            <span class="spot-number">
+              02
+            </span>
+
+
+            <img
+              src="images/mt-turong-turong.jpg"
+              alt="Mt. Turong-Turong, Barangay San Antonio"
+              loading="lazy"
+            >
+
+
+            <div class="spot-location">
+
+              <i class="fas fa-location-dot"></i>
+
+              Barangay San Antonio
+
+            </div>
+
+          </div>
+
+
+          <div class="spot-body">
+
+            <h3>
+              Mt. Turong-Turong
+            </h3>
+
+
+            <p>
+              A natural destination located in Barangay
+              San Antonio, Tukuran. Its natural landscape
+              provides visitors with an opportunity to
+              experience the scenic character of the area.
+            </p>
+
+
+            <div class="spot-footer">
+
+              <span class="spot-type">
+
+                <i class="fas fa-mountain"></i>
+
+                Natural Destination
+
+              </span>
+
+
+              <button
+                type="button"
+                class="explore-btn"
+                data-spot="turong"
+              >
+
+                Explore Spot
+
+                <i class="fas fa-arrow-right"></i>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         MODAL
+         ======================================================= -->
+
+    <div
+      class="spot-modal"
+      id="spotModal"
+      aria-hidden="true"
+    >
+
+      <div class="spot-modal-box">
+
+
+        <!-- CLOSE -->
+
+        <button
+          type="button"
+          class="modal-close"
+          id="modalClose"
+          aria-label="Close"
+        >
+
+          <i class="fas fa-times"></i>
+
+        </button>
+
+
+        <!-- ===================================================
+             IMAGE GALLERY
+             =================================================== -->
+
+        <div class="modal-gallery">
+
+          <img
+            id="modalImage"
+            class="modal-image"
+            src=""
+            alt=""
+          >
+
+
+          <!-- PREVIOUS -->
+
+          <button
+            type="button"
+            class="gallery-arrow gallery-prev"
+            id="galleryPrev"
+            aria-label="Previous photo"
+          >
+
+            <i class="fas fa-chevron-left"></i>
+
+          </button>
+
+
+          <!-- NEXT -->
+
+          <button
+            type="button"
+            class="gallery-arrow gallery-next"
+            id="galleryNext"
+            aria-label="Next photo"
+          >
+
+            <i class="fas fa-chevron-right"></i>
+
+          </button>
+
+
+          <!-- COUNTER -->
+
+          <div
+            class="gallery-counter"
+            id="galleryCounter"
+          >
+            1 / 3
+          </div>
+
         </div>
-      </section>
+
+
+        <!-- DOTS -->
+
+        <div
+          class="gallery-dots"
+          id="galleryDots"
+        ></div>
+
+
+        <!-- ===================================================
+             CONTENT
+             =================================================== -->
+
+        <div class="modal-content">
+
+
+          <div class="modal-label">
+
+            <i class="fas fa-compass"></i>
+
+            Tourist Destination
+
+          </div>
+
+
+          <h2 id="modalTitle">
+            Tourist Spot
+          </h2>
+
+
+          <div class="modal-location">
+
+            <i class="fas fa-location-dot"></i>
+
+            <span id="modalLocation">
+              Tukuran, Zamboanga del Sur
+            </span>
+
+          </div>
+
+
+          <p id="modalDescription">
+            Discover this destination in Tukuran.
+          </p>
+
+
+          <!-- TAGLINE -->
+
+          <div
+            class="modal-tagline"
+            id="modalTagline"
+          >
+
+            <i class="fas fa-quote-left"></i>
+
+            Discover a special part of Tukuran.
+
+          </div>
+
+
+        </div>
+
+      </div>
+
     </div>
+
   </main>
 
-  <!-- ========== FOOTER ========== -->
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
   <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-logos">
-        <div class="logo-circle footer-circle">
-          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-links">
+
+          <h4>
+            Quick Links
+          </h4>
+
+
+          <a href="beach.html#home">
+            Home
+          </a>
+
+
+          <a href="browse-beaches.html">
+            Beaches
+          </a>
+
+
+          <a href="map.html">
+            Map
+          </a>
+
+
+          <a href="history.html">
+            About
+          </a>
+
         </div>
-        <div class="logo-circle footer-circle">
-          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-links">
+
+          <h4>
+            Contact
+          </h4>
+
+
+          <a href="tel:+639271180775">
+
+            <i class="fas fa-phone-alt"></i>
+
+            0927 118 0775
+
+          </a>
+
+
+          <a href="mailto:tukurantourismoffice@gmail.com">
+
+            <i class="fas fa-envelope"></i>
+
+            tukurantourismoffice@gmail.com
+
+          </a>
+
+
+          <a
+            href="https://www.facebook.com/photo/?fbid=122094425097250794&set=a.122094418995250794&__tn__=%3C"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <i class="fab fa-facebook"></i>
+
+            Geh Tukuran, Gibalik-balikan
+
+          </a>
+
         </div>
-        <div class="logo-circle footer-circle">
-          <img src="images/system-logo.png" alt="System" loading="lazy">
-        </div>
+
+
       </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <a href="beach.html#home">Home</a>
-        <a href="browse-beaches.html">Beaches</a>
-        <a href="map.html">Map</a>
-        <a href="about-tukuran.html">About Tukuran</a>
-        <a href="beach.html#contact">Contact</a>
+
+
+      <div class="footer-bottom">
+
+        © 2026 Tukuran Beach Management and Reservation System.
+        All Rights Reserved.
+
       </div>
-      <div class="footer-links">
-        <h4>About Tukuran</h4>
-        <a href="about-tukuran.html">About Tukuran</a>
-        <a href="history.html">History</a>
-        <a href="tourist-spots.html">Tourist Spots</a>
-        <a href="festivals.html">Festivals</a>
-      </div>
-      <div class="footer-social">
-        <h4>Tourism Contact</h4>
-        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-      </div>
+
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Tukuran Beach Management and Reservation System. All Rights Reserved.</p>
-    </div>
+
   </footer>
 
-  <!-- ========== SCRIPTS ========== -->
+
+
+  <!-- =========================================================
+       NAVIGATION SCRIPT
+       ========================================================= -->
+
   <script>
+
     (function () {
-      var navbar = document.getElementById('navbar');
-      var navToggle = document.getElementById('navToggle');
-      var navMenu = document.getElementById('navMenu');
-      window.addEventListener('scroll', function () {
-        if (!navbar) return;
-        if (window.scrollY > 80) navbar.classList.add('scrolled');
-        else navbar.classList.remove('scrolled');
-      });
-      if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function (e) {
-          e.stopPropagation();
-          navMenu.classList.toggle('open');
-          var icon = navToggle.querySelector('i');
-          if (icon) icon.className = navMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
-        });
-        document.addEventListener('click', function (e) {
-          if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-            navMenu.classList.remove('open');
-            var icon = navToggle.querySelector('i');
-            if (icon) icon.className = 'fas fa-bars';
+
+      var navbar =
+        document.getElementById('navbar');
+
+      var navToggle =
+        document.getElementById('navToggle');
+
+      var navMenu =
+        document.getElementById('navMenu');
+
+
+      /* =======================================================
+         SCROLL EFFECT
+         ======================================================= */
+
+      window.addEventListener(
+        'scroll',
+        function () {
+
+          if (!navbar) return;
+
+
+          if (window.scrollY > 80) {
+
+            navbar.classList.add('scrolled');
+
+          } else {
+
+            navbar.classList.remove('scrolled');
+
           }
-        });
-      }
-    })();
 
-    // ===== Load tourist spots (beaches) dynamically from the database =====
-    (function () {
-      var DEFAULT_IMAGE = 'images/beach1.jpg';
-      var grid = document.getElementById('spotGrid');
-
-      function esc(str) {
-        return String(str == null ? '' : str)
-          .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-      }
-
-      function render(beaches) {
-        if (!grid) return;
-        if (!beaches || !beaches.length) {
-          grid.innerHTML =
-            '<div class="tp-state">' +
-            '<i class="fas fa-umbrella-beach"></i>' +
-            '<h3>No tourist spots yet</h3>' +
-            '<p>Please check back soon.</p></div>';
-          return;
         }
-        grid.innerHTML = beaches.map(function (b) {
-          var img = b.main_image || DEFAULT_IMAGE;
-          var barangay = b.barangay || b.location || 'Tukuran';
-          var fee = (b.adult_fee != null) ? b.adult_fee : 0;
-          var rating = parseFloat(b.rating || 0).toFixed(1);
-          var desc = b.description || 'A beautiful coastal destination in Tukuran.';
-          return (
-            '<article class="tp-spot-card">' +
-              '<div class="tp-spot-img">' +
-                '<img src="' + esc(img) + '" alt="' + esc(b.beach_name) + '" loading="lazy" ' +
-                'onerror="this.src=\'' + DEFAULT_IMAGE + '\'">' +
-              '</div>' +
-              '<div class="tp-spot-body">' +
-                '<h3>' + esc(b.beach_name) + '</h3>' +
-                '<div class="tp-spot-barangay"><i class="fas fa-map-pin"></i>' + esc(barangay) + '</div>' +
-                '<div class="tp-spot-meta">' +
-                  '<span><i class="fas fa-tag"></i> \u20B1' + esc(fee) + '</span>' +
-                  '<span class="rating"><i class="fas fa-star"></i> ' + esc(rating) + '</span>' +
-                '</div>' +
-                '<p class="tp-spot-desc">' + esc(desc) + '</p>' +
-                '<a href="beach-details.html?id=' + esc(b.beach_id) + '" class="btn-outline">' +
-                  'View Details <i class="fas fa-chevron-right"></i></a>' +
-              '</div>' +
-            '</article>'
-          );
-        }).join('');
+      );
+
+
+      /* =======================================================
+         MOBILE NAVIGATION
+         ======================================================= */
+
+      if (navToggle && navMenu) {
+
+        navToggle.addEventListener(
+          'click',
+          function (e) {
+
+            e.stopPropagation();
+
+            navMenu.classList.toggle('open');
+
+
+            var icon =
+              navToggle.querySelector('i');
+
+
+            if (icon) {
+
+              icon.className =
+                navMenu.classList.contains('open')
+                  ? 'fas fa-times'
+                  : 'fas fa-bars';
+
+            }
+
+          }
+        );
+
+
+        document.addEventListener(
+          'click',
+          function (e) {
+
+            if (
+              navMenu.classList.contains('open') &&
+              !navMenu.contains(e.target) &&
+              !navToggle.contains(e.target)
+            ) {
+
+              navMenu.classList.remove('open');
+
+
+              var icon =
+                navToggle.querySelector('i');
+
+
+              if (icon) {
+
+                icon.className =
+                  'fas fa-bars';
+
+              }
+
+            }
+
+          }
+        );
+
       }
 
-      fetch('../api/get-beaches.php')
-        .then(function (r) { return r.json(); })
-        .then(function (res) {
-          render(res && res.success && Array.isArray(res.data) ? res.data : []);
-        })
-        .catch(function () {
-          if (grid) {
-            grid.innerHTML =
-              '<div class="tp-state">' +
-              '<i class="fas fa-triangle-exclamation"></i>' +
-              '<h3>Unable to load tourist spots</h3>' +
-              '<p>Please try again later.</p></div>';
-          }
-        });
     })();
+
   </script>
+
+
+
+  <!-- =========================================================
+       TOURIST SPOT MODAL + GALLERY SCRIPT
+       ========================================================= -->
+
+  <script>
+
+    (function () {
+
+
+      /* =======================================================
+         ELEMENTS
+         ======================================================= */
+
+      var modal =
+        document.getElementById('spotModal');
+
+      var closeBtn =
+        document.getElementById('modalClose');
+
+      var modalImage =
+        document.getElementById('modalImage');
+
+      var modalTitle =
+        document.getElementById('modalTitle');
+
+      var modalLocation =
+        document.getElementById('modalLocation');
+
+      var modalDescription =
+        document.getElementById('modalDescription');
+
+      var modalTagline =
+        document.getElementById('modalTagline');
+
+      var galleryPrev =
+        document.getElementById('galleryPrev');
+
+      var galleryNext =
+        document.getElementById('galleryNext');
+
+      var galleryCounter =
+        document.getElementById('galleryCounter');
+
+      var galleryDots =
+        document.getElementById('galleryDots');
+
+
+
+      /* =======================================================
+         TOURIST SPOT DATA
+
+         CHANGE ONLY THE IMAGE FILENAMES HERE
+         IF YOUR ACTUAL FILES HAVE DIFFERENT NAMES.
+         ======================================================= */
+
+      var spotData = {
+
+
+        /* =====================================================
+           OLD SPANISH CAMP
+           ===================================================== */
+
+        spanish: {
+
+          title:
+            'Old Spanish Camp',
+
+          location:
+            'Barangay Militar, Tukuran, Zamboanga del Sur',
+
+          images: [
+
+            'images/old-spanish-camp.jpg',
+
+            'images/old-spanish-camp-2.jpg',
+
+            'images/old-spanish-camp-3.jpg'
+
+          ],
+
+          description:
+            'Old Spanish Camp is a historical destination located in Barangay Militar, Tukuran. It provides visitors with an opportunity to appreciate and learn about a part of the local history and heritage of the municipality.',
+
+          tagline:
+            'Step into the past and discover a piece of Tukuran’s history.'
+
+        },
+
+
+        /* =====================================================
+           MT. TURONG-TURONG
+           ===================================================== */
+
+        turong: {
+
+          title:
+            'Mt. Turong-Turong',
+
+          location:
+            'Barangay San Antonio, Tukuran, Zamboanga del Sur',
+
+          images: [
+
+            'images/mt-turong-turong.jpg',
+
+            'images/mt-turong-turong-2.jpg',
+
+            'images/mt-turong-turong-3.jpg'
+
+          ],
+
+          description:
+            'Mt. Turong-Turong is a natural destination located in Barangay San Antonio, Tukuran. Its natural surroundings offer visitors an opportunity to appreciate the scenic landscape while taking on the challenge of mountain climbing.',
+
+          tagline:
+            'Tara na, manaka nata! Happy climbing, everyone!'
+
+        }
+
+      };
+
+
+
+      /* =======================================================
+         CURRENT GALLERY STATE
+         ======================================================= */
+
+      var currentSpot = null;
+
+      var currentImageIndex = 0;
+
+
+
+      /* =======================================================
+         CREATE DOTS
+         ======================================================= */
+
+      function createDots() {
+
+        galleryDots.innerHTML = '';
+
+
+        if (!currentSpot) return;
+
+
+        currentSpot.images.forEach(
+          function (image, index) {
+
+            var dot =
+              document.createElement('button');
+
+            dot.type = 'button';
+
+            dot.className =
+              'gallery-dot';
+
+
+            if (index === currentImageIndex) {
+
+              dot.classList.add('active');
+
+            }
+
+
+            dot.setAttribute(
+              'aria-label',
+              'View photo ' + (index + 1)
+            );
+
+
+            dot.addEventListener(
+              'click',
+              function () {
+
+                showImage(index);
+
+              }
+            );
+
+
+            galleryDots.appendChild(dot);
+
+          }
+        );
+
+      }
+
+
+
+      /* =======================================================
+         SHOW IMAGE
+         ======================================================= */
+
+      function showImage(index) {
+
+        if (!currentSpot) return;
+
+
+        var total =
+          currentSpot.images.length;
+
+
+        if (index < 0) {
+
+          index = total - 1;
+
+        }
+
+
+        if (index >= total) {
+
+          index = 0;
+
+        }
+
+
+        currentImageIndex = index;
+
+
+        modalImage.style.opacity = '0';
+
+
+        setTimeout(
+          function () {
+
+            modalImage.src =
+              currentSpot.images[currentImageIndex];
+
+            modalImage.alt =
+              currentSpot.title +
+              ' photo ' +
+              (currentImageIndex + 1);
+
+
+            modalImage.onload =
+              function () {
+
+                modalImage.style.opacity = '1';
+
+              };
+
+
+            /*
+             * If image cannot load, keep it visible
+             * so the modal does not stay transparent.
+             */
+
+            setTimeout(
+              function () {
+
+                modalImage.style.opacity = '1';
+
+              },
+              300
+            );
+
+
+            galleryCounter.textContent =
+              (currentImageIndex + 1) +
+              ' / ' +
+              total;
+
+
+            createDots();
+
+          },
+          120
+        );
+
+      }
+
+
+
+      /* =======================================================
+         OPEN MODAL
+         ======================================================= */
+
+      function openModal(spot) {
+
+        var data =
+          spotData[spot];
+
+
+        if (!data) return;
+
+
+        currentSpot = data;
+
+        currentImageIndex = 0;
+
+
+        modalTitle.textContent =
+          data.title;
+
+
+        modalLocation.textContent =
+          data.location;
+
+
+        modalDescription.textContent =
+          data.description;
+
+
+        modalTagline.innerHTML =
+          '<i class="fas fa-quote-left"></i> ' +
+          data.tagline;
+
+
+        showImage(0);
+
+
+        modal.classList.add('show');
+
+
+        modal.setAttribute(
+          'aria-hidden',
+          'false'
+        );
+
+
+        document.body.style.overflow =
+          'hidden';
+
+      }
+
+
+
+      /* =======================================================
+         CLOSE MODAL
+         ======================================================= */
+
+      function closeModal() {
+
+        modal.classList.remove('show');
+
+
+        modal.setAttribute(
+          'aria-hidden',
+          'true'
+        );
+
+
+        document.body.style.overflow =
+          '';
+
+
+        currentSpot = null;
+
+      }
+
+
+
+      /* =======================================================
+         EXPLORE BUTTONS
+         ======================================================= */
+
+      document
+        .querySelectorAll('.explore-btn')
+        .forEach(
+          function (button) {
+
+            button.addEventListener(
+              'click',
+              function () {
+
+                openModal(
+                  button.dataset.spot
+                );
+
+              }
+            );
+
+          }
+        );
+
+
+
+      /* =======================================================
+         PREVIOUS PHOTO
+         ======================================================= */
+
+      galleryPrev.addEventListener(
+        'click',
+        function (event) {
+
+          event.stopPropagation();
+
+          if (!currentSpot) return;
+
+          showImage(
+            currentImageIndex - 1
+          );
+
+        }
+      );
+
+
+
+      /* =======================================================
+         NEXT PHOTO
+         ======================================================= */
+
+      galleryNext.addEventListener(
+        'click',
+        function (event) {
+
+          event.stopPropagation();
+
+          if (!currentSpot) return;
+
+          showImage(
+            currentImageIndex + 1
+          );
+
+        }
+      );
+
+
+
+      /* =======================================================
+         CLOSE BUTTON
+         ======================================================= */
+
+      closeBtn.addEventListener(
+        'click',
+        closeModal
+      );
+
+
+
+      /* =======================================================
+         CLICK OUTSIDE
+         ======================================================= */
+
+      modal.addEventListener(
+        'click',
+        function (event) {
+
+          if (
+            event.target === modal
+          ) {
+
+            closeModal();
+
+          }
+
+        }
+      );
+
+
+
+      /* =======================================================
+         ESCAPE KEY
+         ======================================================= */
+
+      document.addEventListener(
+        'keydown',
+        function (event) {
+
+          if (
+            event.key === 'Escape' &&
+            modal.classList.contains('show')
+          ) {
+
+            closeModal();
+
+          }
+
+        }
+      );
+
+
+
+      /* =======================================================
+         KEYBOARD GALLERY CONTROL
+         ======================================================= */
+
+      document.addEventListener(
+        'keydown',
+        function (event) {
+
+          if (
+            !modal.classList.contains('show') ||
+            !currentSpot
+          ) {
+
+            return;
+
+          }
+
+
+          if (event.key === 'ArrowLeft') {
+
+            showImage(
+              currentImageIndex - 1
+            );
+
+          }
+
+
+          if (event.key === 'ArrowRight') {
+
+            showImage(
+              currentImageIndex + 1
+            );
+
+          }
+
+        }
+      );
+
+
+    })();
+
+  </script>
+
+
+
+  <!-- =========================================================
+       EXISTING DROPDOWN FUNCTIONALITY
+       ========================================================= -->
+
   <script src="nav-dropdown.js"></script>
+
+
 </body>
 </html>

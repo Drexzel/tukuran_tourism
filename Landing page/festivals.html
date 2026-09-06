@@ -1,182 +1,2603 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>Festivals · Tukuran Tourism</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <title>Sakayan Festival · Tukuran Tourism</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap"
+        rel="stylesheet">
+
+  <!-- Existing styles -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="nav-dropdown.css">
   <link rel="stylesheet" href="tourism-pages.css">
   <link rel="stylesheet" href="site-nav-theme.css">
+
+
+  <style>
+
+    /* =========================================================
+       ROOT
+       ========================================================= */
+
+    :root {
+      --festival-deep: #073f4d;
+      --festival-teal: #0d6878;
+      --festival-turquoise: #20b7c7;
+      --festival-aqua: #7de4d8;
+      --festival-sand: #f4e8d2;
+      --festival-cream: #f7fbfa;
+      --festival-text: #123f4c;
+      --festival-muted: #64808a;
+    }
+
+
+    /* =========================================================
+       PAGE BASE
+       ========================================================= */
+
+    .festival-page {
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(32, 183, 199, 0.08),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 90% 65%,
+          rgba(125, 228, 216, 0.10),
+          transparent 30%
+        ),
+        var(--festival-cream);
+
+      color: var(--festival-text);
+    }
+
+
+    /* =========================================================
+       FESTIVAL HERO
+       ========================================================= */
+
+    .festival-hero {
+      position: relative;
+      min-height: 620px;
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(3, 38, 48, 0.88) 0%,
+          rgba(3, 55, 67, 0.62) 48%,
+          rgba(3, 55, 67, 0.25) 100%
+        ),
+        url("images/sakayan-hero.jpg");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+
+    .festival-hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      right: -120px;
+      top: -150px;
+
+      border-radius: 50%;
+
+      background: rgba(125, 228, 216, 0.13);
+
+      filter: blur(2px);
+    }
+
+
+    .festival-hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 360px;
+      height: 360px;
+
+      left: -180px;
+      bottom: -190px;
+
+      border-radius: 50%;
+
+      background: rgba(32, 183, 199, 0.14);
+    }
+
+
+    .festival-hero-container {
+      position: relative;
+      z-index: 2;
+
+      width: min(1200px, calc(100% - 40px));
+
+      margin: auto;
+
+      padding: 100px 0;
+    }
+
+
+    .festival-eyebrow {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      margin-bottom: 22px;
+
+      color: var(--festival-aqua);
+
+      font-size: 0.78rem;
+      font-weight: 700;
+
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+
+    .festival-eyebrow::before {
+      content: "";
+
+      width: 38px;
+      height: 2px;
+
+      background: var(--festival-aqua);
+    }
+
+
+    .festival-hero h1 {
+      max-width: 760px;
+
+      margin: 0 0 20px;
+
+      color: white;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(3.5rem, 8vw, 6.8rem);
+
+      line-height: 0.95;
+
+      letter-spacing: -2px;
+    }
+
+
+    .festival-hero h1 span {
+      display: block;
+
+      background:
+        linear-gradient(
+          100deg,
+          #ffffff 0%,
+          #b9f7ef 45%,
+          #5bd8d5 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      color: transparent;
+    }
+
+
+    .festival-hero-description {
+      max-width: 650px;
+
+      margin-bottom: 32px;
+
+      color: rgba(255, 255, 255, 0.88);
+
+      font-size: 1.08rem;
+
+      line-height: 1.8;
+    }
+
+
+    .festival-tag {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 9px;
+
+      padding: 10px 17px;
+
+      border: 1px solid rgba(255, 255, 255, 0.25);
+
+      border-radius: 50px;
+
+      background: rgba(255, 255, 255, 0.10);
+
+      backdrop-filter: blur(12px);
+
+      color: white;
+
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+
+    /* =========================================================
+       WAVE
+       ========================================================= */
+
+    .festival-wave {
+      position: absolute;
+
+      bottom: -1px;
+      left: 0;
+
+      width: 100%;
+      height: 90px;
+
+      z-index: 3;
+
+      overflow: hidden;
+    }
+
+
+    .festival-wave svg {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* =========================================================
+       INTRO
+       ========================================================= */
+
+    .festival-intro {
+      padding: 95px 20px 75px;
+
+      text-align: center;
+    }
+
+
+    .festival-intro-inner {
+      max-width: 850px;
+
+      margin: auto;
+    }
+
+
+    .festival-intro h2 {
+      margin: 0 0 22px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+
+      color: var(--festival-deep);
+
+      transform: translateY(-8px);
+    }
+
+
+    .festival-intro p {
+      margin: 0 auto;
+
+      color: var(--festival-muted);
+
+      font-size: 1.03rem;
+
+      line-height: 1.9;
+    }
+
+
+    /* =========================================================
+       FEATURE
+       ========================================================= */
+
+    .festival-feature {
+      width: min(1150px, calc(100% - 40px));
+
+      margin: 0 auto 100px;
+
+      display: grid;
+
+      grid-template-columns: 1.05fr 0.95fr;
+
+      min-height: 500px;
+
+      border-radius: 28px;
+
+      overflow: hidden;
+
+      background: white;
+
+      box-shadow:
+        0 25px 70px rgba(7, 63, 77, 0.13);
+    }
+
+
+    .festival-feature-image {
+      min-height: 500px;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent 55%,
+          rgba(3, 40, 50, 0.35)
+        ),
+        url("images/sakayan-1.jpg");
+
+      background-size: cover;
+
+      background-position: center;
+    }
+
+
+    .festival-feature-content {
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      padding: 65px;
+    }
+
+
+    .festival-feature-content h2 {
+      margin: 0 0 20px;
+
+      font-family: "Playfair Display", serif;
+
+      color: var(--festival-deep);
+
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+
+      line-height: 1.08;
+    }
+
+
+    .festival-feature-content p {
+      margin: 0 0 22px;
+
+      color: var(--festival-muted);
+
+      font-size: 0.98rem;
+
+      line-height: 1.85;
+    }
+
+
+    .festival-accent-line {
+      width: 60px;
+      height: 4px;
+
+      margin-top: 5px;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--festival-turquoise),
+          var(--festival-aqua)
+        );
+    }
+
+
+    /* =========================================================
+       HIGHLIGHTS
+       ========================================================= */
+
+    .festival-highlights {
+      padding: 90px 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #073f4d,
+          #0d6878
+        );
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+
+    .festival-highlights::before {
+      content: "";
+
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      right: -220px;
+      top: -250px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+
+    .festival-highlights-header {
+      position: relative;
+      z-index: 2;
+
+      max-width: 1150px;
+
+      margin: 0 auto 45px;
+
+      text-align: center;
+    }
+
+
+    .festival-highlights-header h2 {
+      margin: 0;
+
+      color: white;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+    }
+
+
+    .highlight-grid {
+      position: relative;
+      z-index: 2;
+
+      width: min(1150px, 100%);
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+
+    .highlight-card {
+      padding: 34px;
+
+      min-height: 220px;
+
+      border: 1px solid rgba(255,255,255,0.14);
+
+      border-radius: 22px;
+
+      background: rgba(255,255,255,0.08);
+
+      backdrop-filter: blur(14px);
+
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    }
+
+
+    .highlight-card:hover {
+      transform: translateY(-7px);
+
+      background: rgba(255,255,255,0.13);
+    }
+
+
+    .highlight-icon {
+      width: 52px;
+      height: 52px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 24px;
+
+      border-radius: 15px;
+
+      background: rgba(125,228,216,0.15);
+
+      color: var(--festival-aqua);
+
+      font-size: 1.25rem;
+    }
+
+
+    .highlight-card h3 {
+      margin: 0 0 10px;
+
+      color: white;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 1.45rem;
+    }
+
+
+    .highlight-card p {
+      margin: 0;
+
+      color: rgba(255,255,255,0.70);
+
+      line-height: 1.7;
+
+      font-size: 0.92rem;
+    }
+
+
+    /* =========================================================
+       PHOTO GALLERY
+       ========================================================= */
+
+    .festival-gallery-section {
+      padding: 100px 20px;
+    }
+
+
+    .festival-gallery-header {
+      width: min(1150px, 100%);
+
+      margin: 0 auto 45px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: end;
+
+      gap: 30px;
+    }
+
+
+    .festival-gallery-header h2 {
+      margin: 0;
+
+      font-family: "Playfair Display", serif;
+
+      color: var(--festival-deep);
+
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+    }
+
+
+    .festival-gallery {
+      width: min(1150px, 100%);
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      grid-auto-rows: 220px;
+
+      gap: 16px;
+    }
+
+
+    .gallery-item {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 20px;
+
+      background: #dcecef;
+    }
+
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+
+      grid-row: span 2;
+    }
+
+
+    .gallery-item:nth-child(4) {
+      grid-column: span 2;
+    }
+
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      transition: transform 0.6s ease;
+    }
+
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+    }
+
+
+    .gallery-overlay {
+      position: absolute;
+
+      inset: auto 0 0 0;
+
+      padding: 35px 20px 20px;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(3,35,44,0.82)
+        );
+
+      color: white;
+
+      transform: translateY(4px);
+
+      transition: transform 0.3s ease;
+    }
+
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+
+    .gallery-overlay span {
+      font-size: 0.84rem;
+
+      font-weight: 600;
+    }
+
+
+    /* =========================================================
+       MORE ACTIVITIES CARD
+       ========================================================= */
+
+    .more-activities-card {
+      position: relative;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-height: 220px;
+
+      padding: 30px;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      cursor: pointer;
+
+      border: 1px solid rgba(13,104,120,0.15);
+
+      background:
+        linear-gradient(
+          135deg,
+          #073f4d,
+          #0d6878
+        );
+
+      box-shadow:
+        0 15px 35px rgba(7,63,77,0.14);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+
+    .more-activities-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      right: -70px;
+      top: -70px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+
+    .more-activities-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      left: -60px;
+      bottom: -60px;
+
+      border-radius: 50%;
+
+      background: rgba(125,228,216,0.12);
+    }
+
+
+    .more-activities-card:hover {
+      transform: translateY(-7px);
+
+      box-shadow:
+        0 22px 45px rgba(7,63,77,0.22);
+    }
+
+
+    .more-activities-content {
+      position: relative;
+
+      z-index: 2;
+
+      text-align: center;
+
+      color: white;
+    }
+
+
+    .more-activities-icon {
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 18px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: rgba(125,228,216,0.16);
+
+      border: 1px solid rgba(255,255,255,0.20);
+
+      color: var(--festival-aqua);
+
+      font-size: 1.35rem;
+    }
+
+
+    .more-activities-content h3 {
+      margin: 0 0 8px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 1.45rem;
+    }
+
+
+    .more-activities-content p {
+      margin: 0;
+
+      color: rgba(255,255,255,0.72);
+
+      font-size: 0.85rem;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       MUTYA NG TUKURAN MODAL
+       ========================================================= */
+
+    .activities-modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 9999;
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(32,183,199,0.20),
+          transparent 30%
+        ),
+        rgba(3, 32, 40, 0.78);
+
+      backdrop-filter: blur(10px);
+
+      opacity: 0;
+
+      transition: opacity 0.3s ease;
+    }
+
+
+    .activities-modal.show {
+      display: flex;
+
+      opacity: 1;
+    }
+
+
+    /* =========================================================
+       MODAL CONTAINER
+       ========================================================= */
+
+    .activities-modal-content {
+      position: relative;
+
+      width: min(980px, 100%);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      border-radius: 30px;
+
+      padding: 48px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff 0%,
+          #f7fbfa 60%,
+          #eefaf8 100%
+        );
+
+      border: 1px solid rgba(255,255,255,0.8);
+
+      box-shadow:
+        0 35px 100px rgba(0,0,0,0.35);
+
+      transform: translateY(25px) scale(0.96);
+
+      transition: transform 0.3s ease;
+
+      scrollbar-width: thin;
+
+      scrollbar-color:
+        var(--festival-turquoise)
+        transparent;
+    }
+
+
+    .activities-modal.show .activities-modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+
+    /* Decorative circles */
+
+    .activities-modal-content::before {
+      content: "";
+
+      position: absolute;
+
+      width: 220px;
+      height: 220px;
+
+      right: -100px;
+      top: -100px;
+
+      border-radius: 50%;
+
+      background: rgba(32,183,199,0.08);
+
+      pointer-events: none;
+    }
+
+
+    .activities-modal-content::after {
+      content: "";
+
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+
+      left: -80px;
+      bottom: -80px;
+
+      border-radius: 50%;
+
+      background: rgba(125,228,216,0.10);
+
+      pointer-events: none;
+    }
+
+
+    /* =========================================================
+       MODAL CLOSE
+       ========================================================= */
+
+    .modal-close {
+      position: absolute;
+
+      top: 18px;
+      right: 20px;
+
+      z-index: 10;
+
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: rgba(7,63,77,0.08);
+
+      color: var(--festival-deep);
+
+      font-size: 1.05rem;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        color 0.2s ease;
+    }
+
+
+    .modal-close:hover {
+      background: var(--festival-deep);
+
+      color: white;
+
+      transform: rotate(90deg);
+    }
+
+
+    /* =========================================================
+       MODAL HEADER
+       ========================================================= */
+
+    .modal-heading {
+      position: relative;
+
+      z-index: 2;
+
+      text-align: center;
+
+      margin-bottom: 38px;
+
+      padding: 0 35px;
+    }
+
+
+    .modal-heading .modal-label {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      margin-bottom: 12px;
+
+      color: var(--festival-turquoise);
+
+      font-size: 0.72rem;
+
+      font-weight: 800;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
+
+
+    .modal-heading .modal-label::before,
+    .modal-heading .modal-label::after {
+      content: "";
+
+      width: 24px;
+      height: 1px;
+
+      background: var(--festival-turquoise);
+    }
+
+
+    .modal-heading h2 {
+      margin: 0 0 14px;
+
+      color: var(--festival-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+
+      line-height: 1.05;
+    }
+
+
+    .modal-heading p {
+      max-width: 650px;
+
+      margin: auto;
+
+      color: var(--festival-muted);
+
+      line-height: 1.75;
+
+      font-size: 0.95rem;
+    }
+
+
+    /* =========================================================
+       MODAL DIVIDER
+       ========================================================= */
+
+    .modal-divider {
+      width: 55px;
+      height: 4px;
+
+      margin: 20px auto 0;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--festival-turquoise),
+          var(--festival-aqua)
+        );
+    }
+
+
+    /* =========================================================
+       MUTYA PHOTO GRID
+       ========================================================= */
+
+    .mutya-activities-grid {
+      position: relative;
+
+      z-index: 2;
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 22px;
+    }
+
+
+    .mutya-activity-card {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 20px;
+
+      background: white;
+
+      border: 1px solid rgba(7,63,77,0.08);
+
+      box-shadow:
+        0 10px 30px rgba(7,63,77,0.08);
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+
+    .mutya-activity-card:hover {
+      transform: translateY(-6px);
+
+      box-shadow:
+        0 20px 45px rgba(7,63,77,0.15);
+    }
+
+
+    /* Image wrapper */
+
+    .mutya-activity-image-wrap {
+      position: relative;
+
+      width: 100%;
+      height: 250px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dcecef,
+          #edf8f7
+        );
+    }
+
+
+    .mutya-activity-image {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      transition:
+        transform 0.6s ease;
+    }
+
+
+    .mutya-activity-card:hover
+    .mutya-activity-image {
+      transform: scale(1.06);
+    }
+
+
+    /* Image shine */
+
+    .mutya-activity-image-wrap::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent 55%,
+          rgba(3,35,44,0.30)
+        );
+
+      pointer-events: none;
+    }
+
+
+    /* Number badge */
+
+    .mutya-number {
+      position: absolute;
+
+      top: 14px;
+      left: 14px;
+
+      z-index: 3;
+
+      width: 34px;
+      height: 34px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(7,63,77,0.82);
+
+      backdrop-filter: blur(8px);
+
+      border: 1px solid rgba(255,255,255,0.30);
+
+      color: white;
+
+      font-size: 0.78rem;
+
+      font-weight: 700;
+    }
+
+
+    /* Card information */
+
+    .mutya-activity-info {
+      padding: 20px 22px 22px;
+    }
+
+
+    .mutya-activity-info h3 {
+      margin: 0 0 7px;
+
+      color: var(--festival-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 1.25rem;
+    }
+
+
+    .mutya-activity-info p {
+      margin: 0;
+
+      color: var(--festival-muted);
+
+      font-size: 0.86rem;
+
+      line-height: 1.65;
+    }
+
+
+    /* =========================================================
+       MODAL FOOTER
+       ========================================================= */
+
+    .modal-footer-note {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 30px;
+
+      padding-top: 22px;
+
+      border-top: 1px solid rgba(7,63,77,0.08);
+
+      text-align: center;
+
+      color: var(--festival-muted);
+
+      font-size: 0.78rem;
+    }
+
+
+    .modal-footer-note i {
+      color: var(--festival-turquoise);
+
+      margin-right: 5px;
+    }
+
+
+    /* =========================================================
+       CLOSING
+       ========================================================= */
+
+    .festival-closing {
+      position: relative;
+
+      padding: 100px 20px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f4e8d2,
+          #fffaf0
+        );
+
+      overflow: hidden;
+    }
+
+
+    .festival-closing::before,
+    .festival-closing::after {
+      content: "";
+
+      position: absolute;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(13,104,120,0.12);
+    }
+
+
+    .festival-closing::before {
+      width: 330px;
+      height: 330px;
+
+      left: -180px;
+      top: -150px;
+    }
+
+
+    .festival-closing::after {
+      width: 250px;
+      height: 250px;
+
+      right: -130px;
+      bottom: -130px;
+    }
+
+
+    .festival-closing-inner {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 750px;
+
+      margin: auto;
+    }
+
+
+    .festival-closing h2 {
+      margin: 0 0 18px;
+
+      color: var(--festival-deep);
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(2.2rem, 5vw, 3.7rem);
+    }
+
+
+    .festival-closing p {
+      margin: 0;
+
+      color: var(--festival-muted);
+
+      line-height: 1.8;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+
+      .festival-hero {
+        min-height: 560px;
+      }
+
+
+      .festival-feature {
+        grid-template-columns: 1fr;
+      }
+
+
+      .festival-feature-image {
+        min-height: 400px;
+      }
+
+
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .festival-gallery {
+        grid-template-columns: repeat(2, 1fr);
+
+        grid-auto-rows: 210px;
+      }
+
+
+      .gallery-item:first-child {
+        grid-column: span 2;
+      }
+
+
+      .gallery-item:nth-child(4) {
+        grid-column: span 1;
+      }
+
+
+      .more-activities-card {
+        min-height: 210px;
+      }
+
+
+      .activities-modal-content {
+        padding: 40px 28px;
+      }
+
+
+      .mutya-activity-image-wrap {
+        height: 220px;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      .festival-hero-container {
+        padding: 80px 0;
+      }
+
+
+      .festival-hero h1 {
+        font-size: 3.5rem;
+
+        letter-spacing: -1px;
+      }
+
+
+      .festival-feature-content {
+        padding: 38px 30px;
+      }
+
+
+      .festival-gallery-header {
+        display: block;
+      }
+
+
+      .festival-gallery {
+        grid-template-columns: 1fr;
+
+        grid-auto-rows: 250px;
+      }
+
+
+      .gallery-item:first-child,
+      .gallery-item:nth-child(4) {
+        grid-column: span 1;
+      }
+
+
+      .more-activities-card {
+        min-height: 250px;
+      }
+
+
+      .activities-modal {
+        padding: 12px;
+      }
+
+
+      .activities-modal-content {
+        max-height: 94vh;
+
+        padding: 42px 17px 25px;
+
+        border-radius: 23px;
+      }
+
+
+      .modal-heading {
+        padding: 0 12px;
+
+        margin-bottom: 27px;
+      }
+
+
+      .modal-heading h2 {
+        font-size: 2.2rem;
+      }
+
+
+      .modal-heading p {
+        font-size: 0.88rem;
+      }
+
+
+      .mutya-activities-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+      }
+
+
+      .mutya-activity-image-wrap {
+        height: 230px;
+      }
+
+
+      .mutya-activity-info {
+        padding: 17px 18px 19px;
+      }
+
+
+      .mutya-activity-info h3 {
+        font-size: 1.18rem;
+      }
+    }
+
+  </style>
+
 </head>
-<body class="tp-page">
-  <!-- ========== NAVIGATION ========== -->
+
+
+<body class="tp-page festival-page">
+
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+
   <header id="navbar" class="navbar dashboard-nav">
+
     <div class="nav-container">
+
       <div class="nav-logos">
+
         <div class="logo-circle">
-          <img src="images/municipality-logo.png" alt="Municipality of Tukuran" loading="lazy">
+          <img
+            src="images/municipality-logo.png"
+            alt="Municipality of Tukuran"
+            loading="lazy">
         </div>
+
         <div class="logo-circle">
-          <img src="images/tourism-logo.png" alt="Tourism Office" loading="lazy">
+          <img
+            src="images/tourism-logo.png"
+            alt="Tourism Office"
+            loading="lazy">
         </div>
+
       </div>
+
+
       <nav class="nav-menu" id="navMenu">
-        <a href="beach.html#home" class="nav-link">Home</a>
-        <a href="browse-beaches.html" class="nav-link">Beaches</a>
-        <a href="map.html" class="nav-link">Map</a>
+
+        <a href="beach.html#home" class="nav-link">
+          Home
+        </a>
+
+        <a href="browse-beaches.html" class="nav-link">
+          Beaches
+        </a>
+
+        <a href="map.html" class="nav-link">
+          Map
+        </a>
+
+
+        <!-- ABOUT DROPDOWN -->
+
         <div class="nav-dropdown">
-          <button type="button" class="nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
-            About Tukuran <i class="fas fa-chevron-down nav-caret"></i>
+
+          <button
+            type="button"
+            class="nav-dropdown-toggle active"
+            aria-haspopup="true"
+            aria-expanded="false">
+
+            About
+
+            <i class="fas fa-chevron-down nav-caret"></i>
+
           </button>
+
+
           <div class="nav-dropdown-menu">
-            <a href="about-tukuran.html">About Tukuran</a>
-            <a href="history.html">History</a>
-            <a href="tourist-spots.html">Tourist Spots</a>
-            <a href="festivals.html">Festivals</a>
+
+            <a href="history.html">
+              History
+            </a>
+
+            <a href="tourist-spots.html">
+              Tourist Spots
+            </a>
+
+            <a href="festivals.html">
+              Festivals
+            </a>
+
           </div>
+
         </div>
-        <a href="beach.html#contact" class="nav-link">Contact</a>
-        <a href="../Log-in page/login.html" class="nav-link" style="background: linear-gradient(135deg, #1e6b86, #2a9bbf); color: #ffffff !important; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.2);">Login</a>
+
+
+        <!-- LOGIN -->
+
+        <a
+          href="../Log-in page/login.html"
+          class="nav-link"
+          style="
+            background: linear-gradient(135deg, #1e6b86, #2a9bbf);
+            color: #ffffff !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+          ">
+
+          Login
+
+        </a>
+
       </nav>
+
+
       <div class="nav-toggle" id="navToggle">
+
         <i class="fas fa-bars"></i>
+
       </div>
+
     </div>
+
   </header>
 
-  <!-- ========== CONTENT ========== -->
-  <main class="dashboard-main">
-    <div class="container">
-      <div class="page-header">
-        <h1>Festivals</h1>
-        <p>Celebrations that showcase the culture and community spirit of Tukuran.</p>
+
+
+  <!-- =========================================================
+       MAIN
+       ========================================================= -->
+
+  <main>
+
+
+    <!-- =======================================================
+         FESTIVAL HERO
+         ======================================================= -->
+
+    <section class="festival-hero">
+
+      <div class="festival-hero-container">
+
+        <div class="festival-eyebrow">
+          Tukuran, Zamboanga del Sur
+        </div>
+
+
+        <h1>
+          Sakayan
+          <span>Festival</span>
+        </h1>
+
+
+        <p class="festival-hero-description">
+          Celebrating the Culture, Community, and Spirit of Tukuran
+        </p>
+
+
+        <div class="festival-tag">
+
+          <i class="fas fa-star"></i>
+
+          Lihok Tukuranon! Kusog sa Komunidad, Garbo sa Kultura
+
+        </div>
+
       </div>
 
-      <section class="tp-section">
-        <div class="tp-article">
-          <p class="tp-lead">
-            Like many towns in Zamboanga del Sur, Tukuran celebrates its heritage through community
-            festivities held throughout the year. These gatherings bring residents and visitors
-            together for cultural presentations, local food, and shared traditions that reflect the
-            warmth and identity of the municipality.
+
+      <!-- WAVE -->
+
+      <div class="festival-wave">
+
+        <svg
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none">
+
+          <path
+            d="
+              M0,70
+              C180,120 280,10 480,55
+              C690,105 790,20 980,55
+              C1170,90 1260,25 1440,60
+              L1440,120
+              L0,120
+              Z
+            "
+            fill="#f7fbfa">
+          </path>
+
+        </svg>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         INTRO
+         ======================================================= -->
+
+    <section class="festival-intro">
+
+      <div class="festival-intro-inner">
+
+        <h2>
+          The Sakayan Festival of Tukuran
+        </h2>
+
+        <p>
+          The Sakayan Festival is celebrated every April 1 as part of Araw ng Tukuran.
+          The celebration features street dancing, a salo-salo of local food, and sea games including sakayan racing.
+          High school campuses also compete in traditional dance performances, while the Festival Queen adds to the excitement and celebration of the event.
+          Together, these activities bring the people of Tukuran together to celebrate their local traditions and festive spirit.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         FEATURED FESTIVAL
+         ======================================================= -->
+
+    <section class="festival-feature">
+
+      <div class="festival-feature-image">
+      </div>
+
+
+      <div class="festival-feature-content">
+
+        <h2>
+          Feel the Festive Spirit of Tukuran
+        </h2>
+
+
+        <p>
+          Join the fun and excitement as Tukuran celebrates the Sakayan Festival with music,
+          dancing, food, and activities for everyone to enjoy.
+          Experience the energy of the street dancing, cheer for the sakayan racers, and enjoy the colorful performances that fill the celebration.
+        </p>
+
+
+        <p>
+          Whether you come to watch, compete, taste local food, or simply celebrate with the community,
+          Sakayan Festival is a time to enjoy the lively traditions and festive atmosphere of Tukuran.
+        </p>
+
+
+        <div class="festival-accent-line"></div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         FESTIVAL HIGHLIGHTS
+         ======================================================= -->
+
+    <section class="festival-highlights">
+
+      <div class="festival-highlights-header">
+
+        <h2>
+          What makes Sakayan special?
+        </h2>
+
+      </div>
+
+
+      <div class="highlight-grid">
+
+
+        <!-- COMMUNITY -->
+
+        <div class="highlight-card">
+
+          <div class="highlight-icon">
+            <i class="fas fa-users"></i>
+          </div>
+
+          <h3>
+            Community
+          </h3>
+
+          <p>
+            A celebration that brings the community together
+            through shared activities and festive moments.
           </p>
-        </div>
-      </section>
 
-      <section class="tp-section">
-        <h2><i class="fas fa-users"></i> Kinds of Celebrations</h2>
-        <div class="tp-grid">
-          <div class="tp-card">
-            <div class="tp-card-icon"><i class="fas fa-church"></i></div>
-            <h3>Town Fiesta</h3>
-            <p>The annual town celebration honoring the community's patron, featuring a program of
-               local activities and gatherings.</p>
-          </div>
-          <div class="tp-card">
-            <div class="tp-card-icon"><i class="fas fa-music"></i></div>
-            <h3>Cultural Presentations</h3>
-            <p>Street dancing, music, and showcases that highlight local artistry and the town's
-               cultural heritage.</p>
-          </div>
-          <div class="tp-card">
-            <div class="tp-card-icon"><i class="fas fa-seedling"></i></div>
-            <h3>Thanksgiving &amp; Harvest</h3>
-            <p>Community events celebrating the year's blessings, agriculture, and the coastal
-               livelihood of the municipality.</p>
-          </div>
-          <div class="tp-card">
-            <div class="tp-card-icon"><i class="fas fa-handshake"></i></div>
-            <h3>Community Traditions</h3>
-            <p>Local customs and seasonal gatherings that strengthen the bonds among Tukuran's
-               barangays and families.</p>
-          </div>
         </div>
-      </section>
 
-      <section class="tp-section">
-        <div class="tp-note">
-          <i class="fas fa-circle-info"></i>
-          Official festival names, dates, and schedules are announced by the Municipal Tourism
-          Office. For the latest calendar of events, please contact the Tourism Office at
-          tourism@tukuran.gov.ph.
+
+        <!-- CULTURE -->
+
+        <div class="highlight-card">
+
+          <div class="highlight-icon">
+            <i class="fas fa-masks-theater"></i>
+          </div>
+
+          <h3>
+            Culture
+          </h3>
+
+          <p>
+            Cultural expressions and local traditions form an
+            important part of the festival experience.
+          </p>
+
         </div>
-      </section>
+
+
+        <!-- MEMORIES -->
+
+        <div class="highlight-card">
+
+          <div class="highlight-icon">
+            <i class="fas fa-camera-retro"></i>
+          </div>
+
+          <h3>
+            Memories
+          </h3>
+
+          <p>
+            Capture the colors, people, and moments that make
+            the Sakayan Festival memorable.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         PHOTO GALLERY
+         ======================================================= -->
+
+    <section class="festival-gallery-section">
+
+      <div class="festival-gallery-header">
+
+        <div>
+
+          <h2>
+            Moments of Sakayan
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="festival-gallery">
+
+
+        <!-- IMAGE 1 -->
+
+        <div class="gallery-item">
+
+          <img
+            src="images/sakayan-1.jpg"
+            alt="Sakayan Festival celebration"
+            loading="lazy">
+
+          <div class="gallery-overlay">
+
+            <span>
+              Sakayan Festival
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- IMAGE 2 -->
+
+        <div class="gallery-item">
+
+          <img
+            src="images/sakayan-2.jpg"
+            alt="Sakayan Festival activity"
+            loading="lazy">
+
+          <div class="gallery-overlay">
+
+            <span>
+              Festival Activities
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- IMAGE 3 -->
+
+        <div class="gallery-item">
+
+          <img
+            src="images/sakayan-3.jpg"
+            alt="Sakayan Festival community"
+            loading="lazy">
+
+          <div class="gallery-overlay">
+
+            <span>
+              Community Celebration
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- IMAGE 4 -->
+
+        <div class="gallery-item">
+
+          <img
+            src="images/sakayan-4.jpg"
+            alt="Sakayan Festival cultural presentation"
+            loading="lazy">
+
+          <div class="gallery-overlay">
+
+            <span>
+              Cultural Presentation
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- IMAGE 5 -->
+
+        <div class="gallery-item">
+
+          <img
+            src="images/sakayan-5.jpg"
+            alt="Sakayan Festival moments"
+            loading="lazy">
+
+          <div class="gallery-overlay">
+
+            <span>
+              Festival Moments
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===================================================
+             MORE ACTIVITIES CARD
+             =================================================== -->
+
+        <div
+          class="more-activities-card"
+          id="moreActivitiesBtn"
+          role="button"
+          tabindex="0"
+          aria-label="View Mutya ng Tukuran">
+
+          <div class="more-activities-content">
+
+            <div class="more-activities-icon">
+              <i class="fas fa-plus"></i>
+            </div>
+
+
+            <h3>
+              More Activities
+            </h3>
+
+
+            <p>
+              Discover Mutya ng Tukuran
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         MUTYA NG TUKURAN MODAL
+         ======================================================= -->
+
+    <div
+      class="activities-modal"
+      id="activitiesModal"
+      aria-hidden="true">
+
+      <div class="activities-modal-content">
+
+
+        <!-- CLOSE -->
+
+        <button
+          type="button"
+          class="modal-close"
+          id="modalClose"
+          aria-label="Close">
+
+          <i class="fas fa-times"></i>
+
+        </button>
+
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="modal-heading">
+
+          <div class="modal-label">
+
+            <span>Featured Celebration</span>
+
+          </div>
+
+
+          <h2>
+            Mutya ng Tukuran
+          </h2>
+
+
+          <p>
+            A celebration of beauty, confidence, talent, and
+            the vibrant spirit of the people of Tukuran.
+          </p>
+
+
+          <div class="modal-divider"></div>
+
+        </div>
+
+
+
+        <!-- ===================================================
+             FOUR MUTYA PHOTOS
+             =================================================== -->
+
+        <div class="mutya-activities-grid">
+
+
+          <!-- PHOTO 1 -->
+
+          <div class="mutya-activity-card">
+
+            <div class="mutya-activity-image-wrap">
+
+              <img
+                src="images/mutya-1.jpg"
+                alt="Mutya ng Tukuran"
+                class="mutya-activity-image"
+                loading="lazy">
+
+              <div class="mutya-number">
+                01
+              </div>
+
+            </div>
+
+
+            <div class="mutya-activity-info">
+
+              <h3>
+                Mutya ng Tukuran
+              </h3>
+
+              <p>
+                A special celebration showcasing grace,
+                confidence, and the beauty of Tukuran.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PHOTO 2 -->
+
+          <div class="mutya-activity-card">
+
+            <div class="mutya-activity-image-wrap">
+
+              <img
+                src="images/mutya-2.jpg"
+                alt="Mutya ng Tukuran candidates"
+                class="mutya-activity-image"
+                loading="lazy">
+
+              <div class="mutya-number">
+                02
+              </div>
+
+            </div>
+
+
+            <div class="mutya-activity-info">
+
+              <h3>
+                Candidate Presentation
+              </h3>
+
+              <p>
+                Meet the candidates as they proudly represent
+                different communities of Tukuran.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PHOTO 3 -->
+
+          <div class="mutya-activity-card">
+
+            <div class="mutya-activity-image-wrap">
+
+              <img
+                src="images/mutya-3.jpg"
+                alt="Mutya ng Tukuran cultural presentation"
+                class="mutya-activity-image"
+                loading="lazy">
+
+              <div class="mutya-number">
+                03
+              </div>
+
+            </div>
+
+
+            <div class="mutya-activity-info">
+
+              <h3>
+                Cultural Presentation
+              </h3>
+
+              <p>
+                Enjoy performances that highlight local
+                culture, creativity, and tradition.
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- PHOTO 4 -->
+
+          <div class="mutya-activity-card">
+
+            <div class="mutya-activity-image-wrap">
+
+              <img
+                src="images/mutya-4.jpg"
+                alt="Mutya ng Tukuran celebration"
+                class="mutya-activity-image"
+                loading="lazy">
+
+              <div class="mutya-number">
+                04
+              </div>
+
+            </div>
+
+
+            <div class="mutya-activity-info">
+
+              <h3>
+                Festival Celebration
+              </h3>
+
+              <p>
+                Celebrate together and experience the
+                excitement surrounding Mutya ng Tukuran.
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- MODAL FOOTER -->
+
+        <div class="modal-footer-note">
+
+          <i class="fas fa-sparkles"></i>
+
+          Celebrating the talent and spirit of Tukuran
+
+        </div>
+
+      </div>
+
     </div>
+
+
+
+    <!-- =======================================================
+         CLOSING
+         ======================================================= -->
+
+    <section class="festival-closing">
+
+      <div class="festival-closing-inner">
+
+        <h2>
+          Come and experience the celebration.
+        </h2>
+
+
+        <p>
+          Discover the culture, community, and coastal character
+          of Tukuran through its local destinations and
+          celebrations.
+        </p>
+
+      </div>
+
+    </section>
+
   </main>
 
-  <!-- ========== FOOTER ========== -->
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
   <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-logos">
-        <div class="logo-circle footer-circle">
-          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-links">
+
+          <h4>
+            Quick Links
+          </h4>
+
+          <a href="beach.html#home">
+            Home
+          </a>
+
+          <a href="browse-beaches.html">
+            Beaches
+          </a>
+
+          <a href="map.html">
+            Map
+          </a>
+
+          <a href="history.html">
+            About
+          </a>
+
         </div>
-        <div class="logo-circle footer-circle">
-          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
+
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-links">
+
+          <h4>
+            Contact
+          </h4>
+
+
+          <a href="tel:+639271180775">
+
+            <i class="fas fa-phone-alt"></i>
+
+            0927 118 0775
+
+          </a>
+
+
+          <a href="mailto:tukurantourismoffice@gmail.com">
+
+            <i class="fas fa-envelope"></i>
+
+            tukurantourismoffice@gmail.com
+
+          </a>
+
+
+          <a
+            href="https://www.facebook.com/photo/?fbid=122094425097250794&set=a.122094418995250794"
+            target="_blank"
+            rel="noopener">
+
+            <i class="fab fa-facebook"></i>
+
+            Geh Tukuran, Gibalik-balikan
+
+          </a>
+
         </div>
-        <div class="logo-circle footer-circle">
-          <img src="images/system-logo.png" alt="System" loading="lazy">
-        </div>
+
       </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <a href="beach.html#home">Home</a>
-        <a href="browse-beaches.html">Beaches</a>
-        <a href="map.html">Map</a>
-        <a href="about-tukuran.html">About Tukuran</a>
-        <a href="beach.html#contact">Contact</a>
+
+
+      <div class="footer-bottom">
+
+        © 2026 Tukuran Beach Management and Reservation System.
+
+        All Rights Reserved.
+
       </div>
-      <div class="footer-links">
-        <h4>About Tukuran</h4>
-        <a href="about-tukuran.html">About Tukuran</a>
-        <a href="history.html">History</a>
-        <a href="tourist-spots.html">Tourist Spots</a>
-        <a href="festivals.html">Festivals</a>
-      </div>
-      <div class="footer-social">
-        <h4>Tourism Contact</h4>
-        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-      </div>
+
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Tukuran Beach Management and Reservation System. All Rights Reserved.</p>
-    </div>
+
   </footer>
 
-  <!-- ========== SCRIPTS ========== -->
+
+
+  <!-- =========================================================
+       NAVIGATION SCRIPT
+       ========================================================= -->
+
   <script>
+
     (function () {
-      var navbar = document.getElementById('navbar');
-      var navToggle = document.getElementById('navToggle');
-      var navMenu = document.getElementById('navMenu');
+
+      var navbar =
+        document.getElementById('navbar');
+
+      var navToggle =
+        document.getElementById('navToggle');
+
+      var navMenu =
+        document.getElementById('navMenu');
+
+
+      /* Scroll effect */
+
       window.addEventListener('scroll', function () {
+
         if (!navbar) return;
-        if (window.scrollY > 80) navbar.classList.add('scrolled');
-        else navbar.classList.remove('scrolled');
+
+        if (window.scrollY > 80) {
+
+          navbar.classList.add('scrolled');
+
+        } else {
+
+          navbar.classList.remove('scrolled');
+
+        }
+
       });
+
+
+      /* Mobile navigation */
+
       if (navToggle && navMenu) {
+
         navToggle.addEventListener('click', function (e) {
+
           e.stopPropagation();
+
           navMenu.classList.toggle('open');
-          var icon = navToggle.querySelector('i');
-          if (icon) icon.className = navMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
-        });
-        document.addEventListener('click', function (e) {
-          if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-            navMenu.classList.remove('open');
-            var icon = navToggle.querySelector('i');
-            if (icon) icon.className = 'fas fa-bars';
+
+
+          var icon =
+            navToggle.querySelector('i');
+
+
+          if (icon) {
+
+            icon.className =
+              navMenu.classList.contains('open')
+                ? 'fas fa-times'
+                : 'fas fa-bars';
+
           }
+
         });
+
+
+        document.addEventListener('click', function (e) {
+
+          if (
+            navMenu.classList.contains('open') &&
+            !navMenu.contains(e.target) &&
+            !navToggle.contains(e.target)
+          ) {
+
+            navMenu.classList.remove('open');
+
+
+            var icon =
+              navToggle.querySelector('i');
+
+
+            if (icon) {
+
+              icon.className = 'fas fa-bars';
+
+            }
+
+          }
+
+        });
+
       }
+
     })();
+
+
+
+    /* =========================================================
+       MORE ACTIVITIES / MUTYA MODAL
+       ========================================================= */
+
+    (function () {
+
+      const moreActivitiesBtn =
+        document.getElementById('moreActivitiesBtn');
+
+      const activitiesModal =
+        document.getElementById('activitiesModal');
+
+      const modalClose =
+        document.getElementById('modalClose');
+
+
+      if (
+        !moreActivitiesBtn ||
+        !activitiesModal ||
+        !modalClose
+      ) {
+
+        return;
+
+      }
+
+
+      /* OPEN MODAL */
+
+      function openModal() {
+
+        activitiesModal.classList.add('show');
+
+        activitiesModal.setAttribute(
+          'aria-hidden',
+          'false'
+        );
+
+        document.body.style.overflow = 'hidden';
+
+      }
+
+
+      /* CLOSE MODAL */
+
+      function closeModal() {
+
+        activitiesModal.classList.remove('show');
+
+        activitiesModal.setAttribute(
+          'aria-hidden',
+          'true'
+        );
+
+        document.body.style.overflow = '';
+
+      }
+
+
+      /* CLICK MORE ACTIVITIES */
+
+      moreActivitiesBtn.addEventListener(
+        'click',
+        openModal
+      );
+
+
+      /* KEYBOARD ACCESS */
+
+      moreActivitiesBtn.addEventListener(
+        'keydown',
+        function (event) {
+
+          if (
+            event.key === 'Enter' ||
+            event.key === ' '
+          ) {
+
+            event.preventDefault();
+
+            openModal();
+
+          }
+
+        }
+      );
+
+
+      /* CLOSE BUTTON */
+
+      modalClose.addEventListener(
+        'click',
+        closeModal
+      );
+
+
+      /* CLICK OUTSIDE MODAL */
+
+      activitiesModal.addEventListener(
+        'click',
+        function (event) {
+
+          if (
+            event.target === activitiesModal
+          ) {
+
+            closeModal();
+
+          }
+
+        }
+      );
+
+
+      /* ESCAPE KEY */
+
+      document.addEventListener(
+        'keydown',
+        function (event) {
+
+          if (
+            event.key === 'Escape' &&
+            activitiesModal.classList.contains('show')
+          ) {
+
+            closeModal();
+
+          }
+
+        }
+      );
+
+    })();
+
   </script>
+
+
+
+  <!-- DO NOT REMOVE — EXISTING DROPDOWN FUNCTIONALITY -->
+
   <script src="nav-dropdown.js"></script>
+
 </body>
+
 </html>
+```

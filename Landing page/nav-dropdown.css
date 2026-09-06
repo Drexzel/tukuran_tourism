@@ -1,15 +1,3 @@
-/* ============================================================
-   ABOUT TUKURAN — NAVIGATION DROPDOWN
-   ------------------------------------------------------------
-   A small, self-contained presentation + interaction layer for the
-   "About Tukuran" nav dropdown. Loaded after the page's main stylesheet
-   (beach.css or style.css) on every page that carries the dropdown, so it
-   reads identically across the whole landing site. It only adds styles for
-   the new .nav-dropdown markup — no existing nav rule, structure, or
-   behaviour is changed. The toggle is a <button> styled to match .nav-link
-   exactly, so it never collides with the existing .nav-link JS handlers.
-   ============================================================ */
-
 .nav-dropdown {
   position: relative;
   display: inline-flex;

@@ -15,22 +15,9 @@
 }
 
 .nav-logos {
-  gap: 14px;
-}
-
-.navbar .logo-circle {
-  width: 46px;
-  height: 46px;
-  border: 2px solid rgba(27, 107, 125, 0.14);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.navbar .logo-circle img {
-  padding: 7px;
-}
-
-.navbar .logo-circle:hover {
-  transform: scale(1.04);
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 /* ================= HERO ================= */
