@@ -1160,10 +1160,6 @@ a {
   .nav-logos {
     gap: 6px;
   }
-  .logo-circle {
-    width: 34px;
-    height: 34px;
-  }
   .logo-circle img {
     padding: 4px;
   }
@@ -1187,3 +1183,4 @@ a {
     font-size: 1.1rem;
   }
 }
+
