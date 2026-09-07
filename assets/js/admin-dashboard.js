@@ -125,11 +125,19 @@ function buildChart(canvasId, existingInstance, labels, values, chartType, label
                 legend: {
                     display: isPie,
                     position: 'bottom',
-                    labels: { boxWidth: 12, boxHeight: 12, padding: 12, font: { size: 11 } }
+                    labels: {
+                        boxWidth: 12,
+                        boxHeight: 12,
+                        padding: 12,
+                        font: { size: 11 }
+                    }
                 }
             },
             scales: isPie ? {} : {
-                y: { beginAtZero: true, ticks: { precision: 0 } }
+                y: {
+                    beginAtZero: true,
+                    ticks: { precision: 0 }
+                }
             }
         }
     });
@@ -139,11 +147,14 @@ function buildChart(canvasId, existingInstance, labels, values, chartType, label
 // ===== MOST VISITED BEACHES (RANKING) =====
 // ========================================
 // Horizontal ranking bar chart at the top of the dashboard. Shows every
-// participating (Active) beach, ranked highest-to-lowest by total visitors
-// (Approved/Confirmed reservations + walk-in guests), with each beach's total
-// drawn at the end of its bar. Refreshes on the same interval as the rest of
-// the dashboard, so it updates automatically whenever reservation/walk-in
-// data changes.
+// participating (Active) beach, ranked highest-to-lowest by visitor count
+// based on the selected Trend Period (Monthly / Yearly).
+//
+// NEW:
+// - rankingPeriodSelect controls the ranking period.
+// - Monthly / Yearly is sent to dashboard-charts.php.
+// - Existing ranking chart functionality remains unchanged.
+
 
 // Inline Chart.js plugin that writes each bar's value at its end. Scoped to
 // the ranking chart only, so no other chart is affected, and it avoids
@@ -153,16 +164,19 @@ const rankingValueLabels = {
     afterDatasetsDraw(chart) {
         const meta = chart.getDatasetMeta(0);
         if (!meta || !meta.data) return;
+
         const ctx = chart.ctx;
         ctx.save();
         ctx.font = '600 12px Inter, sans-serif';
         ctx.fillStyle = '#0a2e3f';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
+
         meta.data.forEach((bar, i) => {
             const value = chart.data.datasets[0].data[i];
             ctx.fillText(formatNumber(value), bar.x + 8, bar.y);
         });
+
         ctx.restore();
     }
 };
@@ -179,7 +193,8 @@ function buildRankingChart(labels, values) {
     // height grows with the number of beaches, but the card caps the visible
     // height and scrolls internally (see .ranking-card / .ranking-canvas-wrap).
     if (canvas.parentElement) {
-        canvas.parentElement.style.height = Math.max(180, labels.length * 30 + 30) + 'px';
+        canvas.parentElement.style.height =
+            Math.max(180, labels.length * 30 + 30) + 'px';
     }
 
     rankingChartInstance = new Chart(canvas.getContext('2d'), {
@@ -206,21 +221,48 @@ function buildRankingChart(labels, values) {
                 legend: { display: false },
                 tooltip: {
                     callbacks: {
-                        label: (ctx) => ' ' + formatNumber(ctx.parsed.x) + ' visitors'
+                        label: (ctx) =>
+                            ' ' + formatNumber(ctx.parsed.x) + ' visitors'
                     }
                 }
             },
             scales: {
-                x: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: 'rgba(0,0,0,0.05)' } },
-                y: { grid: { display: false } }
+                x: {
+                    beginAtZero: true,
+                    ticks: { precision: 0 },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                y: {
+                    grid: { display: false }
+                }
             }
         },
         plugins: [rankingValueLabels]
     });
 }
 
+
+// ========================================
+// ===== REFRESH BEACH RANKING =====
+// ========================================
+
 async function refreshBeachRanking() {
-    const result = await fetchAPI('dashboard-charts.php?type=beach-ranking');
+
+    // NEW:
+    // Get the selected Trend Period specifically for Most Visited Beaches.
+    // This is separate from trendPeriodSelect used by Analytics Overview.
+    const rankingPeriodSelect =
+        document.getElementById('rankingPeriodSelect');
+
+    const rankingPeriod =
+        rankingPeriodSelect ? rankingPeriodSelect.value : 'monthly';
+
+    // NEW:
+    // Send the selected period to the backend.
+    const result = await fetchAPI(
+        'dashboard-charts.php?type=beach-ranking&period=' +
+        encodeURIComponent(rankingPeriod)
+    );
 
     const totalEl = document.getElementById('totalParticipatingBeaches');
     const emptyEl = document.getElementById('rankingEmpty');
@@ -230,39 +272,87 @@ async function refreshBeachRanking() {
 
     const labels = result.data.labels || [];
     const values = result.data.values || [];
-    const totalBeaches = (result.data.total_beaches != null) ? result.data.total_beaches : labels.length;
+    const totalBeaches =
+        (result.data.total_beaches != null)
+            ? result.data.total_beaches
+            : labels.length;
 
-    if (totalEl) totalEl.textContent = formatNumber(totalBeaches);
+    if (totalEl) {
+        totalEl.textContent = formatNumber(totalBeaches);
+    }
 
     // Empty state: no participating (Active) beaches at all.
     if (labels.length === 0) {
-        if (rankingChartInstance) { rankingChartInstance.destroy(); rankingChartInstance = null; }
+
+        if (rankingChartInstance) {
+            rankingChartInstance.destroy();
+            rankingChartInstance = null;
+        }
+
         if (canvas) {
             canvas.style.display = 'none';
-            if (canvas.parentElement) canvas.parentElement.style.height = '';
+
+            if (canvas.parentElement) {
+                canvas.parentElement.style.height = '';
+            }
         }
-        if (emptyEl) emptyEl.style.display = 'block';
+
+        if (emptyEl) {
+            emptyEl.style.display = 'block';
+        }
+
         return;
     }
 
-    if (canvas) canvas.style.display = 'block';
-    if (emptyEl) emptyEl.style.display = 'none';
+    if (canvas) {
+        canvas.style.display = 'block';
+    }
+
+    if (emptyEl) {
+        emptyEl.style.display = 'none';
+    }
+
     buildRankingChart(labels, values);
 }
+
+
+// ========================================
+// ===== CHART 1 =====
+// ========================================
 
 async function refreshChart1() {
     const select = document.getElementById('dataCategorySelect');
     const type = select ? select.value : 'gender-distribution';
 
     const titleEl = document.getElementById('chart1Title');
-    if (titleEl) titleEl.textContent = CHART_TITLES[type] || 'Analytics';
 
-    const result = await fetchAPI('dashboard-charts.php?type=' + encodeURIComponent(type));
+    if (titleEl) {
+        titleEl.textContent = CHART_TITLES[type] || 'Analytics';
+    }
+
+    const result = await fetchAPI(
+        'dashboard-charts.php?type=' + encodeURIComponent(type)
+    );
+
     if (!result.success || !result.data) return;
 
-    const chartJsType = (type === 'gender-distribution') ? 'doughnut' : 'bar';
-    chart1Instance = buildChart('chart1', chart1Instance, result.data.labels, result.data.values, chartJsType, CHART_TITLES[type] || 'Visitors');
+    const chartJsType =
+        (type === 'gender-distribution') ? 'doughnut' : 'bar';
+
+    chart1Instance = buildChart(
+        'chart1',
+        chart1Instance,
+        result.data.labels,
+        result.data.values,
+        chartJsType,
+        CHART_TITLES[type] || 'Visitors'
+    );
 }
+
+
+// ========================================
+// ===== CHART 3 =====
+// ========================================
 
 async function refreshChart3() {
     // Trend Period (Monthly / Yearly) is kept; the Trend Chart Type control
@@ -271,17 +361,43 @@ async function refreshChart3() {
     const period = periodSelect ? periodSelect.value : 'monthly';
 
     const titleEl = document.getElementById('chart3Title');
-    if (titleEl) titleEl.textContent = period === 'yearly' ? 'Yearly Visitor Trends' : 'Monthly Visitor Trends';
 
-    const result = await fetchAPI('dashboard-charts.php?trend=' + encodeURIComponent(period));
+    if (titleEl) {
+        titleEl.textContent =
+            period === 'yearly'
+                ? 'Yearly Visitor Trends'
+                : 'Monthly Visitor Trends';
+    }
+
+    const result = await fetchAPI(
+        'dashboard-charts.php?trend=' + encodeURIComponent(period)
+    );
+
     if (!result.success || !result.data) return;
 
-    chart3Instance = buildChart('chart3', chart3Instance, result.data.labels, result.data.values, 'line', 'Visitors');
+    chart3Instance = buildChart(
+        'chart3',
+        chart3Instance,
+        result.data.labels,
+        result.data.values,
+        'line',
+        'Visitors'
+    );
 }
 
+
+// ========================================
+// ===== REFRESH ALL CHARTS =====
+// ========================================
+
 async function refreshAllCharts() {
-    await Promise.all([refreshBeachRanking(), refreshChart1(), refreshChart3()]);
+    await Promise.all([
+        refreshBeachRanking(),
+        refreshChart1(),
+        refreshChart3()
+    ]);
 }
+
 
 // ========================================
 // ===== FULL REFRESH + AUTO-REFRESH =====
@@ -298,23 +414,54 @@ let autoRefreshInterval = null;
 
 function startAutoRefresh() {
     if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+
     // Poll every 30 seconds so newly added reservations/walk-ins/beaches
     // show up automatically without the user refreshing the page.
     autoRefreshInterval = setInterval(refreshDashboard, 30000);
 }
 
+
+// ========================================
+// ===== INIT =====
+// ========================================
+
 document.addEventListener('DOMContentLoaded', function() {
+
     refreshDashboard();
     startAutoRefresh();
 
     // Data Category (replaces the old Chart Type control) drives the first
     // analytics chart.
-    const dataCategorySelect = document.getElementById('dataCategorySelect');
-    if (dataCategorySelect) dataCategorySelect.addEventListener('change', refreshChart1);
+    const dataCategorySelect =
+        document.getElementById('dataCategorySelect');
+
+    if (dataCategorySelect) {
+        dataCategorySelect.addEventListener('change', refreshChart1);
+    }
+
 
     // Trend Period (Monthly / Yearly) updates the trend chart in real time.
-    const trendPeriodSelect = document.getElementById('trendPeriodSelect');
-    if (trendPeriodSelect) trendPeriodSelect.addEventListener('change', refreshChart3);
+    const trendPeriodSelect =
+        document.getElementById('trendPeriodSelect');
+
+    if (trendPeriodSelect) {
+        trendPeriodSelect.addEventListener('change', refreshChart3);
+    }
+
+
+    // NEW:
+    // Separate Trend Period for Most Visited Beaches.
+    // This does NOT affect the Analytics Overview trend chart.
+    const rankingPeriodSelect =
+        document.getElementById('rankingPeriodSelect');
+
+    if (rankingPeriodSelect) {
+        rankingPeriodSelect.addEventListener(
+            'change',
+            refreshBeachRanking
+        );
+    }
+
 
     // Refresh immediately when the tab regains focus, in addition to polling.
     window.addEventListener('focus', refreshDashboard);

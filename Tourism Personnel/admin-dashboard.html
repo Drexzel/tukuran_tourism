@@ -91,20 +91,24 @@
   </div>
 
     <div class="container">
-      <!-- Most Visited Beaches (Horizontal Ranking Bar Chart) -->
-      <!-- Moved to the top of the dashboard. Ranks every participating
-           (Active) beach from highest to lowest total visitors, computed in
-           real time from Approved (Confirmed) reservations + walk-in guests.
-           The stat-card data/endpoints (dashboard-stats.php) are untouched -
-           only the top card layout was replaced by this ranking. -->
-      <section class="ranking-section">
-        <div class="ranking-header">
-          <h2>Most Visited Beaches</h2>
-          <div class="ranking-total">
-            <span class="ranking-total-label">Total Participating Beaches</span>
-            <span class="ranking-total-value" id="totalParticipatingBeaches">--</span>
-          </div>
-        </div>
+      <div class="ranking-header">
+  <h2>Most Visited Beaches</h2>
+
+  <div class="ranking-controls">
+    <div class="chart-dropdown">
+      <label for="rankingPeriodSelect">Trend Period:</label>
+      <select id="rankingPeriodSelect" class="form-control">
+        <option value="monthly" selected>Monthly</option>
+        <option value="yearly">Yearly</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="ranking-total">
+    <span class="ranking-total-label">Total Participating Beaches</span>
+    <span class="ranking-total-value" id="totalParticipatingBeaches">--</span>
+  </div>
+</div>
         <div class="chart-card glass ranking-card">
           <div class="ranking-canvas-wrap">
             <canvas id="rankingChart"></canvas>
