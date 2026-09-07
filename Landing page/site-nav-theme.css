@@ -51,10 +51,10 @@
 
 /* Logo circles stay white (logos read best on white) with a light rim
    so they sit cleanly on the teal bar. */
-.navbar .logo-circle {
-  background: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+.nav-logos {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 /* Links + dropdown toggle — light on teal. */

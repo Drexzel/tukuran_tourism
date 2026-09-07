@@ -1,25 +1,3 @@
-/* ============================================================
-   LANDING PAGE — UI ENHANCEMENT LAYER
-   ------------------------------------------------------------
-   Loaded LAST, after beach.css and landing-polish.css. Purely
-   visual: it restyles the navigation into a cohesive turquoise
-   glass bar, turns the static hero into a full-screen fading
-   photo slideshow, and presents the "Geh! TUKURAN Gibalik-
-   balikan!" slogan with a turquoise-to-teal gradient.
-
-   No IDs, markup structure, workflow, or JS behaviour required
-   by the system is changed — every rule targets existing or
-   additive presentational classes only.
-
-   Brand palette (kept consistent with the existing site):
-     --tk-teal-deep : #0b4250   deep teal (navbar base)
-     --tk-teal      : #114e5e / #1a6b7a
-     --tk-turq      : #2b8a9e   primary turquoise
-     --tk-turq-bright: #34c4d6  bright turquoise accent
-     --tk-aqua      : #7fe9dd   light aqua highlight
-     --tk-aqua-soft : #cfeaf2   soft aqua text
-   ============================================================ */
-
 :root {
   --tk-teal-deep: #0b4250;
   --tk-teal: #114e5e;
@@ -50,12 +28,44 @@
   box-shadow: 0 8px 32px rgba(6, 40, 52, 0.34);
 }
 
-/* Logo circles stay white (the logos read best on white) but pick up
-   a lighter rim so they sit cleanly on the teal glass. */
-.navbar .logo-circle {
-  background: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+/* ============================================================
+   NAVBAR LOGOS — SAME SIZE AND SAME POSITION ON ALL PAGES
+   ============================================================ */
+
+.nav-logos {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-left: -15px;
+}
+
+/* Same logo container on every page */
+.nav-logos .logo-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Same actual logo dimensions */
+.nav-logos .logo-circle img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+/* Adjust Tukuran logo visual size */
+.nav-logos .logo-circle:nth-child(2) img {
+    transform: scale(1.35);
 }
 
 /* Links: light on teal, with a soft translucent highlight. */

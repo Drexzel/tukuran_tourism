@@ -1,160 +1,2047 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>History · Tukuran Tourism</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <title>About Municipality of Tukuran · Tukuran Tourism</title>
+
+  <!-- ==========================================================
+       FONT AWESOME
+       ========================================================== -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- ==========================================================
+       GOOGLE FONTS
+       ========================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- ==========================================================
+       EXISTING CSS
+       ========================================================== -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="nav-dropdown.css">
   <link rel="stylesheet" href="tourism-pages.css">
   <link rel="stylesheet" href="site-nav-theme.css">
+
+
+  <!-- ==========================================================
+       ABOUT + HISTORY PAGE DESIGN
+       ========================================================== -->
+  <style>
+
+    /* ==========================================================
+       PAGE BACKGROUND
+       ========================================================== */
+
+    .about-page .dashboard-main {
+      background:
+        radial-gradient(
+          circle at 5% 15%,
+          rgba(64, 181, 205, 0.10),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 95% 45%,
+          rgba(244, 193, 91, 0.10),
+          transparent 25%
+        ),
+        linear-gradient(
+          180deg,
+          #f7fcfd 0%,
+          #ffffff 55%,
+          #f8fbf8 100%
+        );
+    }
+
+
+    /* ==========================================================
+       ABOUT HERO
+       ========================================================== */
+
+    .about-page .about-hero {
+      text-align: center;
+      padding: 1.4rem 0 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-page .about-hero::before {
+      content: "〰  ✦  〰";
+      display: block;
+      color: #2a9bbf;
+      font-size: 1.2rem;
+      letter-spacing: 5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-page .about-hero h1 {
+      margin: 0 0 0.55rem;
+      color: #103f52;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+    }
+
+    .about-page .about-hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #607883;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+
+    /* ==========================================================
+       SLIDESHOW
+       ========================================================== */
+
+    .about-page .about-slideshow {
+      position: relative;
+      width: 100%;
+      max-width: 1050px;
+      height: 430px;
+      margin: 0 auto 2.5rem;
+      overflow: hidden;
+      border-radius: 22px;
+
+      background: #dceff4;
+
+      border: 3px solid #ffffff;
+
+      box-shadow:
+        0 15px 35px rgba(22, 91, 109, 0.16);
+    }
+
+    .about-page .about-slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .about-page .about-slide.active {
+      display: block;
+      animation: slideFade 0.8s ease;
+    }
+
+    .about-page .about-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    /* ==========================================================
+       SLIDE CAPTION
+       ========================================================== */
+
+    .about-page .slide-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      padding: 3rem 2rem 1.5rem;
+
+      color: #ffffff;
+      text-align: left;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.72),
+          rgba(0, 0, 0, 0)
+        );
+    }
+
+    .about-page .slide-caption h3 {
+      margin: 0 0 0.3rem;
+      font-size: 1.5rem;
+      color: #ffffff;
+    }
+
+    .about-page .slide-caption p {
+      margin: 0;
+      color: #f1f7f9;
+      font-size: 0.95rem;
+    }
+
+
+    /* ==========================================================
+       SLIDE BUTTONS
+       ========================================================== */
+
+    .about-page .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 46px;
+      height: 46px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.88);
+      color: #15566a;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      font-size: 1.1rem;
+
+      box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+
+      transition: all 0.25s ease;
+
+      z-index: 5;
+    }
+
+    .about-page .slide-btn:hover {
+      background: #ffffff;
+      transform: translateY(-50%) scale(1.06);
+    }
+
+    .about-page .slide-prev {
+      left: 18px;
+    }
+
+    .about-page .slide-next {
+      right: 18px;
+    }
+
+
+    /* ==========================================================
+       SLIDE DOTS
+       ========================================================== */
+
+    .about-page .slide-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 15px;
+      transform: translateX(-50%);
+
+      display: flex;
+      gap: 8px;
+
+      z-index: 6;
+    }
+
+    .about-page .slide-dot {
+      width: 9px;
+      height: 9px;
+
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.55);
+
+      cursor: pointer;
+
+      transition: all 0.25s ease;
+    }
+
+    .about-page .slide-dot.active {
+      width: 25px;
+      border-radius: 10px;
+      background: #ffffff;
+    }
+
+
+    /* ==========================================================
+       ABOUT DESCRIPTION
+       ========================================================== */
+
+    .about-page .about-description {
+      position: relative;
+
+      max-width: 100%;
+
+      margin: 0 auto 2rem;
+
+      padding: 1.8rem 2.2rem;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fffdf6,
+          #ffffff
+        );
+
+      border-radius: 20px;
+
+      border: 1px solid rgba(224, 192, 116, 0.20);
+
+      box-shadow:
+        0 8px 25px rgba(80, 70, 40, 0.08);
+
+      overflow: hidden;
+    }
+
+    .about-page .about-description::after {
+      content: "☀";
+
+      position: absolute;
+
+      right: 25px;
+      bottom: -35px;
+
+      font-size: 7rem;
+
+      color: rgba(240, 188, 78, 0.10);
+
+      pointer-events: none;
+    }
+
+    .about-page .about-description h2 {
+      position: relative;
+      z-index: 1;
+
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+
+      color: #15546a;
+
+      font-family: "Playfair Display", serif;
+    }
+
+    .about-page .about-description h2 i {
+      color: #23849d;
+    }
+
+    .about-page .about-description p {
+      position: relative;
+      z-index: 1;
+
+      margin: 0;
+
+      color: #566b73;
+
+      line-height: 1.8;
+    }
+
+
+    /* ==========================================================
+       SECTION HEADINGS
+       ========================================================== */
+
+    .about-page .tp-section > h2 {
+      color: #15546a;
+      font-family: "Playfair Display", serif;
+    }
+
+    .about-page .tp-section > h2 i {
+      color: #23849d;
+    }
+
+
+    /* ==========================================================
+       MUNICIPALITY AT A GLANCE
+       ========================================================== */
+
+    .about-page .tp-grid .tp-card {
+      position: relative;
+      overflow: hidden;
+
+      background: #ffffff;
+
+      border-radius: 16px;
+
+      border: 1px solid rgba(26, 108, 130, 0.08);
+
+      box-shadow:
+        0 7px 22px rgba(30, 82, 97, 0.07);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .about-page .tp-grid .tp-card:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        0 12px 28px rgba(30, 82, 97, 0.11);
+    }
+
+
+    /* Colored bottom accents */
+
+    .about-page .tp-grid .tp-card::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 7px;
+
+      background: #8dd5d2;
+    }
+
+    .about-page .tp-grid .tp-card:nth-child(2)::after {
+      background: #8cccec;
+    }
+
+    .about-page .tp-grid .tp-card:nth-child(3)::after {
+      background: #f4c76e;
+    }
+
+    .about-page .tp-grid .tp-card:nth-child(4)::after {
+      background: #a8cf82;
+    }
+
+
+    /* Colored card icons */
+
+    .about-page .tp-grid .tp-card:nth-child(1) .tp-card-icon {
+      background: #d8f1ed;
+      color: #287f80;
+    }
+
+    .about-page .tp-grid .tp-card:nth-child(2) .tp-card-icon {
+      background: #d9effa;
+      color: #22799b;
+    }
+
+    .about-page .tp-grid .tp-card:nth-child(3) .tp-card-icon {
+      background: #fff0cf;
+      color: #a87520;
+    }
+
+    .about-page .tp-grid .tp-card:nth-child(4) .tp-card-icon {
+      background: #e4f1d8;
+      color: #608c40;
+    }
+
+
+    /* ==========================================================
+       TOURISM AT A GLANCE
+       ========================================================== */
+
+    .about-page .tp-stats {
+      background:
+        linear-gradient(
+          135deg,
+          #e1f5f5,
+          #eefafb
+        );
+
+      border: 1px solid rgba(43, 157, 176, 0.12);
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 8px 25px rgba(22, 89, 104, 0.07);
+    }
+
+    .about-page .tp-stat-value {
+      color: #12627d;
+    }
+
+
+    /* ==========================================================
+       HISTORY SECTION
+       ========================================================== */
+
+    .about-page .history-wrapper {
+      position: relative;
+
+      max-width: 1000px;
+
+      margin: 0 auto;
+
+      padding: 2.2rem;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f7fcfd 55%,
+          #fffaf0 100%
+        );
+
+      border: 1px solid rgba(31, 126, 148, 0.10);
+
+      box-shadow:
+        0 12px 32px rgba(31, 82, 97, 0.08);
+
+      overflow: hidden;
+    }
+
+
+    /* Decorative circles */
+
+    .about-page .history-wrapper::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background: rgba(56, 176, 199, 0.07);
+
+      top: -80px;
+      right: -60px;
+
+      pointer-events: none;
+    }
+
+    .about-page .history-wrapper::after {
+      content: "";
+
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+
+      border-radius: 50%;
+
+      background: rgba(244, 199, 110, 0.08);
+
+      bottom: -75px;
+      left: -55px;
+
+      pointer-events: none;
+    }
+
+
+    /* History introduction */
+
+    .about-page .history-intro {
+      position: relative;
+
+      z-index: 2;
+
+      text-align: center;
+
+      max-width: 760px;
+
+      margin: 0 auto 2.2rem;
+    }
+
+    .about-page .history-intro-icon {
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 1rem;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #d9f1f3,
+          #edf9fa
+        );
+
+      color: #16758c;
+
+      font-size: 1.35rem;
+
+      box-shadow:
+        0 6px 18px rgba(24, 115, 135, 0.10);
+    }
+
+    .about-page .history-intro h3 {
+      margin: 0 0 0.55rem;
+
+      color: #174f62;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 1.65rem;
+    }
+
+    .about-page .history-intro p {
+      margin: 0;
+
+      color: #687b82;
+
+      line-height: 1.8;
+
+      font-size: 0.98rem;
+    }
+
+
+    /* ==========================================================
+       HISTORY TIMELINE
+       ========================================================== */
+
+    .about-page .history-timeline {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 850px;
+
+      margin: 0 auto;
+    }
+
+
+    /* Vertical timeline line */
+
+    .about-page .history-timeline::before {
+      content: "";
+
+      position: absolute;
+
+      top: 10px;
+      bottom: 10px;
+
+      left: 28px;
+
+      width: 3px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #8ed5d7,
+          #56aeca,
+          #f0c86d
+        );
+
+      border-radius: 10px;
+    }
+
+
+    /* History item */
+
+    .about-page .history-item {
+      position: relative;
+
+      display: grid;
+
+      grid-template-columns: 58px 1fr;
+
+      gap: 1.2rem;
+
+      margin-bottom: 1.4rem;
+    }
+
+    .about-page .history-item:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /* Timeline icon */
+
+    .about-page .history-marker {
+      position: relative;
+
+      width: 58px;
+      height: 58px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #ffffff;
+
+      color: #17758b;
+
+      border: 4px solid #dff2f3;
+
+      box-shadow:
+        0 5px 16px rgba(32, 91, 105, 0.10);
+
+      z-index: 3;
+    }
+
+
+    /* Different marker colors */
+
+    .about-page .history-item:nth-child(2) .history-marker {
+      color: #24799b;
+      border-color: #d9eef8;
+    }
+
+    .about-page .history-item:nth-child(3) .history-marker {
+      color: #ae7b25;
+      border-color: #fff0d0;
+    }
+
+
+    /* History card */
+
+    .about-page .history-card {
+      position: relative;
+
+      padding: 1.35rem 1.5rem;
+
+      background: rgba(255, 255, 255, 0.90);
+
+      border-radius: 17px;
+
+      border: 1px solid rgba(27, 111, 132, 0.09);
+
+      box-shadow:
+        0 6px 20px rgba(33, 77, 90, 0.06);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .about-page .history-card:hover {
+      transform: translateX(4px);
+
+      box-shadow:
+        0 10px 25px rgba(33, 77, 90, 0.10);
+    }
+
+
+    /* Small top accent */
+
+    .about-page .history-card::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 65px;
+      height: 4px;
+
+      border-radius: 17px 0 8px 0;
+
+      background: #6bc5ca;
+    }
+
+    .about-page .history-item:nth-child(2) .history-card::before {
+      background: #65afd0;
+    }
+
+    .about-page .history-item:nth-child(3) .history-card::before {
+      background: #e5b957;
+    }
+
+
+    .about-page .history-card h3 {
+      margin: 0 0 0.55rem;
+
+      color: #20596b;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 1.18rem;
+    }
+
+    .about-page .history-card p {
+      margin: 0;
+
+      color: #5e7178;
+
+      line-height: 1.8;
+
+      font-size: 0.96rem;
+    }
+
+
+    /* ==========================================================
+       HISTORY HIGHLIGHT
+       ========================================================== */
+
+    .about-page .history-highlight {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 850px;
+
+      margin: 1.8rem auto 0;
+
+      padding: 1.2rem 1.4rem;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 1rem;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e8f7f7,
+          #f5fbfa
+        );
+
+      border: 1px solid rgba(49, 150, 163, 0.10);
+    }
+
+    .about-page .history-highlight-icon {
+      flex-shrink: 0;
+
+      width: 43px;
+      height: 43px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #ffffff;
+
+      color: #20849a;
+
+      box-shadow:
+        0 4px 12px rgba(31, 104, 120, 0.10);
+    }
+
+    .about-page .history-highlight p {
+      margin: 0;
+
+      color: #526b73;
+
+      line-height: 1.7;
+
+      font-size: 0.92rem;
+    }
+
+
+    /* ==========================================================
+       FOOTER
+       ========================================================== */
+
+    .about-page .footer {
+      background:
+        linear-gradient(
+          135deg,
+          #062f3d,
+          #07576a
+        );
+    }
+
+
+    /* ==========================================================
+       ANIMATION
+       ========================================================== */
+
+    @keyframes slideFade {
+      from {
+        opacity: 0.35;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+
+    /* ==========================================================
+       MOBILE RESPONSIVE
+       ========================================================== */
+
+    @media (max-width: 768px) {
+
+      .about-page .about-slideshow {
+        height: 300px;
+        border-radius: 16px;
+      }
+
+      .about-page .slide-caption {
+        padding: 2.5rem 1.2rem 1rem;
+      }
+
+      .about-page .slide-caption h3 {
+        font-size: 1.15rem;
+      }
+
+      .about-page .slide-caption p {
+        font-size: 0.85rem;
+      }
+
+      .about-page .slide-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      .about-page .slide-prev {
+        left: 10px;
+      }
+
+      .about-page .slide-next {
+        right: 10px;
+      }
+
+      .about-page .about-description {
+        padding: 1.5rem;
+      }
+
+
+      /* History mobile */
+
+      .about-page .history-wrapper {
+        padding: 1.3rem;
+        border-radius: 19px;
+      }
+
+      .about-page .history-intro {
+        margin-bottom: 1.7rem;
+      }
+
+      .about-page .history-intro h3 {
+        font-size: 1.4rem;
+      }
+
+      .about-page .history-timeline::before {
+        left: 23px;
+      }
+
+      .about-page .history-item {
+        grid-template-columns: 48px 1fr;
+        gap: 0.8rem;
+      }
+
+      .about-page .history-marker {
+        width: 48px;
+        height: 48px;
+      }
+
+      .about-page .history-card {
+        padding: 1.15rem;
+      }
+
+      .about-page .history-card h3 {
+        font-size: 1.05rem;
+      }
+
+      .about-page .history-card p {
+        font-size: 0.9rem;
+      }
+
+      .about-page .history-highlight {
+        align-items: flex-start;
+      }
+
+    }
+
+  </style>
+
 </head>
-<body class="tp-page">
-  <!-- ========== NAVIGATION ========== -->
+
+
+<body class="tp-page about-page">
+
+
+  <!-- ==========================================================
+       NAVIGATION
+       ========================================================== -->
+
   <header id="navbar" class="navbar dashboard-nav">
+
     <div class="nav-container">
+
+      <!-- LOGOS -->
       <div class="nav-logos">
+
         <div class="logo-circle">
-          <img src="images/municipality-logo.png" alt="Municipality of Tukuran" loading="lazy">
+          <img
+            src="images/municipality-logo.png"
+            alt="Municipality of Tukuran"
+            loading="lazy">
         </div>
+
         <div class="logo-circle">
-          <img src="images/tourism-logo.png" alt="Tourism Office" loading="lazy">
+          <img
+            src="images/tourism-logo.png"
+            alt="Tourism Office"
+            loading="lazy">
         </div>
+
       </div>
-      <nav class="nav-menu" id="navMenu">
-        <a href="beach.html#home" class="nav-link">Home</a>
-        <a href="browse-beaches.html" class="nav-link">Beaches</a>
-        <a href="map.html" class="nav-link">Map</a>
-        <div class="nav-dropdown">
-          <button type="button" class="nav-dropdown-toggle active" aria-haspopup="true" aria-expanded="false">
-            About Tukuran <i class="fas fa-chevron-down nav-caret"></i>
-          </button>
-          <div class="nav-dropdown-menu">
-            <a href="about-tukuran.html">About Tukuran</a>
-            <a href="history.html">History</a>
-            <a href="tourist-spots.html">Tourist Spots</a>
-            <a href="festivals.html">Festivals</a>
-          </div>
-        </div>
-        <a href="beach.html#contact" class="nav-link">Contact</a>
-        <a href="../Log-in page/login.html" class="nav-link" style="background: linear-gradient(135deg, #1e6b86, #2a9bbf); color: #ffffff !important; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.2);">Login</a>
-      </nav>
+
+
+     <nav class="nav-menu" id="navMenu">
+
+  <!-- HOME -->
+  <a href="beach.html#home" class="nav-link">
+    Home
+  </a>
+
+  <!-- BEACHES -->
+  <a href="browse-beaches.html" class="nav-link">
+    Beaches
+  </a>
+
+  <!-- MAP -->
+  <a href="map.html" class="nav-link">
+    Map
+  </a>
+
+  <!-- ABOUT TUKURAN DROPDOWN -->
+  <div class="nav-dropdown">
+
+    <button
+      type="button"
+      class="nav-dropdown-toggle active"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      About
+      <i class="fas fa-chevron-down nav-caret"></i>
+    </button>
+
+    <div class="nav-dropdown-menu">
+
+      <a href="history.html">
+        History
+      </a>
+
+      <a href="tourist-spots.html">
+        Tourist Spots
+      </a>
+
+      <a href="festivals.html">
+        Festivals
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- LOGIN -->
+  <a
+    href="../Log-in page/login.html"
+    class="nav-link"
+    style="
+      background: linear-gradient(135deg, #1e6b86, #2a9bbf);
+      color: #ffffff !important;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    "
+  >
+    Login
+  </a>
+
+</nav>
+
+
+      <!-- MOBILE MENU -->
       <div class="nav-toggle" id="navToggle">
         <i class="fas fa-bars"></i>
       </div>
+
     </div>
+
   </header>
 
-  <!-- ========== CONTENT ========== -->
+
+
+  <!-- ==========================================================
+       MAIN CONTENT
+       ========================================================== -->
+
   <main class="dashboard-main">
+
     <div class="container">
-      <div class="page-header">
-        <h1>History of Tukuran</h1>
-        <p>The rich cultural heritage and natural beauty of this peaceful municipality.</p>
+
+
+      <!-- ======================================================
+           ABOUT HEADER
+           ====================================================== -->
+
+      <div class="about-hero">
+
+        <h1>
+          About Municipality of Tukuran
+        </h1>
+
+        <p>
+          Discover the community, natural attractions, and
+          cultural character of Tukuran, Zamboanga del Sur.
+        </p>
+
       </div>
 
-      <section class="tp-section">
-        <div class="tp-article">
-          <p>
-            Located in the province of Zamboanga del Sur, Philippines, Tukuran is a hidden gem for
-            travelers seeking a peaceful and authentic Filipino experience. This charming municipality
-            is surrounded by lush greenery, rolling hills, and pristine beaches, making it an ideal
-            destination for nature lovers, families, and adventure seekers.
-          </p>
-          <p>
-            Tukuran is home to several remarkable natural attractions, including the picturesque
-            Tukuran Waterfalls, where visitors can enjoy the refreshing crystal-clear waters while
-            appreciating the breathtaking scenery. The municipality also features beautiful beaches
-            with soft white sand, swaying palm trees, and clear turquoise waters, offering relaxing
-            destinations for swimming, sightseeing, and family recreation.
-          </p>
+
+
+      <!-- ======================================================
+           SLIDESHOW
+           ====================================================== -->
+
+      <section class="about-slideshow">
+
+
+        <!-- SLIDE 1 -->
+
+        <div class="about-slide active">
+
+          <img
+            src="images/tukuran-history.jpg"
+            alt="Aerial view of Tukuran"
+            loading="lazy">
+
+          <div class="slide-caption">
+
+            <h3>
+              Welcome to Tukuran
+            </h3>
+
+            <p>
+              A peaceful coastal municipality surrounded
+              by natural beauty and welcoming communities.
+            </p>
+
+          </div>
+
         </div>
+
+
+        <!-- SLIDE 2 -->
+
+        <div class="about-slide">
+
+          <img
+            src="images/beach1.jpg"
+            alt="Tukuran coastline"
+            loading="lazy">
+
+          <div class="slide-caption">
+
+            <h3>
+              Coastal Beauty
+            </h3>
+
+            <p>
+              Tukuran's coastline offers scenic beaches
+              and relaxing destinations for visitors.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- SLIDE 3 -->
+
+        <div class="about-slide">
+
+          <img
+            src="images/beach2.jpg"
+            alt="Tukuran beach"
+            loading="lazy">
+
+          <div class="slide-caption">
+
+            <h3>
+              Natural Attractions
+            </h3>
+
+            <p>
+              Experience the natural surroundings and
+              peaceful environment of the municipality.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- SLIDE 4 -->
+
+        <div class="about-slide">
+
+          <img
+            src="images/beach3.jpg"
+            alt="Tukuran natural attraction"
+            loading="lazy">
+
+          <div class="slide-caption">
+
+            <h3>
+              Discover Tukuran
+            </h3>
+
+            <p>
+              Explore the places, communities, and
+              experiences that make Tukuran unique.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PREVIOUS BUTTON -->
+
+        <button
+          type="button"
+          class="slide-btn slide-prev"
+          aria-label="Previous slide">
+
+          <i class="fas fa-chevron-left"></i>
+
+        </button>
+
+
+        <!-- NEXT BUTTON -->
+
+        <button
+          type="button"
+          class="slide-btn slide-next"
+          aria-label="Next slide">
+
+          <i class="fas fa-chevron-right"></i>
+
+        </button>
+
+
+        <!-- DOTS -->
+
+        <div class="slide-dots">
+
+          <button
+            type="button"
+            class="slide-dot active"
+            aria-label="Go to slide 1">
+          </button>
+
+          <button
+            type="button"
+            class="slide-dot"
+            aria-label="Go to slide 2">
+          </button>
+
+          <button
+            type="button"
+            class="slide-dot"
+            aria-label="Go to slide 3">
+          </button>
+
+          <button
+            type="button"
+            class="slide-dot"
+            aria-label="Go to slide 4">
+          </button>
+
+        </div>
+
       </section>
 
+
+
+      <!-- ======================================================
+           SHORT ABOUT DESCRIPTION
+           ====================================================== -->
+
       <section class="tp-section">
-        <h2><i class="fas fa-images"></i> Gallery</h2>
-        <div class="tp-gallery">
-          <figure><img src="images/beach1.jpg" alt="Tukuran coastline" loading="lazy"></figure>
-          <figure><img src="images/beach2.jpg" alt="Tukuran sunset" loading="lazy"></figure>
-          <figure><img src="images/beach3.jpg" alt="Tukuran waterfalls" loading="lazy"></figure>
-          <figure><img src="images/tukuran-history.jpg" alt="Tukuran municipality" loading="lazy"></figure>
+
+        <div class="about-description">
+
+          <h2>
+            <i class="fas fa-location-dot"></i>
+            About Tukuran
+          </h2>
+
+          <p>
+            Tukuran is a coastal municipality in the province of
+            Zamboanga del Sur, Region IX. It is recognized for its
+            coastal destinations, natural surroundings, and
+            communities that contribute to the municipality's
+            local character. Its beaches and other natural
+            attractions provide opportunities for visitors to
+            relax, explore, and experience the beauty of the area.
+          </p>
+
         </div>
+
       </section>
+
+
+
+      <!-- ======================================================
+           MUNICIPALITY AT A GLANCE
+           ====================================================== -->
+
+      <section class="tp-section">
+
+        <h2>
+          <i class="fas fa-map-pin"></i>
+          Municipality at a Glance
+        </h2>
+
+
+        <div class="tp-grid">
+
+
+          <!-- LOCATION -->
+
+          <div class="tp-card">
+
+            <div class="tp-card-icon">
+              <i class="fas fa-map-pin"></i>
+            </div>
+
+            <h3>
+              Location
+            </h3>
+
+            <p>
+              Tukuran, Province of Zamboanga del Sur,
+              Philippines.
+            </p>
+
+          </div>
+
+
+          <!-- REGION -->
+
+          <div class="tp-card">
+
+            <div class="tp-card-icon">
+              <i class="fas fa-compass"></i>
+            </div>
+
+            <h3>
+              Region
+            </h3>
+
+            <p>
+              Zamboanga Peninsula (Region IX).
+            </p>
+
+          </div>
+
+
+          <!-- KNOWN FOR -->
+
+          <div class="tp-card">
+
+            <div class="tp-card-icon">
+              <i class="fas fa-water"></i>
+            </div>
+
+            <h3>
+              Known For
+            </h3>
+
+            <p>
+              Coastal destinations, beaches, and a
+              relaxing natural environment.
+            </p>
+
+          </div>
+
+
+          <!-- TOURISM OFFICE -->
+
+          <div class="tp-card">
+
+            <div class="tp-card-icon">
+              <i class="fas fa-landmark"></i>
+            </div>
+
+            <h3>
+              Tourism Office
+            </h3>
+
+            <p>
+              Municipal Tourism Office
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ======================================================
+           TOURISM AT A GLANCE
+           ====================================================== -->
+
+      <section class="tp-section">
+
+        <h2>
+          <i class="fas fa-chart-line"></i>
+          Tourism at a Glance
+        </h2>
+
+
+        <div class="tp-stats">
+
+
+          <!-- TOTAL BEACHES -->
+
+          <div class="tp-stat">
+
+            <div
+              class="tp-stat-value"
+              id="statTotalBeaches">
+              --
+            </div>
+
+            <div class="tp-stat-label">
+              Registered Beaches
+            </div>
+
+          </div>
+
+
+          <!-- MOST VISITED -->
+
+          <div class="tp-stat">
+
+            <div
+              class="tp-stat-value"
+              id="statMostVisited">
+              --
+            </div>
+
+            <div class="tp-stat-label">
+              Most Visited Beach
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ======================================================
+           HISTORY OF TUKURAN
+           ====================================================== -->
+
+      <section class="tp-section">
+
+        <h2>
+          <i class="fas fa-book-open"></i>
+          History of Tukuran
+        </h2>
+
+
+        <!-- HISTORY CONTAINER -->
+
+        <div class="history-wrapper">
+
+
+          <!-- HISTORY INTRO -->
+
+          <div class="history-intro">
+
+            <div class="history-intro-icon">
+              <i class="fas fa-landmark"></i>
+            </div>
+
+            <h3>
+              A Community Shaped by Its Coastal Heritage
+            </h3>
+
+            <p>
+              Tukuran's story is closely connected to its
+              people, coastal environment, local livelihoods,
+              and the traditions that continue to contribute
+              to its identity as a municipality.
+            </p>
+
+          </div>
+
+
+
+          <!-- HISTORY TIMELINE -->
+
+          <div class="history-timeline">
+
+
+            <!-- HISTORY ITEM 1 -->
+
+            <div class="history-item">
+
+              <div class="history-marker">
+                <i class="fas fa-people-group"></i>
+              </div>
+
+
+              <div class="history-card">
+
+                <h3>
+                  Early Community Development
+                </h3>
+
+                <p>
+                  Tukuran developed as communities settled in
+                  the area and established local practices,
+                  traditions, and ways of life. The growth of
+                  these communities helped shape the character
+                  and identity of the municipality.
+                </p>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- HISTORY ITEM 2 -->
+
+            <div class="history-item">
+
+              <div class="history-marker">
+                <i class="fas fa-fish"></i>
+              </div>
+
+
+              <div class="history-card">
+
+                <h3>
+                  Coastal Livelihoods
+                </h3>
+
+                <p>
+                  The coastal environment became an important
+                  part of everyday life in Tukuran. Activities
+                  such as fishing, agriculture, trade, and
+                  other community-based livelihoods supported
+                  local families and contributed to the
+                  municipality's development.
+                </p>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- HISTORY ITEM 3 -->
+
+            <div class="history-item">
+
+              <div class="history-marker">
+                <i class="fas fa-tree"></i>
+              </div>
+
+
+              <div class="history-card">
+
+                <h3>
+                  Tukuran Today
+                </h3>
+
+                <p>
+                  Today, Tukuran continues to develop while
+                  maintaining its local character and
+                  community traditions. Its beaches, natural
+                  surroundings, and cultural resources remain
+                  valuable parts of the municipality's identity
+                  and provide opportunities for tourism and
+                  community activities.
+                </p>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- HISTORY HIGHLIGHT -->
+
+          <div class="history-highlight">
+
+            <div class="history-highlight-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+
+            <p>
+              The heritage of Tukuran is reflected not only
+              in its natural surroundings, but also in the
+              communities, livelihoods, traditions, and
+              experiences that continue to shape the
+              municipality.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
     </div>
+
   </main>
 
+
+
   <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-logos">
-        <div class="logo-circle footer-circle">
-          <img src="images/municipality-logo.png" alt="Municipality" loading="lazy">
-        </div>
-        <div class="logo-circle footer-circle">
-          <img src="images/tourism-logo.png" alt="Tourism" loading="lazy">
-        </div>
-        <div class="logo-circle footer-circle">
-          <img src="images/system-logo.png" alt="System" loading="lazy">
-        </div>
-      </div>
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+     <!-- QUICK LINKS -->
       <div class="footer-links">
         <h4>Quick Links</h4>
+
         <a href="beach.html#home">Home</a>
         <a href="browse-beaches.html">Beaches</a>
         <a href="map.html">Map</a>
-        <a href="about-tukuran.html">About Tukuran</a>
-        <a href="beach.html#contact">Contact</a>
+        <a href="history.html">About</a>
       </div>
-      <div class="footer-links">
-        <h4>About Tukuran</h4>
-        <a href="about-tukuran.html">About Tukuran</a>
-        <a href="history.html">History</a>
-        <a href="tourist-spots.html">Tourist Spots</a>
-        <a href="festivals.html">Festivals</a>
-      </div>
-      <div class="footer-social">
-        <h4>Tourism Contact</h4>
-        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Tukuran Beach Management and Reservation System. All Rights Reserved.</p>
-    </div>
-  </footer>
 
-  <!-- ========== SCRIPTS ========== -->
+      <!-- CONTACT -->
+      <div class="footer-links">
+        <h4>Contact</h4>
+
+        <a href="tel:+639271180775">
+          <i class="fas fa-phone-alt"></i>
+          0927 118 0775
+        </a>
+
+        <a href="mailto:tukurantourismoffice@gmail.com">
+          <i class="fas fa-envelope"></i>
+          tukurantourismoffice@gmail.com
+        </a>
+
+        <a href="https://www.facebook.com/photo/?fbid=122094425097250794&set=a.122094418995250794&__tn__=%3C"
+           target="_blank"
+           rel="noopener">
+          <i class="fab fa-facebook"></i>
+          Geh Tukuran, Gibalik-balikan
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Tukuran Beach Management and Reservation System. All Rights Reserved.
+    </div>
+
+  </div>
+</footer>
+
+  <!-- ==========================================================
+       NAVIGATION SCRIPT
+       ========================================================== -->
+
   <script>
+
     (function () {
-      var navbar = document.getElementById('navbar');
-      var navToggle = document.getElementById('navToggle');
-      var navMenu = document.getElementById('navMenu');
+
+      var navbar =
+        document.getElementById('navbar');
+
+      var navToggle =
+        document.getElementById('navToggle');
+
+      var navMenu =
+        document.getElementById('navMenu');
+
+
+      /* Sticky navbar */
+
       window.addEventListener('scroll', function () {
+
         if (!navbar) return;
-        if (window.scrollY > 80) navbar.classList.add('scrolled');
-        else navbar.classList.remove('scrolled');
+
+        if (window.scrollY > 80) {
+
+          navbar.classList.add('scrolled');
+
+        } else {
+
+          navbar.classList.remove('scrolled');
+
+        }
+
       });
+
+
+      /* Mobile navigation */
+
       if (navToggle && navMenu) {
+
         navToggle.addEventListener('click', function (e) {
+
           e.stopPropagation();
+
           navMenu.classList.toggle('open');
-          var icon = navToggle.querySelector('i');
-          if (icon) icon.className = navMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
-        });
-        document.addEventListener('click', function (e) {
-          if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-            navMenu.classList.remove('open');
-            var icon = navToggle.querySelector('i');
-            if (icon) icon.className = 'fas fa-bars';
+
+          var icon =
+            navToggle.querySelector('i');
+
+          if (icon) {
+
+            icon.className =
+              navMenu.classList.contains('open')
+                ? 'fas fa-times'
+                : 'fas fa-bars';
+
           }
+
         });
+
+
+        document.addEventListener('click', function (e) {
+
+          if (
+            navMenu.classList.contains('open') &&
+            !navMenu.contains(e.target) &&
+            !navToggle.contains(e.target)
+          ) {
+
+            navMenu.classList.remove('open');
+
+            var icon =
+              navToggle.querySelector('i');
+
+            if (icon) {
+
+              icon.className =
+                'fas fa-bars';
+
+            }
+
+          }
+
+        });
+
       }
+
     })();
+
   </script>
-  <script src="nav-dropdown.js"></script>
+
+
+
+  <!-- ==========================================================
+       SLIDESHOW SCRIPT
+       ========================================================== -->
+
+  <script>
+
+    (function () {
+
+      var slides =
+        document.querySelectorAll('.about-slide');
+
+      var dots =
+        document.querySelectorAll('.slide-dot');
+
+      var prevButton =
+        document.querySelector('.slide-prev');
+
+      var nextButton =
+        document.querySelector('.slide-next');
+
+      var currentSlide = 0;
+
+      var slideTimer;
+
+
+      /* SHOW SLIDE */
+
+      function showSlide(index) {
+
+        if (!slides.length) return;
+
+        currentSlide = index;
+
+        if (currentSlide >= slides.length) {
+
+          currentSlide = 0;
+
+        }
+
+        if (currentSlide < 0) {
+
+          currentSlide =
+            slides.length - 1;
+
+        }
+
+
+        slides.forEach(function (slide) {
+
+          slide.classList.remove('active');
+
+        });
+
+
+        dots.forEach(function (dot) {
+
+          dot.classList.remove('active');
+
+        });
+
+
+        slides[currentSlide]
+          .classList.add('active');
+
+
+        if (dots[currentSlide]) {
+
+          dots[currentSlide]
+            .classList.add('active');
+
+        }
+
+      }
+
+
+      /* NEXT */
+
+      function nextSlide() {
+
+        currentSlide++;
+
+        if (currentSlide >= slides.length) {
+
+          currentSlide = 0;
+
+        }
+
+        showSlide(currentSlide);
+
+        restartTimer();
+
+      }
+
+
+      /* PREVIOUS */
+
+      function previousSlide() {
+
+        currentSlide--;
+
+        if (currentSlide < 0) {
+
+          currentSlide =
+            slides.length - 1;
+
+        }
+
+        showSlide(currentSlide);
+
+        restartTimer();
+
+      }
+
+
+      /* NEXT BUTTON */
+
+      if (nextButton) {
+
+        nextButton.addEventListener(
+          'click',
+          nextSlide
+        );
+
+      }
+
+
+      /* PREVIOUS BUTTON */
+
+      if (prevButton) {
+
+        prevButton.addEventListener(
+          'click',
+          previousSlide
+        );
+
+      }
+
+
+      /* DOT BUTTONS */
+
+      dots.forEach(function (dot, index) {
+
+        dot.addEventListener(
+          'click',
+          function () {
+
+            currentSlide = index;
+
+            showSlide(currentSlide);
+
+            restartTimer();
+
+          }
+        );
+
+      });
+
+
+      /* AUTOMATIC SLIDESHOW */
+
+      function startTimer() {
+
+        slideTimer =
+          setInterval(
+            nextSlide,
+            5000
+          );
+
+      }
+
+
+      function restartTimer() {
+
+        clearInterval(slideTimer);
+
+        startTimer();
+
+      }
+
+
+      /* START */
+
+      showSlide(0);
+
+      startTimer();
+
+    })();
+
+  </script>
+
+
+
+  <!-- ==========================================================
+       TOURISM DATABASE STATS
+       ========================================================== -->
+
+  <script>
+
+    (function () {
+
+      fetch('../api/beach-stats.php')
+
+        .then(function (response) {
+
+          return response.json();
+
+        })
+
+
+        .then(function (res) {
+
+          if (
+            !res ||
+            !res.success ||
+            !res.data
+          ) {
+
+            return;
+
+          }
+
+
+          var total =
+            document.getElementById(
+              'statTotalBeaches'
+            );
+
+
+          var most =
+            document.getElementById(
+              'statMostVisited'
+            );
+
+
+          /* TOTAL BEACHES */
+
+          if (total) {
+
+            total.textContent =
+              typeof res.data.total_beaches === 'number'
+                ? res.data.total_beaches
+                : '0';
+
+          }
+
+
+          /* MOST VISITED BEACH */
+
+          if (most) {
+
+            most.textContent =
+              res.data.most_visited
+                ? res.data.most_visited.beach_name
+                : 'No data yet';
+
+          }
+
+        })
+
+
+        .catch(function () {
+
+          var total =
+            document.getElementById(
+              'statTotalBeaches'
+            );
+
+
+          var most =
+            document.getElementById(
+              'statMostVisited'
+            );
+
+
+          if (total) {
+
+            total.textContent = '0';
+
+          }
+
+
+          if (most) {
+
+            most.textContent =
+              'No data yet';
+
+          }
+
+        });
+
+    })();
+
+  </script>
+
+
 </body>
+
 </html>
