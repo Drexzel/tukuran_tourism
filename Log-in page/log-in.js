@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // ========================================
+    // ========================================
   // ===== REGISTRATION PAGE FUNCTIONALITY =====
   // ========================================
 

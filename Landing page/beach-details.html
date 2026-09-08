@@ -4,17 +4,676 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
   <title>Beach Details · Tukuran Beach</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Page CSS -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="beach-details.css">
   <link rel="stylesheet" href="site-nav-theme.css">
+
+  <!-- Login Modal CSS -->
+  <link rel="stylesheet" href="login-modal.css">
 </head>
+
 <body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header id="navbar" class="navbar dashboard-nav">
+    <div class="nav-container">
+
+      <div class="nav-logos">
+        <div class="logo-circle">
+          <img src="images/municipality-logo.png"
+               alt="Municipality of Tukuran"
+               loading="lazy">
+        </div>
+
+        <div class="logo-circle">
+          <img src="images/tourism-logo.png"
+               alt="Tourism Office"
+               loading="lazy">
+        </div>
+      </div>
+
+      <nav class="nav-menu" id="navMenu">
+
+        <a href="beach.html#home" class="nav-link">
+          Home
+        </a>
+
+        <a href="browse-beaches.html" class="nav-link active">
+          Beaches
+        </a>
+
+        <a href="beach.html#map" class="nav-link">
+          Map
+        </a>
+
+        <a href="about-tukuran.html" class="nav-link">
+          About
+        </a>
+
+        <!-- LOGIN -->
+        <a
+          href="../Log-in page/login.html"
+          class="nav-link login-modal-trigger"
+          style="
+            background: linear-gradient(135deg, #1e6b86, #2a9bbf);
+            color: #ffffff !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(30, 107, 134, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+          "
+        >
+          Login
+        </a>
+
+      </nav>
+
+      <div class="nav-toggle" id="navToggle">
+        <i class="fas fa-bars"></i>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ========== BEACH DETAILS CONTENT ========== -->
+  <main class="dashboard-main">
+
+    <div class="container">
+
+      <div class="beach-details">
+
+        <!-- Back Button -->
+        <a href="browse-beaches.html" class="back-link">
+          <i class="fas fa-arrow-left"></i>
+          Back to Beaches
+        </a>
+
+
+        <!-- Beach Gallery -->
+        <div class="beach-gallery">
+
+          <div
+            class="gallery-main"
+            id="galleryMainWrap"
+            role="button"
+            tabindex="0"
+            aria-label="View larger image"
+          >
+
+            <img
+              src="images/beach1.jpg"
+              alt="Beach"
+              id="mainGalleryImg"
+            >
+
+            <span class="gallery-expand-hint">
+              <i class="fas fa-expand"></i>
+              View larger
+            </span>
+
+          </div>
+
+
+          <div class="gallery-thumbs" id="galleryThumbs">
+
+            <img
+              src="images/beach1.jpg"
+              alt="Beach 1"
+              onclick="changeGalleryImage(this.src)"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- ========== IMAGE PREVIEW / GALLERY LIGHTBOX ========== -->
+        <div class="modal gallery-lightbox" id="galleryLightbox">
+
+          <div class="modal-content gallery-lightbox-content">
+
+            <button
+              type="button"
+              class="modal-close"
+              id="galleryLightboxClose"
+              aria-label="Close"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+
+
+            <button
+              type="button"
+              class="gallery-lightbox-nav gallery-lightbox-prev"
+              id="galleryLightboxPrev"
+              aria-label="Previous image"
+            >
+              <i class="fas fa-chevron-left"></i>
+            </button>
+
+
+            <img
+              src=""
+              alt=""
+              id="galleryLightboxImg"
+            >
+
+
+            <button
+              type="button"
+              class="gallery-lightbox-nav gallery-lightbox-next"
+              id="galleryLightboxNext"
+              aria-label="Next image"
+            >
+              <i class="fas fa-chevron-right"></i>
+            </button>
+
+
+            <span
+              class="gallery-lightbox-count"
+              id="galleryLightboxCount"
+            ></span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ========== BEACH INFO ========== -->
+        <div class="beach-info-details">
+
+          <div class="beach-header">
+
+            <h1 id="beachName">
+              Loading...
+            </h1>
+
+            <div class="beach-rating">
+
+              <i class="fas fa-star"></i>
+
+              <span id="beachRatingValue">
+                --
+              </span>
+
+              <span
+                class="reviews"
+                id="beachReviewCount"
+              >
+                (0 reviews)
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- BEACH META -->
+          <div class="beach-meta-grid">
+
+            <div class="meta-item">
+              <i class="fas fa-map-pin"></i>
+              <span id="beachLocation">
+                Tukuran
+              </span>
+            </div>
+
+
+            <div class="meta-item">
+              <i class="fas fa-users"></i>
+
+              <span>
+                Beach Capacity:
+                <strong id="beachCapacity">
+                  -- / --
+                </strong>
+                Visitors
+              </span>
+
+            </div>
+
+
+            <div class="meta-item">
+              <i class="fas fa-child"></i>
+
+              <span>
+                Child Fee:
+                <span id="childFee">
+                  ₱0
+                </span>
+              </span>
+
+            </div>
+
+
+            <div class="meta-item">
+              <i class="fas fa-user"></i>
+
+              <span>
+                Adult Fee:
+                <span id="adultFee">
+                  ₱0
+                </span>
+              </span>
+
+            </div>
+
+
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+
+              <span>
+                6:00 AM - 6:00 PM
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- DESCRIPTION -->
+          <div class="beach-description">
+
+            <h3>
+              About This Beach
+            </h3>
+
+            <p id="beachDescription">
+              Loading beach details...
+            </p>
+
+          </div>
+
+
+          <!-- ACCOMMODATION -->
+          <div class="beach-accommodation">
+
+            <h3>
+              Accommodation Types
+            </h3>
+
+            <div
+              class="accommodation-types-grid"
+              id="accommodationTypesGrid"
+            >
+              <p style="color:#5a7a8a;">
+                Loading...
+              </p>
+            </div>
+
+            <div
+              class="accommodation-detail-panel"
+              id="accommodationDetailPanel"
+              style="display:none;"
+            ></div>
+
+          </div>
+
+
+          <!-- AMENITIES -->
+          <div class="beach-amenities">
+
+            <h3>
+              Amenities
+            </h3>
+
+            <div
+              class="amenities-grid"
+              id="amenitiesGrid"
+            >
+              <p style="color:#5a7a8a;">
+                Loading...
+              </p>
+            </div>
+
+          </div>
+
+
+          <!-- ========== RATINGS AND REVIEWS ========== -->
+          <div class="beach-reviews">
+
+            <h3>
+              Ratings and Reviews
+            </h3>
+
+
+            <div class="average-rating">
+
+              <div
+                class="rating-stars"
+                id="ratingStars"
+              >
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+
+              <span
+                class="rating-average"
+                id="ratingAverage"
+              >
+                --
+              </span>
+
+              <span
+                class="rating-count"
+                id="ratingCountDisplay"
+              >
+                (0 reviews)
+              </span>
+
+            </div>
+
+
+            <!-- REVIEW FORM -->
+            <div class="review-form-container">
+
+              <h4>
+                Write a Review
+              </h4>
+
+              <form
+                id="reviewForm"
+                class="review-form"
+              >
+
+                <div class="form-group">
+
+                  <label>
+                    Your Rating
+                  </label>
+
+                  <div class="star-rating-input">
+
+                    <input
+                      type="radio"
+                      name="rating"
+                      id="star5"
+                      value="5"
+                    >
+
+                    <label for="star5" title="5 stars">
+                      <i class="fas fa-star"></i>
+                    </label>
+
+
+                    <input
+                      type="radio"
+                      name="rating"
+                      id="star4"
+                      value="4"
+                    >
+
+                    <label for="star4" title="4 stars">
+                      <i class="fas fa-star"></i>
+                    </label>
+
+
+                    <input
+                      type="radio"
+                      name="rating"
+                      id="star3"
+                      value="3"
+                    >
+
+                    <label for="star3" title="3 stars">
+                      <i class="fas fa-star"></i>
+                    </label>
+
+
+                    <input
+                      type="radio"
+                      name="rating"
+                      id="star2"
+                      value="2"
+                    >
+
+                    <label for="star2" title="2 stars">
+                      <i class="fas fa-star"></i>
+                    </label>
+
+
+                    <input
+                      type="radio"
+                      name="rating"
+                      id="star1"
+                      value="1"
+                    >
+
+                    <label for="star1" title="1 star">
+                      <i class="fas fa-star"></i>
+                    </label>
+
+                  </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="reviewComment">
+                    Your Review
+                  </label>
+
+                  <textarea
+                    id="reviewComment"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Share your experience at this beach..."
+                    required
+                  ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label for="reviewerName">
+                    Your Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="reviewerName"
+                    class="form-control"
+                    placeholder="Enter your name"
+                    required
+                  >
+
+                </div>
+
+
+                <button
+                  type="submit"
+                  class="btn-primary"
+                >
+                  Submit Review
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+
+              </form>
+
+            </div>
+
+
+            <!-- REVIEWS LIST -->
+            <div
+              class="reviews-list"
+              id="reviewsList"
+            >
+
+              <h4>
+                Recent Reviews
+              </h4>
+
+              <div id="reviewsListItems">
+
+                <p style="color:#5a7a8a;">
+                  Loading reviews...
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ========== BEACH CONTACT ========== -->
+          <div class="beach-contact">
+
+            <h3>
+              Beach Contact Information
+            </h3>
+
+            <div class="contact-info-grid">
+
+              <div class="contact-info-item">
+
+                <i class="fas fa-phone"></i>
+
+                <div>
+
+                  <span class="contact-label">
+                    Contact Number
+                  </span>
+
+                  <span
+                    class="contact-value"
+                    id="beachPhone"
+                  >
+                    Not provided
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="contact-info-item">
+
+                <i class="fas fa-user-tie"></i>
+
+                <div>
+
+                  <span class="contact-label">
+                    Beach Owner/Representative
+                  </span>
+
+                  <span
+                    class="contact-value"
+                    id="beachOwnerName"
+                  >
+                    Not provided
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="contact-info-item">
+
+                <i class="fab fa-facebook"></i>
+
+                <div>
+
+                  <span class="contact-label">
+                    Official Facebook Page
+                  </span>
+
+                  <span class="contact-value">
+
+                    <a
+                      href="#"
+                      id="beachFacebook"
+                      style="color: #1a6b7a;"
+                    >
+                      Not provided
+                    </a>
+
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ========== MAP ========== -->
+          <div class="beach-map">
+
+            <h3>
+              Location Map
+            </h3>
+
+            <div
+              id="beachMap"
+              class="leaflet-map-container"
+            ></div>
+
+          </div>
+
+
+          <!-- ========== RESERVE BUTTON ========== -->
+          <div class="beach-reserve">
+
+            <a
+              href="reservation-form.html?beach=1"
+              class="btn-primary btn-large"
+              id="reserveNowBtn"
+            >
+              Reserve Now
+              <i class="fas fa-arrow-right"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ========== SCRIPTS ========== -->
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script src="script.js"></script>
+
+  <script src="beach-details.js"></script>
+
+  <!-- LOGIN MODAL -->
+  <script src="login-modal.js"></script>
+
+  <!-- EXISTING LOGIN FUNCTIONALITY -->
+  <script src="../Log-in page/log-in.js"></script>
+
+</body>
+</html>
   <!-- ========== NAVIGATION ========== -->
   <header id="navbar" class="navbar dashboard-nav">
     <div class="nav-container">
@@ -225,9 +884,10 @@
     </div>
   </main>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="script.js"></script>
-  <script src="beach-details.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+<script src="beach-details.js"></script>
+<script src="login-modal.js"></script>
+<script src="../Log-in page/log-in.js"></script>
 </body>
 </html>
